@@ -1,0 +1,15 @@
+[{
+  "modid": "traverse",
+  "name": "Traverse",
+  "description": "Adds some neat biomes and stuff (kitten make a better description please)",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/ProfessorProspector/Traverse",
+  "updateUrl": "",
+  "authorList": [ "Prospector", "InsomniaKitten" ],
+  "credits": "",
+  "logoFile": "logo.png",
+  "screenshots": [ ],
+  "parent":"",
+  "dependencies": [ ]
+}]

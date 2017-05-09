@@ -1,0 +1,63 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url = "http://files.minecraftforge.net/maven" }
+	}
+	dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT' }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = mcver + "-" + modver
+
+def ENV = System.getenv()
+if (ENV.BUILD_NUMBER) {
+	version = "-" + "${System.getenv().BUILD_NUMBER}"
+}
+
+def ver = version
+
+group = prefix + "." + id
+archivesBaseName = jarname
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+	sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+	version = mcver + "-" + forgever
+	runDir = "run"
+	mappings = mcp
+
+    replaceIn "Reference.java"
+    replace "@version@", project.version
+    replace "@mcversion@", project.mcver
+
+    if (project.hasProperty('mappings_version'))
+        mappings = project.mappings_version
+}
+
+
+repositories {
+
+}
+
+dependencies {
+
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
+}
