@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.IPlantable;
 import prospector.traverse.init.TraverseBlocks;
+import prospector.traverse.world.TraverseTreeGenerator;
 
 import java.util.Random;
 
@@ -89,26 +89,24 @@ public class BiomeAutumnalWoods extends Biome {
         }
     }
 
-    public class GeneratorAutumnalTree extends WorldGenerator {
+    public static class GeneratorAutumnalTree extends TraverseTreeGenerator {
 
         public int treeBaseHeight = 4;
         public IBlockState leaves;
-        boolean isWorldGen = true;
 
         public GeneratorAutumnalTree(IBlockState leaves) {
-            super();
+            super(true);
             this.leaves = leaves;
         }
 
         public GeneratorAutumnalTree(IBlockState leaves, boolean isWorldGen) {
-            super(!isWorldGen);
+            super(isWorldGen);
             this.leaves = leaves;
-            this.isWorldGen = isWorldGen;
         }
 
         @Override
         public boolean generate(World worldIn, Random rand, BlockPos position) {
-            int retries = rand.nextInt(3) + 2;
+            int retries = rand.nextInt(7) + 2;
             for (int c = 0; c < retries; c++) {
                 int x = position.getX() + 8 + rand.nextInt(16);
                 int z = position.getZ() + 8 + rand.nextInt(16);
@@ -118,9 +116,10 @@ public class BiomeAutumnalWoods extends Biome {
                 }
                 if (!growTree(worldIn, rand, x, y + 1, z)) {
                     retries--;
+                } else {
+                    return true;
                 }
             }
-
             return false;
         }
 
@@ -131,10 +130,10 @@ public class BiomeAutumnalWoods extends Biome {
                 int xOffset;
                 int yOffset;
                 int zOffset;
-                IBlockState baseSate = world.getBlockState(new BlockPos(x, y - 1, z));
-                Block baseBlock = baseSate.getBlock();
+                IBlockState baseState = world.getBlockState(new BlockPos(x, y - 1, z));
+                Block baseBlock = baseState.getBlock();
                 boolean hasPlacedBlock = false;
-                if (baseBlock != null && baseBlock.canSustainPlant(baseSate, world, new BlockPos(x, y - 1, z),
+                if (baseBlock != null && baseBlock.canSustainPlant(baseState, world, new BlockPos(x, y - 1, z),
                         EnumFacing.UP, (IPlantable) Blocks.SAPLING) && y < worldHeight - treeHeight - 1) {
                     for (yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset) {
                         byte radius = 1;

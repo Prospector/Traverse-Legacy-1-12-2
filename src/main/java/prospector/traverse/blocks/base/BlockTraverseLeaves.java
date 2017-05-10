@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class BlockTraverseLeaves extends BlockLeaves {
 
-    private Item sapling;
+    public Item sapling;
 
     public BlockTraverseLeaves(String name, Item sapling) {
         super();
