@@ -4,9 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import prospector.traverse.blocks.AutumnLeavesSapling;
 import prospector.traverse.blocks.base.*;
 import prospector.traverse.world.TraverseTreeGenerator;
-import prospector.traverse.world.biomes.autumnalWoods.BiomeAutumnalWoods;
 
 import java.util.LinkedHashMap;
 
@@ -87,12 +87,8 @@ public class TraverseBlocks {
             return;
         }
         colour = colour + "_autumnal";
-        BlockTraverseLeaves leaves;
-        BlockTraverseSapling sapling;
-        leaves = new BlockTraverseLeaves(colour);
-        sapling = new BlockTraverseSapling(colour, new BiomeAutumnalWoods.GeneratorAutumnalTree(leaves.getDefaultState()));
-        leaves.sapling = Item.getItemFromBlock(sapling);
-        blocks.put(colour + "_leaves", leaves);
-        blocks.put(colour + "_sapling", sapling);
+        AutumnLeavesSapling leavesSapling = new AutumnLeavesSapling(colour);
+        blocks.put(colour + "_leaves", leavesSapling.lsLeaves);
+        blocks.put(colour + "_sapling", leavesSapling.lsSapling);
     }
 }

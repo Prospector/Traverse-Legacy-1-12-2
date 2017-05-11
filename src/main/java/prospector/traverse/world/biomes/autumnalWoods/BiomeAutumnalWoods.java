@@ -44,51 +44,6 @@ public class BiomeAutumnalWoods extends Biome {
         return new DecoratorAutumnalWoods();
     }
 
-    public class DecoratorAutumnalWoods extends BiomeDecorator {
-
-        public int rubberTreesPerChunk;
-        GeneratorAutumnalTree redTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("red_autumnal_leaves").getDefaultState());
-        GeneratorAutumnalTree brownTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("brown_autumnal_leaves").getDefaultState());
-        GeneratorAutumnalTree orangeTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("orange_autumnal_leaves").getDefaultState());
-        GeneratorAutumnalTree yellowTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("yellow_autumnal_leaves").getDefaultState());
-
-        public DecoratorAutumnalWoods() {
-            rubberTreesPerChunk = 4;
-            treesPerChunk = 0;
-            grassPerChunk = 2;
-        }
-
-        @Override
-        protected void genDecorations(Biome biomeIn, World worldIn, Random random) {
-            int k1 = this.rubberTreesPerChunk;
-
-            if (random.nextFloat() < this.extraTreeChance) {
-                ++k1;
-            }
-
-            if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
-                for (int j2 = 0; j2 < k1; ++j2) {
-                    int k6 = random.nextInt(16) + 8;
-                    int l = random.nextInt(16) + 8;
-                    WorldGenAbstractTree worldgenabstracttree = biomeIn.genBigTreeChance(random);
-                    worldgenabstracttree.setDecorationDefaults();
-                    BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
-                    int colour = random.nextInt(3);
-                    switch (colour) {
-                        case 0:
-                            redTreeGenerator.generate(worldIn, random, blockpos);
-                        case 1:
-                            brownTreeGenerator.generate(worldIn, random, blockpos);
-                        case 2:
-                            orangeTreeGenerator.generate(worldIn, random, blockpos);
-                        default:
-                            yellowTreeGenerator.generate(worldIn, random, blockpos);
-                    }
-                }
-            super.genDecorations(biomeIn, worldIn, random);
-        }
-    }
-
     public static class GeneratorAutumnalTree extends TraverseTreeGenerator {
 
         public int treeBaseHeight = 4;
@@ -205,6 +160,52 @@ public class BiomeAutumnalWoods extends Biome {
                 return hasPlacedBlock;
             }
             return false;
+        }
+    }
+
+    public class DecoratorAutumnalWoods extends BiomeDecorator {
+
+        public int rubberTreesPerChunk;
+        GeneratorAutumnalTree redTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("red_autumnal_leaves").getDefaultState());
+        GeneratorAutumnalTree brownTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("brown_autumnal_leaves").getDefaultState());
+        GeneratorAutumnalTree orangeTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("orange_autumnal_leaves").getDefaultState());
+        GeneratorAutumnalTree yellowTreeGenerator = new GeneratorAutumnalTree(TraverseBlocks.blocks.get("yellow_autumnal_leaves").getDefaultState());
+
+        public DecoratorAutumnalWoods() {
+            rubberTreesPerChunk = 4;
+            treesPerChunk = 0;
+            flowersPerChunk = 4;
+            grassPerChunk = 6;
+        }
+
+        @Override
+        protected void genDecorations(Biome biomeIn, World worldIn, Random random) {
+            int k1 = this.rubberTreesPerChunk;
+
+            if (random.nextFloat() < this.extraTreeChance) {
+                ++k1;
+            }
+
+            if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
+                for (int j2 = 0; j2 < k1; ++j2) {
+                    int k6 = random.nextInt(16) + 8;
+                    int l = random.nextInt(16) + 8;
+                    WorldGenAbstractTree worldgenabstracttree = biomeIn.genBigTreeChance(random);
+                    worldgenabstracttree.setDecorationDefaults();
+                    BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
+                    int colour = random.nextInt(3);
+                    switch (colour) {
+                        case 0:
+                            redTreeGenerator.generate(worldIn, random, blockpos);
+                        case 1:
+                            brownTreeGenerator.generate(worldIn, random, blockpos);
+                        case 2:
+                            orangeTreeGenerator.generate(worldIn, random, blockpos);
+                        default:
+                            yellowTreeGenerator.generate(worldIn, random, blockpos);
+                    }
+                }
+            super.genDecorations(biomeIn, worldIn, random);
         }
     }
 }

@@ -25,7 +25,7 @@ public class TraverseWorld {
 
         GameRegistry.register(autumnalWoodsBiome);
 
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(autumnalWoodsBiome, 20));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(autumnalWoodsBiome, 10));
         BiomeManager.addSpawnBiome(autumnalWoodsBiome);
         BiomeProvider.allowedBiomes.add(autumnalWoodsBiome);
     }
