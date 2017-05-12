@@ -1,7 +1,6 @@
 package prospector.traverse.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import prospector.traverse.blocks.base.BlockTraverseLeaves;
 import prospector.traverse.blocks.base.BlockTraverseSapling;
-import prospector.traverse.world.biomes.BiomeAutumnalWoods;
+import prospector.traverse.world.TraverseTreeGenerator;
 
 import java.util.Random;
 
@@ -44,14 +43,14 @@ public class AutumnLeavesSapling {
     public class LSSapling extends BlockTraverseSapling {
 
         public LSSapling() {
-            super(name, new BiomeAutumnalWoods.GeneratorAutumnalTree(Blocks.DIRT.getDefaultState()));
+            super(name, new TraverseTreeGenerator(false));
         }
 
         @Override
         public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
             if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
             worldIn.setBlockToAir(pos);
-            if (!new BiomeAutumnalWoods.GeneratorAutumnalTree(lsLeaves.getDefaultState()).growTree(worldIn, rand, pos.getX(), pos.getY(), pos.getZ())) {
+            if (!new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, lsLeaves.getDefaultState()).generate(worldIn, rand, pos)) {
                 worldIn.setBlockState(pos, state);
             }
         }
