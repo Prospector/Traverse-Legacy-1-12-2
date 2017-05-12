@@ -19,6 +19,7 @@ public class TraverseBlocks {
         addAutumnTreeStuff("brown");
         addAutumnTreeStuff("orange");
         addAutumnTreeStuff("yellow");
+        registerBlock(new BlockTraverseLeafPile("autumnal"));
     }
 
     public static void initialize() {

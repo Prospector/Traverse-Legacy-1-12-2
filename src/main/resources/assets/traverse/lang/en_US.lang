@@ -9,3 +9,5 @@ tile.traverse:red_autumnal_sapling.name=Red Autumnal Sapling
 tile.traverse:brown_autumnal_sapling.name=Brown Autumnal Sapling
 tile.traverse:orange_autumnal_sapling.name=Orange Autumnal Sapling
 tile.traverse:yellow_autumnal_sapling.name=Yellow Autumnal Sapling
+
+tile.traverse:autumnal_leaf_pile.name=Autumnal Leaf Pile

@@ -51,7 +51,7 @@ public class CommandFindTest extends CommandBase {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         long start = System.currentTimeMillis();
-        BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), TraverseWorld.autumnalWoodsBiome, sender.getPosition().getX(), sender.getPosition().getZ());
+        BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), TraverseWorld.woodlandsBiome, sender.getPosition().getX(), sender.getPosition().getZ());
         System.out.println(pos);
         System.out.println((System.currentTimeMillis() - start) + "ms");
         if (sender instanceof EntityPlayerMP) {

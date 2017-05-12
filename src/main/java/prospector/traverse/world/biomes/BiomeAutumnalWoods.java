@@ -1,10 +1,11 @@
-package prospector.traverse.world.biomes.autumnalWoods;
+package prospector.traverse.world.biomes;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +20,17 @@ import prospector.traverse.world.TraverseTreeGenerator;
 import java.util.Random;
 
 public class BiomeAutumnalWoods extends Biome {
-    public BiomeAutumnalWoods(BiomeProperties properties) {
+
+    public static Biome.BiomeProperties properties = new Biome.BiomeProperties("Autumnal Woods");
+
+    static {
+        properties.setTemperature(Biomes.FOREST.getTemperature());
+        properties.setRainfall(Biomes.FOREST.getRainfall());
+        properties.setBaseHeight(Biomes.FOREST.getBaseHeight());
+        properties.setHeightVariation(Biomes.FOREST.getHeightVariation());
+    }
+
+    public BiomeAutumnalWoods() {
         super(properties);
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
@@ -190,8 +201,6 @@ public class BiomeAutumnalWoods extends Biome {
                 for (int j2 = 0; j2 < k1; ++j2) {
                     int k6 = random.nextInt(16) + 8;
                     int l = random.nextInt(16) + 8;
-                    WorldGenAbstractTree worldgenabstracttree = biomeIn.genBigTreeChance(random);
-                    worldgenabstracttree.setDecorationDefaults();
                     BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
                     int colour = random.nextInt(3);
                     switch (colour) {

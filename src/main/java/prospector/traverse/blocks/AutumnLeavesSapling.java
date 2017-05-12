@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import prospector.traverse.blocks.base.BlockTraverseLeaves;
 import prospector.traverse.blocks.base.BlockTraverseSapling;
-import prospector.traverse.world.biomes.autumnalWoods.BiomeAutumnalWoods;
+import prospector.traverse.world.biomes.BiomeAutumnalWoods;
 
 import java.util.Random;
 
