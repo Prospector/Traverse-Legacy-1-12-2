@@ -1,27 +1,20 @@
 package prospector.traverse.world.biomes;
 
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
+import prospector.traverse.world.ITreeConstants;
 import prospector.traverse.world.features.WorldGenFallenTree;
 
 import java.util.Random;
 
-public class BiomeWoodlands extends Biome {
+public class BiomeWoodlands extends Biome implements ITreeConstants {
 
     protected static final WorldGenFallenTree FALLEN_TREE_FEATURE = new WorldGenFallenTree(true);
-    protected static final IBlockState OAK_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-    protected static final IBlockState OAK_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 
     public static BiomeProperties properties = new BiomeProperties("Woodlands");
 
@@ -61,7 +54,7 @@ public class BiomeWoodlands extends Biome {
     public WorldGenAbstractTree genBigTreeChance(Random rand) {
         int num = rand.nextInt(3);
         if (num == 0) {
-            return new WorldGenShrub(OAK_LOG, OAK_LEAF);
+            return new WorldGenShrub(OAK_LOG, OAK_LEAVES);
         }
         return TREE_FEATURE;
     }

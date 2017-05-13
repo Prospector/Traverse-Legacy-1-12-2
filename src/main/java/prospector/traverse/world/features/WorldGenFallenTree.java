@@ -1,8 +1,6 @@
 package prospector.traverse.world.features;
 
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -10,17 +8,17 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import prospector.traverse.world.ITreeConstants;
 
 import java.util.Random;
 
-public class WorldGenFallenTree extends WorldGenAbstractTree {
-    private static final IBlockState DEFAULT_TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+public class WorldGenFallenTree extends WorldGenAbstractTree implements ITreeConstants {
 
     private final int minTreeLength;
     private IBlockState stateWood;
 
     public WorldGenFallenTree(boolean isWorldGen) {
-        this(isWorldGen, 3, DEFAULT_TRUNK);
+        this(isWorldGen, 3, OAK_LOG);
     }
 
     public WorldGenFallenTree(boolean isWorldGen, int minTreeLength, IBlockState stateWood) {

@@ -8,7 +8,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.world.TraverseWorld;
 
 public class CommandFindTest extends CommandBase {
@@ -31,7 +30,7 @@ public class CommandFindTest extends CommandBase {
             dist = a * rootN;
             x = startX + (dist * Math.sin(b * rootN));
             z = startZ + (dist * Math.cos(b * rootN));
-            if (world.getBiome(new BlockPos(x, 0, z)).getRegistryName().getResourceDomain().equals(TraverseConstants.MOD_ID)) {
+            if (world.getBiome(new BlockPos(x, 0, z)).equals(biomeToFind)) {
                 return new BlockPos((int) x, 0, (int) z);
             }
         }
@@ -50,8 +49,23 @@ public class CommandFindTest extends CommandBase {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+        Biome biome;
+        switch (args[0]) {
+            case "woodlands":
+                biome = TraverseWorld.woodlandsBiome;
+                break;
+            case "miniJungle":
+                biome = TraverseWorld.miniJungleBiome;
+                break;
+            case "meadow":
+                biome = TraverseWorld.meadowBiome;
+                break;
+            default:
+                biome = TraverseWorld.autumnalWoodsBiome;
+                break;
+        }
         long start = System.currentTimeMillis();
-        BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), TraverseWorld.autumnalWoodsBiome, sender.getPosition().getX(), sender.getPosition().getZ());
+        BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), biome, sender.getPosition().getX(), sender.getPosition().getZ());
         System.out.println(pos);
         System.out.println((System.currentTimeMillis() - start) + "ms");
         if (sender instanceof EntityPlayerMP) {

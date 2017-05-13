@@ -5,12 +5,12 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import prospector.traverse.init.TraverseBlocks;
+import prospector.traverse.world.ITreeConstants;
 import prospector.traverse.world.TraverseTreeGenerator;
 
 import java.util.Random;
 
-public class BiomeAutumnalWoods extends Biome {
+public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
 
     public static Biome.BiomeProperties properties = new Biome.BiomeProperties("Autumnal Woods");
 
@@ -50,13 +50,13 @@ public class BiomeAutumnalWoods extends Biome {
     public WorldGenAbstractTree genBigTreeChance(Random rand) {
         int num = rand.nextInt(5);
         if (num == 0) {
-            return new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, TraverseBlocks.blocks.get("red_autumnal_leaves").getDefaultState());
+            return new TraverseTreeGenerator(true, 4, OAK_LOG, RED_AUTUMNAL_LEAVES);
         } else if (num == 1) {
-            return new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, TraverseBlocks.blocks.get("brown_autumnal_leaves").getDefaultState());
+            return new TraverseTreeGenerator(true, 4, OAK_LOG, BROWN_AUTUMNAL_LEAVES);
         } else if (num == 2) {
-            return new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, TraverseBlocks.blocks.get("orange_autumnal_leaves").getDefaultState());
+            return new TraverseTreeGenerator(true, 4, OAK_LOG, ORANGE_AUTUMNAL_LEAVES);
         } else if (num == 3) {
-            return new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, TraverseBlocks.blocks.get("yellow_autumnal_leaves").getDefaultState());
+            return new TraverseTreeGenerator(true, 4, OAK_LOG, YELLOW_AUTUMNAL_LEAVES);
         } else {
             return TREE_FEATURE;
         }
