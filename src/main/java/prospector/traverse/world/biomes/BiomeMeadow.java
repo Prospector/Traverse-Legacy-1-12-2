@@ -15,6 +15,7 @@ public class BiomeMeadow extends Biome implements ITreeConstants {
 
     static {
         properties.setTemperature(0.8F);
+        properties.setRainfall(0.7F);
         properties.setBaseHeight(0.1F);
         properties.setHeightVariation(0F);
     }

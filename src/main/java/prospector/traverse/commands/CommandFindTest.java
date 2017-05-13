@@ -66,6 +66,9 @@ public class CommandFindTest extends CommandBase {
             case "greenSwamp":
                 biome = TraverseWorld.greenSwampBiome;
                 break;
+            case "temperateRainforest":
+                biome = TraverseWorld.temperateRainforestBiome;
+                break;
             default:
                 biome = TraverseWorld.autumnalWoodsBiome;
                 break;

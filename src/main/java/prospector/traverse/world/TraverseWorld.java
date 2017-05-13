@@ -19,6 +19,7 @@ public class TraverseWorld {
     public static Biome meadowBiome = new BiomeMeadow();
     public static Biome greenSwampBiome = new BiomeGreenSwamp();
     public static Biome redDesertBiome = new BiomeRedDesert();
+    public static Biome temperateRainforestBiome = new BiomeTemperateRainforest();
 
     public static void init() {
         register(autumnalWoodsBiome, BiomeManager.BiomeType.COOL, "autumnal_woods", 8, FOREST);
@@ -27,6 +28,7 @@ public class TraverseWorld {
         register(meadowBiome, BiomeManager.BiomeType.COOL, "meadow", 7, PLAINS, LUSH, WET);
         register(greenSwampBiome, BiomeManager.BiomeType.WARM, "green_swamp", 6, LUSH, WET, SWAMP);
         register(redDesertBiome, BiomeManager.BiomeType.DESERT, "red_desert", 6, HOT, DRY, SANDY);
+        register(temperateRainforestBiome, BiomeManager.BiomeType.COOL, "temperate_rainforest", 8, FOREST, CONIFEROUS);
     }
 
     public static void register(Biome biome, BiomeManager.BiomeType type, String name, int weight, BiomeDictionary.Type... biomeDictTypes) {
