@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import prospector.traverse.init.TraverseBlocks;
+import prospector.traverse.world.features.WorldGenCustomSwampTree;
+import prospector.traverse.world.features.WorldGenFallenTree;
 
 public interface ITreeConstants {
     IBlockState OAK_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
@@ -22,4 +24,5 @@ public interface ITreeConstants {
     IBlockState BROWN_AUTUMNAL_LEAVES = TraverseBlocks.blocks.get("brown_autumnal_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
     IBlockState ORANGE_AUTUMNAL_LEAVES = TraverseBlocks.blocks.get("orange_autumnal_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
     IBlockState YELLOW_AUTUMNAL_LEAVES = TraverseBlocks.blocks.get("yellow_autumnal_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
+
 }

@@ -8,7 +8,6 @@ import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.*;
 import prospector.traverse.world.ITreeConstants;
 
@@ -28,6 +27,13 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
 
     public BiomeMiniJungle() {
         super(properties);
+        theBiomeDecorator.treesPerChunk = 30;
+        theBiomeDecorator.flowersPerChunk = 5;
+        theBiomeDecorator.grassPerChunk = 25;
+        theBiomeDecorator.reedsPerChunk = 2;
+        theBiomeDecorator.clayPerChunk = 3;
+        theBiomeDecorator.waterlilyPerChunk = 12;
+
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityOcelot.class, 1, 1, 1));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 4, 4, 4));
     }
@@ -44,11 +50,6 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
 
     public WorldGenAbstractTree genBigTreeChance(Random rand) {
         return rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : new WorldGenTrees(false, 2 + rand.nextInt(3), JUNGLE_LOG, JUNGLE_LEAVES, true);
-    }
-
-    @Override
-    public BiomeDecorator createBiomeDecorator() {
-        return new DecoratorMiniJungle();
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos) {
@@ -70,17 +71,5 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
                 worldgenvines.generate(worldIn, rand, pos.add(k, 128, i1));
                 EntityPig pig = new EntityPig(worldIn);
             }
-    }
-
-    public class DecoratorMiniJungle extends BiomeDecorator {
-
-        public DecoratorMiniJungle() {
-            treesPerChunk = 30;
-            flowersPerChunk = 5;
-            grassPerChunk = 25;
-            reedsPerChunk = 2;
-            clayPerChunk = 3;
-            waterlilyPerChunk = 12;
-        }
     }
 }

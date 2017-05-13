@@ -1,10 +1,13 @@
 package prospector.traverse.world.biomes;
 
 import net.minecraft.block.BlockFlower;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import prospector.traverse.world.ITreeConstants;
+
+import java.util.Random;
 
 public class BiomeMeadow extends Biome implements ITreeConstants {
 
@@ -18,12 +21,45 @@ public class BiomeMeadow extends Biome implements ITreeConstants {
 
     public BiomeMeadow() {
         super(properties);
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 4));
+        theBiomeDecorator.treesPerChunk = -999;
+        theBiomeDecorator.extraTreeChance = -999;
+        theBiomeDecorator.flowersPerChunk = 15;
+        theBiomeDecorator.grassPerChunk = 15;
+        theBiomeDecorator.reedsPerChunk = 2;
+
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 4));
+        spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 2));
+
         this.flowers.clear();
         for (BlockFlower.EnumFlowerType type : BlockFlower.EnumFlowerType.values()) {
             if (type.getBlockType() == BlockFlower.EnumFlowerColor.YELLOW) continue;
             if (type == BlockFlower.EnumFlowerType.BLUE_ORCHID) type = BlockFlower.EnumFlowerType.POPPY;
             addFlower(net.minecraft.init.Blocks.RED_FLOWER.getDefaultState().withProperty(net.minecraft.init.Blocks.RED_FLOWER.getTypeProperty(), type), 10);
+        }
+    }
+
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos) {
+        double d0 = GRASS_COLOR_NOISE.getValue((double) pos.getX() / 200.0D, (double) pos.getZ() / 200.0D);
+
+        if (d0 < -0.8D) {
+            int j = rand.nextInt(4);
+
+            switch (j) {
+                case 0:
+                    return BlockFlower.EnumFlowerType.ORANGE_TULIP;
+                case 1:
+                    return BlockFlower.EnumFlowerType.RED_TULIP;
+                case 2:
+                    return BlockFlower.EnumFlowerType.PINK_TULIP;
+                case 3:
+                default:
+                    return BlockFlower.EnumFlowerType.WHITE_TULIP;
+            }
+        } else if (rand.nextInt(3) > 0) {
+            int i = rand.nextInt(3);
+            return i == 0 ? BlockFlower.EnumFlowerType.POPPY : (i == 1 ? BlockFlower.EnumFlowerType.HOUSTONIA : BlockFlower.EnumFlowerType.OXEYE_DAISY);
+        } else {
+            return BlockFlower.EnumFlowerType.DANDELION;
         }
     }
 
@@ -40,21 +76,5 @@ public class BiomeMeadow extends Biome implements ITreeConstants {
     @Override
     public int getModdedBiomeFoliageColor(int original) {
         return 0xFF4DD838;
-    }
-
-    @Override
-    public BiomeDecorator createBiomeDecorator() {
-        return new DecoratorMeadow();
-    }
-
-    public class DecoratorMeadow extends BiomeDecorator {
-
-        public DecoratorMeadow() {
-            treesPerChunk = 0;
-            extraTreeChance = 0;
-            flowersPerChunk = 15;
-            grassPerChunk = 15;
-            reedsPerChunk = 2;
-        }
     }
 }

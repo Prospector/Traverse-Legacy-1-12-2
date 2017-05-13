@@ -3,7 +3,6 @@ package prospector.traverse.world.biomes;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import prospector.traverse.world.ITreeConstants;
 import prospector.traverse.world.TraverseTreeGenerator;
@@ -23,6 +22,10 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
 
     public BiomeAutumnalWoods() {
         super(properties);
+        theBiomeDecorator.treesPerChunk = 10;
+        theBiomeDecorator.flowersPerChunk = 4;
+        theBiomeDecorator.grassPerChunk = 6;
+
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
 
@@ -42,11 +45,6 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
     }
 
     @Override
-    public BiomeDecorator createBiomeDecorator() {
-        return new DecoratorAutumnalWoods();
-    }
-
-    @Override
     public WorldGenAbstractTree genBigTreeChance(Random rand) {
         int num = rand.nextInt(5);
         if (num == 0) {
@@ -59,14 +57,6 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
             return new TraverseTreeGenerator(true, 4, OAK_LOG, YELLOW_AUTUMNAL_LEAVES);
         } else {
             return TREE_FEATURE;
-        }
-    }
-
-    public class DecoratorAutumnalWoods extends BiomeDecorator {
-        public DecoratorAutumnalWoods() {
-            treesPerChunk = 10;
-            flowersPerChunk = 4;
-            grassPerChunk = 6;
         }
     }
 }
