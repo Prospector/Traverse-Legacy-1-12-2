@@ -24,10 +24,11 @@ import java.util.Random;
 public class BlockTraverseLeaves extends BlockLeaves {
 
     public Item sapling;
+    public int saplingDropChance;
 
-    public BlockTraverseLeaves(String name, Item sapling) {
-        super();
+    public BlockTraverseLeaves(String name, Item sapling, int saplingDropChance) {
         this.sapling = sapling;
+        this.saplingDropChance = saplingDropChance;
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_leaves"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
@@ -37,8 +38,8 @@ public class BlockTraverseLeaves extends BlockLeaves {
         TraverseMod.blockModelsToRegister.add(this);
     }
 
-    public BlockTraverseLeaves(String name) {
-        this(name, null);
+    public int quantityDropped(Random random) {
+        return random.nextInt(saplingDropChance) == 0 ? 1 : 0;
     }
 
     @Override

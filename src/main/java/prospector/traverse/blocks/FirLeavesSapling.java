@@ -10,16 +10,15 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import prospector.traverse.blocks.base.BlockTraverseLeaves;
 import prospector.traverse.blocks.base.BlockTraverseSapling;
 import prospector.traverse.world.TraverseTreeGenerator;
+import prospector.traverse.world.features.WorldGenFirTree;
 
 import java.util.Random;
 
-public class AutumnLeavesSapling {
-    public String name;
+public class FirLeavesSapling {
     public LSLeaves lsLeaves;
     public LSSapling lsSapling;
 
-    public AutumnLeavesSapling(String name) {
-        this.name = name;
+    public FirLeavesSapling() {
         lsLeaves = new LSLeaves();
         lsSapling = new LSSapling();
     }
@@ -27,7 +26,7 @@ public class AutumnLeavesSapling {
     public class LSLeaves extends BlockTraverseLeaves {
 
         public LSLeaves() {
-            super(name, null, 20);
+            super("fir", null, 20);
         }
 
         @Override
@@ -43,14 +42,14 @@ public class AutumnLeavesSapling {
     public class LSSapling extends BlockTraverseSapling {
 
         public LSSapling() {
-            super(name, new TraverseTreeGenerator(false));
+            super("fir", new TraverseTreeGenerator(false));
         }
 
         @Override
         public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
             if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
             worldIn.setBlockToAir(pos);
-            if (!new TraverseTreeGenerator(true, 4, TraverseTreeGenerator.OAK_LOG, lsLeaves.getDefaultState()).generate(worldIn, rand, pos)) {
+            if (!new WorldGenFirTree(true).generate(worldIn, rand, pos)) {
                 worldIn.setBlockState(pos, state);
             }
         }

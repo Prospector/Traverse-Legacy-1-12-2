@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "traverse:bottom_slab",
+    "textures": {
+      "all": "traverse:block/planks/fir_planks"
+    }
+  },
+  "variants": {
+    "inventory": [
+      {
+        "transform": "forge:default-block",
+        "model": "traverse:bottom_slab",
+        "textures": {
+          "all": "traverse:block/planks/fir_planks"
+        }
+      }
+    ],
+    "half=bottom,variant=default": [
+      {
+        "model": "traverse:bottom_slab"
+      }
+    ],
+    "half=top,variant=default": [
+      {
+        "model": "traverse:top_slab"
+      }
+    ]
+  }
+}

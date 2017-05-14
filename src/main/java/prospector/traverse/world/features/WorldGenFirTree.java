@@ -21,7 +21,7 @@ public class WorldGenFirTree extends WorldGenAbstractTree implements ITreeConsta
     }
 
     public WorldGenFirTree(boolean isWorldGen, int minTreeHeight) {
-        this(isWorldGen, minTreeHeight, SPRUCE_LOG, SPRUCE_LEAVES);
+        this(isWorldGen, minTreeHeight, FIR_LOG, FIR_LEAVES);
     }
 
     public WorldGenFirTree(boolean isWorldGen, int minTreeHeight, IBlockState stateWood, IBlockState stateLeaves) {

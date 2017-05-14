@@ -4,10 +4,15 @@ tile.traverse:red_autumnal_leaves.name=Red Autumnal Leaves
 tile.traverse:brown_autumnal_leaves.name=Brown Autumnal Leaves
 tile.traverse:orange_autumnal_leaves.name=Orange Autumnal Leaves
 tile.traverse:yellow_autumnal_leaves.name=Yellow Autumnal Leaves
+tile.traverse:fir_leaves.name=Fir Leaves
 
 tile.traverse:red_autumnal_sapling.name=Red Autumnal Sapling
 tile.traverse:brown_autumnal_sapling.name=Brown Autumnal Sapling
 tile.traverse:orange_autumnal_sapling.name=Orange Autumnal Sapling
 tile.traverse:yellow_autumnal_sapling.name=Yellow Autumnal Sapling
+tile.traverse:fir_sapling.name=Fir Sapling
 
-tile.traverse:autumnal_leaf_pile.name=Autumnal Leaf Pile
+tile.traverse:fir_log.name=Fir Wood
+tile.traverse:fir_planks.name=Fir Wood Planks
+tile.traverse:fir_stairs.name=Fir Wood Stairs
+tile.traverse:fir_slab.name=Fir Wood Slab
