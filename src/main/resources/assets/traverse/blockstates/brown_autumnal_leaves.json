@@ -1,27 +1,18 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "all": "traverse:block/leaves/brown_autumnal_leaves"
-    },
-    "model": "cube_all",
-    "uvlock": true
-  },
-  "variants": {
-    "inventory": [
-      {}
-    ],
-    "check_decay=false,decayable=false": [
-      {}
-    ],
-    "check_decay=false,decayable=true": [
-      {}
-    ],
-    "check_decay=true,decayable=false": [
-      {}
-    ],
-    "check_decay=true,decayable=true": [
-      {}
-    ]
-  }
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"all": "traverse:block/leaves/brown_autumnal_leaves"
+		},
+		"model": "cube_all",
+		"uvlock": true
+	},
+	"variants": {
+		"inventory": [
+			{ }
+		],
+		"normal": [
+			{ }
+		]
+	}
 }

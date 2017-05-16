@@ -4,19 +4,20 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import prospector.traverse.blocks.AutumnLeavesSapling;
 import prospector.traverse.blocks.FirLeavesSapling;
-import prospector.traverse.blocks.base.BlockTraverseWoodLog;
-import prospector.traverse.blocks.base.BlockTraverseWoodPlanks;
-import prospector.traverse.blocks.base.BlockTraverseWoodSlab;
-import prospector.traverse.blocks.base.BlockTraverseWoodStairs;
+import prospector.traverse.blocks.base.*;
+import prospector.traverse.item.ItemTraverseWoodDoor;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class TraverseBlocks {
 
     public static LinkedHashMap<String, Block> blocks = new LinkedHashMap<>();
     public static LinkedHashMap<BlockTraverseWoodSlab, BlockTraverseWoodSlab> slabs = new LinkedHashMap<>();
+    public static HashMap<String, Block> oreDictNames = new HashMap<>();
 
     static {
         addAutumnTreeStuff("red");
@@ -28,8 +29,11 @@ public class TraverseBlocks {
 
     public static void initialize() {
         for (Block block : blocks.values()) {
-            if (!(block instanceof BlockTraverseWoodSlab)) {
+            if (!(block instanceof BlockTraverseWoodSlab || block instanceof BlockTraverseWoodDoor)) {
                 registerBlock(block);
+            }
+            if (block instanceof BlockTraverseWoodDoor) {
+                registerBlock(block, new ItemTraverseWoodDoor(block));
             }
         }
         for (BlockTraverseWoodSlab halfSlab : slabs.keySet()) {
@@ -37,6 +41,9 @@ public class TraverseBlocks {
             registerBlockWithoutItem(halfSlab);
             registerBlockWithoutItem(doubleSlab);
             GameRegistry.register(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab), halfSlab.getRegistryName());
+        }
+        for (String name : oreDictNames.keySet()) {
+            OreDictionary.registerOre(name, oreDictNames.get(name));
         }
     }
 
@@ -73,18 +80,34 @@ public class TraverseBlocks {
         BlockTraverseWoodLog log;
         BlockTraverseWoodPlanks planks;
         BlockTraverseWoodStairs stairs;
-        BlockTraverseWoodSlab.Half half_slab;
-        BlockTraverseWoodSlab.Double double_slab;
+        BlockTraverseWoodSlab.Half halfSlab;
+        BlockTraverseWoodSlab.Double doubleSlab;
+        BlockTraverseWoodDoor door;
+        BlockTraverseWoodFence fence;
+        BlockTraverseWoodFenceGate fenceGate;
         log = new BlockTraverseWoodLog(fir);
         planks = new BlockTraverseWoodPlanks(fir);
         stairs = new BlockTraverseWoodStairs(planks.getDefaultState(), fir);
-        half_slab = new BlockTraverseWoodSlab.Half(fir);
-        double_slab = new BlockTraverseWoodSlab.Double(fir, half_slab);
-        slabs.put(half_slab, double_slab);
+        halfSlab = new BlockTraverseWoodSlab.Half(fir);
+        doubleSlab = new BlockTraverseWoodSlab.Double(fir, halfSlab);
+        door = new BlockTraverseWoodDoor(fir);
+        fence = new BlockTraverseWoodFence(fir);
+        fenceGate = new BlockTraverseWoodFenceGate(fir);
+        slabs.put(halfSlab, doubleSlab);
         blocks.put(fir + "_log", log);
         blocks.put(fir + "_planks", planks);
         blocks.put(fir + "_stairs", stairs);
-        blocks.put(fir + "_slab", half_slab);
-        blocks.put(fir + "_double_slab", double_slab);
+        blocks.put(fir + "_slab", halfSlab);
+        blocks.put(fir + "_double_slab", doubleSlab);
+        blocks.put(fir + "_door", door);
+        blocks.put(fir + "_fence", fence);
+        blocks.put(fir + "_fence_gate", fenceGate);
+
+        oreDictNames.put("logWood", log);
+        oreDictNames.put("plankWood", planks);
+        oreDictNames.put("slabWood", halfSlab);
+        oreDictNames.put("stairWood", stairs);
+        oreDictNames.put("treeSapling", leavesSapling.lsSapling);
+        oreDictNames.put("treeLeaves", leavesSapling.lsLeaves);
     }
 }

@@ -5,6 +5,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
+import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseMod;
 import prospector.traverse.core.TraverseTab;
@@ -17,7 +19,7 @@ public class BlockTraverseWoodLog extends BlockLog {
         setCreativeTab(TraverseTab.TAB);
         setUnlocalizedName(getRegistryName().toString());
         setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
-        TraverseMod.blockModelsToRegister.add(this);
+        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this));
     }
 
     protected BlockStateContainer createBlockState() {

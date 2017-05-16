@@ -1,9 +1,7 @@
 package prospector.traverse.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -26,16 +24,12 @@ public class FirLeavesSapling {
     public class LSLeaves extends BlockTraverseLeaves {
 
         public LSLeaves() {
-            super("fir", null, 20);
+            super("fir", null, 60);
         }
 
         @Override
         public Item getItemDropped(IBlockState state, Random rand, int fortune) {
             return Item.getItemFromBlock(lsSapling);
-        }
-
-        protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
-            spawnAsEntity(worldIn, pos, new ItemStack(Items.APPLE));
         }
     }
 

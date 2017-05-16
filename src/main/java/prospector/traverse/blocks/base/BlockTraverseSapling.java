@@ -10,8 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
-import prospector.traverse.core.TraverseMod;
 import prospector.traverse.core.TraverseTab;
 import prospector.traverse.world.TraverseTreeGenerator;
 
@@ -27,8 +28,7 @@ public class BlockTraverseSapling extends BlockSapling {
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_sapling"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
-        TraverseMod.blockModelsToRegister.add(this);
-
+        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this, STAGE));
     }
 
     @Override

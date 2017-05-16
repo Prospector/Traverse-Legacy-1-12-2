@@ -13,6 +13,15 @@ tile.traverse:yellow_autumnal_sapling.name=Yellow Autumnal Sapling
 tile.traverse:fir_sapling.name=Fir Sapling
 
 tile.traverse:fir_log.name=Fir Wood
+
 tile.traverse:fir_planks.name=Fir Wood Planks
+
 tile.traverse:fir_stairs.name=Fir Wood Stairs
+
 tile.traverse:fir_slab.name=Fir Wood Slab
+
+tile.traverse:fir_door.name=Fir Door
+
+tile.traverse:fir_fence.name=Fir Fence
+
+tile.traverse:fir_fence_gate.name=Fir Fence Gate

@@ -1,25 +1,25 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "transform": "forge:default-block",
-    "model": "cube_all",
-    "textures": {
-      "all": "traverse:block/planks/fir_planks"
-    }
-  },
-  "variants": {
-    "inventory": [
-      {
-        "transform": "forge:default-block",
-        "model": "cube_all",
-        "textures": {
-          "all": "traverse:block/planks/fir_planks"
-        }
-      }
-    ],
-    "variant=default": [
-      {
-      }
-    ]
-  }
+	"forge_marker": 1,
+	"defaults": {
+		"transform": "forge:default-block",
+		"model": "cube_all",
+		"textures": {
+			"all": "traverse:block/planks/fir_planks"
+		}
+	},
+	"variants": {
+		"inventory": [
+			{
+				"transform": "forge:default-block",
+				"model": "cube_all",
+				"textures": {
+					"all": "traverse:block/planks/fir_planks"
+				}
+			}
+		],
+		"variant=default": [
+			{
+			}
+		]
+	}
 }
