@@ -9,6 +9,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = mcver + "-" + modver + "-CustomBuild"
 
@@ -48,27 +49,27 @@ repositories {
 }
 
 configurations {
-    shade
-    compile.extendsFrom shade
+    shadow
+    compile.extendsFrom shadow
 }
 
 dependencies {
-    shade "prospector.shootingstar:ShootingStar:" + mcver + "-" + starver
+    shadow "prospector.shootingstar:ShootingStar:" + mcver + "-" + starver
 }
 
-reobf {
-    jar {
-        extraLines "PK: prospector/shootingstar prospector/" + id + "/shade/shootingstar"
-    }
+shadowJar {
+    archiveName = tasks.jar.archiveName
+    configurations = [project.configurations.shadow]
+    relocate 'prospector.shootingstar', 'prospector.' + id + '.repack.shootingstar'
 }
 
-jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
+reobfJar {
+    setJar(tasks.shadowJar.archivePath)
 }
+reobfJar.dependsOn shadowJar
+
+jar.dependsOn shadowJar
+jar.enabled = false
 
 processResources {
     inputs.property "version", project.version
