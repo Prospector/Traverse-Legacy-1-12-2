@@ -40,17 +40,16 @@ minecraft {
         mappings = project.mappings_version
 }
 
-configurations {
-    shade
-    compile.extendsFrom shade
-}
-
-
 repositories {
     maven {
         name = "Modmuss50"
         url = "http://maven.modmuss50.me/"
     }
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
 }
 
 dependencies {
