@@ -15,7 +15,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
@@ -47,7 +47,7 @@ public abstract class BlockTraverseWoodSlab extends BlockSlab {
         setResistance(15);
         setSoundType(SoundType.WOOD);
         this.setDefaultState(iblockstate.withProperty(VARIANT, BlockTraverseWoodSlab.Variant.DEFAULT));
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "slab"));
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {

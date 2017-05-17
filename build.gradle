@@ -1,17 +1,20 @@
 buildscript {
 	repositories {
-		jcenter()
-		maven { url = "http://files.minecraftforge.net/maven" }
+        mavenCentral()
+        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "http://maven.modmuss50.me/" }
 	}
 	dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT' }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
-version = mcver + "-" + modver
+version = mcver + "-" + modver + "-CustomBuild"
 
 def ENV = System.getenv()
 if (ENV.BUILD_NUMBER) {
-	version = "-" + "${System.getenv().BUILD_NUMBER}"
+    version = mcver + "-" + modver + "-" + "${System.getenv().BUILD_NUMBER}"
 }
 
 def ver = version
@@ -37,13 +40,35 @@ minecraft {
         mappings = project.mappings_version
 }
 
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
 
 repositories {
-
+    maven {
+        name = "Modmuss50"
+        url = "http://maven.modmuss50.me/"
+    }
 }
 
 dependencies {
+    shade "prospector.shootingstar:ShootingStar:" + mcver + ":" + starver
+}
 
+reobf {
+    jar {
+        extraLines "PK: prospector/shootingstar prospector/" + id + "/shade/shootingstar"
+    }
+}
+
+jar {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
 }
 
 processResources {
@@ -59,5 +84,60 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
         exclude '**/*.properties'
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (project.hasProperty('mavenPass')) {
+                println 'Uploading to remote Maven Repo'
+                repository(url: "http://mavenupload.modmuss50.me/") {
+                    authentication(userName: "buildslave", password: project.getProperty('mavenPass'))
+                }
+            } else {
+                println 'Uploading to local Maven Repo'
+                repository(url: "file:///var/www/maven/")
+            }
+            pom {
+                groupId = project.group
+                version = project.version
+                artifactId = project.archivesBaseName
+                project {
+                    name project.archivesBaseName
+                    packaging 'jar'
+                    description 'Traverse'
+                    url 'https://github.com/ProfessorProspector/Traverse'
+                    scm {
+                        url 'https://github.com/ProfessorProspector/Traverse'
+                        connection 'scm:git:git@github.com:ProfessorProspector/Traverse.git'
+                        developerConnection 'scm:git:git@github.com:ProfessorProspector/Traverse.git'
+                    }
+                    issueManagement {
+                        system 'github'
+                        url 'https://github.com/ProfessorProspector/Traverse/issues'
+                    }
+                    licenses {
+                        license {
+                            name 'License'
+                            url 'https://raw.githubusercontent.com/ProfessorProspector/Traverse/master/LICENSE.md'
+                            distribution 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'ProfessorProspector'
+                            name 'Prospector'
+                            roles {role 'developer'}
+                        }
+                        developer {
+                            id 'InsomniaKitten'
+                            name 'InsomniaKitten'
+                            roles {role 'artist'}
+                        }
+                    }
+                }
+            }
+        }
     }
 }

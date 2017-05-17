@@ -5,7 +5,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
@@ -20,6 +20,6 @@ public class BlockTraverseWoodFence extends BlockFence {
         setSoundType(SoundType.WOOD);
         setHardness(2.0F);
         setResistance(5.0F);
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "fence"));
     }
 }

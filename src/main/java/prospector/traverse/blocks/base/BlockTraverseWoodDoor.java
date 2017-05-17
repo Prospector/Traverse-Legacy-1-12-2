@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
@@ -27,7 +27,7 @@ public class BlockTraverseWoodDoor extends BlockDoor {
         setSoundType(SoundType.WOOD);
         setHardness(3.0F);
         setHarvestLevel("axe", 0);
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this, POWERED));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "door", POWERED));
     }
 
     @Override

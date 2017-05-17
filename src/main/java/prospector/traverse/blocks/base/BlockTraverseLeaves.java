@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
@@ -35,7 +35,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
         setCreativeTab(TraverseTab.TAB);
         this.setDefaultState(this.getDefaultState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
         Blocks.FIRE.setFireInfo(this, 30, 60);
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this, CHECK_DECAY, DECAYABLE));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "leaves", CHECK_DECAY, DECAYABLE));
     }
 
     public int quantityDropped(Random random) {

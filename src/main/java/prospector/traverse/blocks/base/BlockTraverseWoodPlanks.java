@@ -6,10 +6,9 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
-import prospector.traverse.core.TraverseMod;
 import prospector.traverse.core.TraverseTab;
 
 public class BlockTraverseWoodPlanks extends Block {
@@ -24,7 +23,7 @@ public class BlockTraverseWoodPlanks extends Block {
         setHardness(2.0F);
         setResistance(15);
         setSoundType(SoundType.WOOD);
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "planks"));
     }
 
     public MapColor getMapColor(IBlockState state) {

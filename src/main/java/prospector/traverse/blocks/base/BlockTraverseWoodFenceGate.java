@@ -4,7 +4,7 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.util.ResourceLocation;
-import prospector.shootingstar.ModelInfo;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseMod;
@@ -21,6 +21,6 @@ public class BlockTraverseWoodFenceGate extends BlockFenceGate {
         setHardness(2.0F);
         setResistance(5.0F);
         TraverseMod.blockModelsToRegister.add(this);
-        ShootingStar.registerModel(new ModelInfo(TraverseConstants.MOD_ID, this, POWERED, IN_WALL));
+        ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "fence", POWERED, IN_WALL));
     }
 }

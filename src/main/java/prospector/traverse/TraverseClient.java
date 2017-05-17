@@ -23,13 +23,4 @@ public class TraverseClient extends TraverseCommon {
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
     }
-
-//            if (block instanceof BlockTraverseWoodDoor)
-//                ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockDoor.POWERED).build());
-//            if (block instanceof BlockTraverseWoodFenceGate)
-//                ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockFenceGate.POWERED, BlockFenceGate.IN_WALL).build());
-//            if (block instanceof BlockTraverseLeaves)
-//                ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
-//            if (block instanceof BlockTraverseSapling)
-//                ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(BlockSapling.STAGE, BlockSapling.TYPE).build());
 }
