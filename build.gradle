@@ -61,6 +61,7 @@ dependencies {
 shadowJar {
     exclude 'META-INF/*', 'META-INF/maven/**'
     relocate 'prospector.shootingstar', 'prospector.' + id + '.shadow.shootingstar'
+    classifier=''
 }
 
 reobf {
