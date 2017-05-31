@@ -7,8 +7,6 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import prospector.shootingstar.version.Version;
-import prospector.shootingstar.version.VersionUtils;
-import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.world.biomes.*;
 
@@ -40,16 +38,16 @@ public class TraverseWorld {
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, BiomeDictionary.Type... biomeDictTypes) {
-        if (VersionUtils.isVersionLessOrEqual(versionAdded, TraverseConfig.version)) {
-            biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
-            GameRegistry.register(biome);
-            BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
-            BiomeManager.addSpawnBiome(biome);
-            BiomeProvider.allowedBiomes.add(biome);
-            for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
-                BiomeDictionary.addTypes(biome, biomeDictType);
-            }
-            biomeList.put(biome, versionAdded);
+//        if (VersionUtils.isVersionLessOrEqual(versionAdded, TraverseConfig.version)) {
+        biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
+        GameRegistry.register(biome);
+        BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
+        BiomeManager.addSpawnBiome(biome);
+        BiomeProvider.allowedBiomes.add(biome);
+        for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
+            BiomeDictionary.addTypes(biome, biomeDictType);
         }
+        biomeList.put(biome, versionAdded);
     }
+//    }
 }
