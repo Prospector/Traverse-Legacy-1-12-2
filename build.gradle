@@ -17,6 +17,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 
+def modver = major + "." + minor + "." + patch
 version = mcver + "-" + modver + "-CustomBuild"
 
 def ENV = System.getenv()
@@ -41,6 +42,9 @@ minecraft {
 
     replaceIn "TraverseConstants.java"
     replace "@version@", project.version
+    replace "@major@", project.major
+    replace "@minor@", project.minor
+    replace "@patch@", project.patch
     replace "@mcversion@", project.mcver
 
     if (project.hasProperty('mappings_version'))

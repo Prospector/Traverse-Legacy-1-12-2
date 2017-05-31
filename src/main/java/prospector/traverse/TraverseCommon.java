@@ -1,5 +1,6 @@
 package prospector.traverse;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,6 +23,10 @@ public class TraverseCommon {
         GameRegistry.addRecipe(new ShapelessOreRecipe(output, inputs));
     }
 
+    static void registerFurnace(ItemStack output, ItemStack input, float experience) {
+        GameRegistry.addSmelting(input, output, experience);
+    }
+
     public void preInit(FMLPreInitializationEvent event) {
         TraverseBlocks.initialize();
     }
@@ -37,6 +42,7 @@ public class TraverseCommon {
         registerShaped(new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_door")), 3), "pp", "pp", "pp", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
         registerShaped(new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_fence")), 3), "psp", "psp", 's', "stickWood", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
         registerShaped(new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_fence_gate"))), "sps", "sps", 's', "stickWood", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
+        registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_log"))), 0.15F);
     }
 
     public void postInit(FMLPostInitializationEvent event) {

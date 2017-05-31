@@ -18,9 +18,6 @@ public class TraverseConfig {
     public static TraverseConfig traverseConfiguration;
 
     public static Version version;
-    public static int major;
-    public static int minor;
-    public static int patch;
 
     public static boolean useVanillaWood = false;
 
@@ -60,21 +57,15 @@ public class TraverseConfig {
         mainConfig = new File(configDir, "traverse.cfg");
         traverseConfiguration = initialize();
 
-//        versionConfig = new File(configDir, "instance_version.json");
-//
-//        try {
-//            Pattern pattern = Pattern.compile("-(\\d+)\\.(\\d+)\\.(\\d+)-");
-//            Matcher matcher = pattern.matcher(TraverseConstants.MOD_VERSION);
-//            major = Integer.parseInt(matcher.group(1));
-//            minor = Integer.parseInt(matcher.group(2));
-//            patch = Integer.parseInt(matcher.group(3));
-//            version = new Version(major, minor, patch);
-//        } catch (IllegalStateException e) {
-//            e.printStackTrace();
-//            version = Version.NULL_VERSION;
-//        }
-//
-//        reloadVersionConfig();
+        versionConfig = new File(configDir, "instance_version.json");
+
+        if (TraverseConstants.MOD_VERSION_MAJOR.equals("@major@")) {
+            version = TraverseConstants.DEV_VERSION;
+        } else {
+            version = new Version(Integer.parseInt(TraverseConstants.MOD_VERSION_MAJOR), Integer.parseInt(TraverseConstants.MOD_VERSION_MINOR), Integer.parseInt(TraverseConstants.MOD_VERSION_PATCH));
+        }
+
+        reloadVersionConfig();
     }
 
     public static void reloadVersionConfig() {
@@ -85,9 +76,7 @@ public class TraverseConfig {
             VersionConfig config = null;
             try (Reader reader = new FileReader(versionConfig)) {
                 config = GSON.fromJson(reader, VersionConfig.class);
-                major = config.major;
-                minor = config.minor;
-                patch = config.patch;
+                version = config.version;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -109,32 +98,14 @@ public class TraverseConfig {
 
     public static class VersionConfig {
 
-        public int major = TraverseConfig.major;
-        public int minor = TraverseConfig.minor;
-        public int patch = TraverseConfig.patch;
+        public Version version = TraverseConfig.version;
 
-        public int getMajor() {
-            return major;
+        public Version getVersion() {
+            return version;
         }
 
-        public void setMajor(int major) {
-            this.major = major;
-        }
-
-        public int getMinor() {
-            return minor;
-        }
-
-        public void setMinor(int minor) {
-            this.minor = minor;
-        }
-
-        public int getPatch() {
-            return patch;
-        }
-
-        public void setPatch(int patch) {
-            this.patch = patch;
+        public void setVersion(Version version) {
+            this.version = version;
         }
     }
 }
