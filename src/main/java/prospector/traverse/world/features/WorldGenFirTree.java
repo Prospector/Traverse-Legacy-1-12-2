@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.ITreeConstants;
 
 import java.util.Random;
@@ -28,7 +29,11 @@ public class WorldGenFirTree extends WorldGenAbstractTree implements ITreeConsta
         super(!isWorldGen);
         this.isWorldGen = isWorldGen;
         this.minTreeHeight = minTreeHeight;
-        this.stateWood = stateWood;
+        if (TraverseConfig.useVanillaWood) {
+            this.stateWood = DARK_OAK_LOG;
+        } else {
+            this.stateWood = stateWood;
+        }
         this.stateLeaves = stateLeaves;
     }
 

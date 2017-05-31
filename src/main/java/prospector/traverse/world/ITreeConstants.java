@@ -25,5 +25,4 @@ public interface ITreeConstants {
     IBlockState ORANGE_AUTUMNAL_LEAVES = TraverseBlocks.blocks.get("orange_autumnal_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
     IBlockState YELLOW_AUTUMNAL_LEAVES = TraverseBlocks.blocks.get("yellow_autumnal_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
     IBlockState FIR_LEAVES = TraverseBlocks.blocks.get("fir_leaves").getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, false);
-
 }

@@ -49,29 +49,15 @@ public class CommandFindTest extends CommandBase {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        Biome biome;
-        switch (args[0]) {
-            case "woodlands":
-                biome = TraverseWorld.woodlandsBiome;
-                break;
-            case "miniJungle":
-                biome = TraverseWorld.miniJungleBiome;
-                break;
-            case "meadow":
-                biome = TraverseWorld.meadowBiome;
-                break;
-            case "redDesert":
-                biome = TraverseWorld.redDesertBiome;
-                break;
-            case "greenSwamp":
-                biome = TraverseWorld.greenSwampBiome;
-                break;
-            case "temperateRainforest":
-                biome = TraverseWorld.temperateRainforestBiome;
-                break;
-            default:
-                biome = TraverseWorld.autumnalWoodsBiome;
-                break;
+        Biome biome = null;
+        for (Biome b : TraverseWorld.biomeList.keySet()) {
+            String name = b.getBiomeName().replaceAll(" ", "_").toLowerCase();
+            if (args[0].equalsIgnoreCase(name)) {
+                biome = b;
+            }
+        }
+        if (biome == null) {
+            return;
         }
         long start = System.currentTimeMillis();
         BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), biome, sender.getPosition().getX(), sender.getPosition().getZ());

@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import prospector.shootingstar.ShootingStar;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
 
 public class TraverseClient extends TraverseCommon {
@@ -11,6 +12,7 @@ public class TraverseClient extends TraverseCommon {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+        TraverseConfig.initialize(event);
         ShootingStar.registerModels(TraverseConstants.MOD_ID);
     }
 

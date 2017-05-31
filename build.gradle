@@ -32,7 +32,7 @@ minecraft {
     runDir = "run"
     mappings = mcp
 
-    replaceIn "Reference.java"
+    replaceIn "TraverseConstants.java"
     replace "@version@", project.version
     replace "@mcversion@", project.mcver
 
