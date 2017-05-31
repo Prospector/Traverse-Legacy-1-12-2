@@ -36,12 +36,18 @@ public class TraverseWorld {
         register(new Version(1, 0, 0), greenSwampBiome, BiomeManager.BiomeType.WARM, "green_swamp", 6, LUSH, WET, SWAMP);
         register(new Version(1, 0, 0), redDesertBiome, BiomeManager.BiomeType.DESERT, "red_desert", 6, HOT, DRY, SANDY);
         register(new Version(1, 0, 0), temperateRainforestBiome, BiomeManager.BiomeType.COOL, "temperate_rainforest", 8, FOREST, CONIFEROUS);
-//        register(new Version(1, 1, 0), badlandsBiome, BiomeManager.BiomeType.WARM, "badlands", 7, PLAINS, SPARSE);
+        register(new Version(1, 1, 0), badlandsBiome, BiomeManager.BiomeType.WARM, "badlands", 7, PLAINS, SPARSE);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, BiomeDictionary.Type... biomeDictTypes) {
-        TraverseConfig.reloadVersionConfig();
-        if (VersionUtils.isVersionLessOrEqual(versionAdded, TraverseConfig.version)) {
+        boolean canRegister;
+        if (!TraverseConfig.registerBiomesRegardless) {
+            TraverseConfig.reloadVersionConfig();
+            canRegister = VersionUtils.isVersionLessOrEqual(versionAdded, TraverseConfig.version);
+        } else {
+            canRegister = true;
+        }
+        if (canRegister) {
             biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
             GameRegistry.register(biome);
             BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));

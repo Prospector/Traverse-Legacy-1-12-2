@@ -20,6 +20,7 @@ public class TraverseConfig {
     public static Version version;
 
     public static boolean useVanillaWood = false;
+    public static boolean registerBiomesRegardless = false;
 
     private static TraverseConfig instance = null;
 
@@ -28,6 +29,7 @@ public class TraverseConfig {
         config.load();
 
         useVanillaWood = config.get(Configuration.CATEGORY_GENERAL, "useVanillaWood", useVanillaWood, "Use vanilla logs for Traverse trees (might not look as nice)").getBoolean();
+        registerBiomesRegardless = config.get(Configuration.CATEGORY_GENERAL, "registerBiomesRegardless", registerBiomesRegardless, "All biomes will always be registered, ignoring the instance version (WARNING: This will cause ugly world generation borders at the edge of what has previously been generated and what is new!!)").getBoolean();
 
         config.save();
     }
