@@ -2,6 +2,7 @@ package prospector.traverse.world;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeForest;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -27,6 +28,11 @@ public class TraverseWorld {
     public static Biome redDesertBiome = new BiomeRedDesert();
     public static Biome temperateRainforestBiome = new BiomeTemperateRainforest();
     public static Biome badlandsBiome = new BiomeBadlands();
+    public static Biome mountainousDesertBiome = new BiomeMountainousDesert();
+    public static Biome rockyPlateauBiome = new BiomeRockyPlateau();
+    public static Biome forestedHills = new BiomeForestedHills(BiomeForest.Type.NORMAL, "Forested Hills");
+    public static Biome birchForestedHills = new BiomeForestedHills(BiomeForest.Type.BIRCH, "Birch Forested Hills");
+    public static Biome autumnalWoodedHills = new BiomeAutumnalWoodedHills();
 
     public static void init() {
         register(new Version(1, 0, 0), autumnalWoodsBiome, BiomeManager.BiomeType.COOL, "autumnal_woods", 8, FOREST);
@@ -36,7 +42,12 @@ public class TraverseWorld {
         register(new Version(1, 0, 0), greenSwampBiome, BiomeManager.BiomeType.WARM, "green_swamp", 6, LUSH, WET, SWAMP);
         register(new Version(1, 0, 0), redDesertBiome, BiomeManager.BiomeType.DESERT, "red_desert", 6, HOT, DRY, SANDY);
         register(new Version(1, 0, 0), temperateRainforestBiome, BiomeManager.BiomeType.COOL, "temperate_rainforest", 8, FOREST, CONIFEROUS);
-        register(new Version(1, 1, 0), badlandsBiome, BiomeManager.BiomeType.WARM, "badlands", 7, PLAINS, SPARSE);
+        register(new Version(1, 1, 0), badlandsBiome, BiomeManager.BiomeType.WARM, "badlands", 5, PLAINS, DRY, HOT, SPARSE);
+        register(new Version(1, 1, 0), mountainousDesertBiome, BiomeManager.BiomeType.DESERT, "mountainous_desert", 2, MOUNTAIN, DRY, HOT, SANDY);
+        register(new Version(1, 1, 0), rockyPlateauBiome, BiomeManager.BiomeType.WARM, "rocky_plateau", 4);
+        register(new Version(1, 1, 0), forestedHills, BiomeManager.BiomeType.COOL, "forested_hills", 6, FOREST, HILLS);
+        register(new Version(1, 1, 0), birchForestedHills, BiomeManager.BiomeType.COOL, "birch_forested_hills", 3, FOREST, HILLS);
+        register(new Version(1, 1, 0), autumnalWoodedHills, BiomeManager.BiomeType.COOL, "autumnal_wooded_hills", 2, FOREST, HILLS);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, BiomeDictionary.Type... biomeDictTypes) {

@@ -21,7 +21,7 @@ public class BiomeGreenSwamp extends Biome implements ITreeConstants {
 
     protected static final WorldGenCustomSwampTree CUSTOM_SWAMP_TREE_FEATURE = new WorldGenCustomSwampTree(true, 7);
     protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
-    public static BiomeProperties properties = new BiomeProperties("Green Swamp");
+    public static BiomeProperties properties = new BiomeProperties("Lush Swamp");
 
     static {
         properties.setTemperature(Biomes.SWAMPLAND.getTemperature());
@@ -81,10 +81,11 @@ public class BiomeGreenSwamp extends Biome implements ITreeConstants {
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         super.decorate(worldIn, rand, pos);
 
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FOSSIL))
+        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FOSSIL)) {
             if (rand.nextInt(64) == 0) {
                 (new WorldGenFossils()).generate(worldIn, rand, pos);
             }
+        }
     }
 
     @Override
