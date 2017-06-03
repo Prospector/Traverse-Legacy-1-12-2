@@ -46,8 +46,8 @@ public class TraverseWorld {
         register(new Version(1, 1, 0), mountainousDesertBiome, BiomeManager.BiomeType.DESERT, "mountainous_desert", 2, MOUNTAIN, DRY, HOT, SANDY);
         register(new Version(1, 1, 0), rockyPlateauBiome, BiomeManager.BiomeType.WARM, "rocky_plateau", 4);
         register(new Version(1, 1, 0), forestedHills, BiomeManager.BiomeType.COOL, "forested_hills", 6, FOREST, HILLS);
-        register(new Version(1, 1, 0), birchForestedHills, BiomeManager.BiomeType.COOL, "birch_forested_hills", 3, FOREST, HILLS);
-        register(new Version(1, 1, 0), autumnalWoodedHills, BiomeManager.BiomeType.COOL, "autumnal_wooded_hills", 2, FOREST, HILLS);
+        register(new Version(1, 1, 0), birchForestedHills, BiomeManager.BiomeType.COOL, "birch_forested_hills", 2, FOREST, HILLS);
+        register(new Version(1, 1, 0), autumnalWoodedHills, BiomeManager.BiomeType.COOL, "autumnal_wooded_hills", 1, FOREST, HILLS);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, BiomeDictionary.Type... biomeDictTypes) {

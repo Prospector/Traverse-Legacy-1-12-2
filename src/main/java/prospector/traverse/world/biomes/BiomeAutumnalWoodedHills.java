@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class BiomeAutumnalWoodedHills extends Biome implements ITreeConstants {
 
-    public static BiomeProperties properties = new BiomeProperties("Autumnal Wooded Forest");
+    public static BiomeProperties properties = new BiomeProperties("Autumnal Wooded Hills");
 
     static {
         properties.setTemperature(Biomes.FOREST.getTemperature());

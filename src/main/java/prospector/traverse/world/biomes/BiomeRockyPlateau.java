@@ -15,8 +15,8 @@ import java.util.Random;
 public class BiomeRockyPlateau extends Biome implements ITreeConstants {
 
     protected static final WorldGenPatch COARSE_DIRT_PATCH_FEATURE = new WorldGenPatch(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT), 4);
-    protected static final WorldGenPatch STONE_PATCH_FEATURE = new WorldGenPatch(Blocks.STONE.getDefaultState(), 12);
-    protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 2);
+    protected static final WorldGenPatch STONE_PATCH_FEATURE = new WorldGenPatch(Blocks.STONE.getDefaultState(), 5);
+    protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 1);
 
     public static BiomeProperties properties = new BiomeProperties("Rocky Plateau");
 
