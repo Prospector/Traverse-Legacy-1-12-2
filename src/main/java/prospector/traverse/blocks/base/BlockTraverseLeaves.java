@@ -14,8 +14,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
+import prospector.shootingstar.model.ModelCompound;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 
@@ -54,14 +55,13 @@ public class BlockTraverseLeaves extends BlockLeaves {
         return list;
     }
 
-    @Override
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+    public boolean isOpaqueCube(IBlockState state) {
+        return TraverseConfig.solidLeaves;
     }
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return !TraverseConfig.solidLeaves ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
     @Override
@@ -87,21 +87,6 @@ public class BlockTraverseLeaves extends BlockLeaves {
         return meta;
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getBlockColor() {
-        return 16777215;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state) {
-        return 16777215;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass) {
-        return 16777215;
-    }
-
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return sapling;
@@ -109,6 +94,6 @@ public class BlockTraverseLeaves extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return true;
+        return TraverseConfig.solidLeaves && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 }
