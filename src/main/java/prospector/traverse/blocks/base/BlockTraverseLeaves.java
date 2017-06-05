@@ -64,6 +64,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
         return !TraverseConfig.solidLeaves ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
+
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE);
@@ -94,6 +95,6 @@ public class BlockTraverseLeaves extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return TraverseConfig.solidLeaves && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        return !TraverseConfig.solidLeaves;
     }
 }
