@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.TraverseWorld;
 
@@ -28,6 +29,7 @@ public class TraverseCommon {
     }
 
     public void preInit(FMLPreInitializationEvent event) {
+        TraverseConfig.initialize(event);
         TraverseBlocks.initialize();
     }
 
