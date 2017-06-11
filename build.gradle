@@ -6,7 +6,7 @@ buildscript {
         maven { url = "http://maven.modmuss50.me/" }
     }
     dependencies { 
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
     }
 }

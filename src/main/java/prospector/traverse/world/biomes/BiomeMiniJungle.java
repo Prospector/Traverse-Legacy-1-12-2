@@ -3,6 +3,7 @@ package prospector.traverse.world.biomes;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +37,8 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
 
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityOcelot.class, 1, 1, 1));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 4, 4, 4));
+        this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityParrot.class, 40, 1, 2));
+
     }
 
     @Override
