@@ -3,16 +3,23 @@ package prospector.traverse;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.world.biome.BiomeProvider;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import prospector.shootingstar.version.VersionUtils;
+import prospector.traverse.commands.CommandFindTest;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.TraverseWorld;
+import prospector.traverse.world.TraverseWorldVersion;
+
+import java.io.File;
 
 public class TraverseCommon {
+
+    public static TraverseWorldVersion traverse_world_data = null;
 
     static void registerShaped(String name, ItemStack output, Object... inputs) {
 //        GameRegistry.addRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), new ShapedOreRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), output, inputs));
@@ -47,5 +54,39 @@ public class TraverseCommon {
 
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandFindTest());
+    }
+
+    public void serverAboutToStart(FMLServerAboutToStartEvent event) {
+        File serverDir = event.getServer().getDataDirectory();
+        File savesDir = new File(serverDir, "saves");
+        File worldDir = new File(savesDir, event.getServer().getFolderName());
+        traverse_world_data = new TraverseWorldVersion(worldDir);
+        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
+            boolean canRegister;
+            if (!TraverseConfig.registerBiomesRegardless) {
+                traverse_world_data.reloadVersionFile();
+                canRegister = VersionUtils.isVersionLessOrEqual(entry.getVersionAdded(), traverse_world_data.version);
+            } else {
+                canRegister = true;
+            }
+            if (canRegister) {
+                BiomeManager.addBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
+                BiomeManager.addSpawnBiome(entry.getBiome());
+                BiomeProvider.allowedBiomes.add(entry.getBiome());
+            }
+        }
+    }
+
+    public void serverStopping(FMLServerStoppingEvent event) {
+        traverse_world_data = null;
+        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
+            BiomeProvider.allowedBiomes.remove(entry.getBiome());
+            BiomeManager.removeSpawnBiome(entry.getBiome());
+            BiomeManager.removeBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
+        }
     }
 }

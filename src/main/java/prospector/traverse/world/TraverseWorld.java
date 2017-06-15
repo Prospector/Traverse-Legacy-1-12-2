@@ -3,23 +3,22 @@ package prospector.traverse.world;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeForest;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import prospector.shootingstar.version.Version;
-import prospector.shootingstar.version.VersionUtils;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.world.biomes.*;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class TraverseWorld {
 
-    public static LinkedHashMap<Biome, Version> biomeList = new LinkedHashMap<>();
+    public static List<BiomeEntry> biomeList = new ArrayList<>();
     public static Biome autumnalWoodsBiome = new BiomeAutumnalWoods();
     public static Biome woodlandsBiome = new BiomeWoodlands();
     public static Biome miniJungleBiome = new BiomeMiniJungle();
@@ -52,24 +51,42 @@ public class TraverseWorld {
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, boolean disabled, BiomeDictionary.Type... biomeDictTypes) {
         if (!disabled) {
-            boolean canRegister;
-            if (!TraverseConfig.registerBiomesRegardless) {
-                TraverseConfig.reloadVersionConfig();
-                canRegister = VersionUtils.isVersionLessOrEqual(versionAdded, TraverseConfig.version);
-            } else {
-                canRegister = true;
+            biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
+            GameRegistry.register(biome);
+            for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
+                BiomeDictionary.addTypes(biome, biomeDictType);
             }
-            if (canRegister) {
-                biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
-                GameRegistry.register(biome);
-                BiomeManager.addBiome(type, new BiomeManager.BiomeEntry(biome, weight));
-                BiomeManager.addSpawnBiome(biome);
-                BiomeProvider.allowedBiomes.add(biome);
-                for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
-                    BiomeDictionary.addTypes(biome, biomeDictType);
-                }
-                biomeList.put(biome, versionAdded);
-            }
+            biomeList.add(new BiomeEntry(biome, type, weight, versionAdded));
+        }
+    }
+
+    public static class BiomeEntry {
+        private Biome biome;
+        private BiomeManager.BiomeType type;
+        private Version versionAdded;
+        private int weight;
+
+        public BiomeEntry(Biome biome, BiomeManager.BiomeType type, int weight, Version versionAdded) {
+            this.biome = biome;
+            this.type = type;
+            this.weight = weight;
+            this.versionAdded = versionAdded;
+        }
+
+        public Biome getBiome() {
+            return biome;
+        }
+
+        public BiomeManager.BiomeType getType() {
+            return type;
+        }
+
+        public Version getVersionAdded() {
+            return versionAdded;
+        }
+
+        public int getWeight() {
+            return weight;
         }
     }
 }

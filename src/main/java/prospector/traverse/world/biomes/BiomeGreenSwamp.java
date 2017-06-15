@@ -31,21 +31,21 @@ public class BiomeGreenSwamp extends Biome implements ITreeConstants {
 
     public BiomeGreenSwamp() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 2;
-        theBiomeDecorator.flowersPerChunk = 5;
-        theBiomeDecorator.deadBushPerChunk = 1;
-        theBiomeDecorator.mushroomsPerChunk = 4;
-        theBiomeDecorator.reedsPerChunk = 10;
-        theBiomeDecorator.clayPerChunk = 1;
-        theBiomeDecorator.waterlilyPerChunk = 4;
-        theBiomeDecorator.sandPerChunk2 = 0;
-        theBiomeDecorator.sandPerChunk = 0;
-        theBiomeDecorator.grassPerChunk = 10;
+        decorator.treesPerChunk = 2;
+        decorator.flowersPerChunk = 5;
+        decorator.deadBushPerChunk = 1;
+        decorator.mushroomsPerChunk = 4;
+        decorator.reedsPerChunk = 10;
+        decorator.clayPerChunk = 1;
+        decorator.waterlilyPerChunk = 4;
+        decorator.sandPatchesPerChunk = 0;
+        decorator.grassPerChunk = 10;
 
         spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySlime.class, 1, 1, 1));
     }
 
-    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         return CUSTOM_SWAMP_TREE_FEATURE;
     }
 

@@ -28,12 +28,12 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
 
     public BiomeMiniJungle() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 30;
-        theBiomeDecorator.flowersPerChunk = 5;
-        theBiomeDecorator.grassPerChunk = 25;
-        theBiomeDecorator.reedsPerChunk = 2;
-        theBiomeDecorator.clayPerChunk = 3;
-        theBiomeDecorator.waterlilyPerChunk = 12;
+        decorator.treesPerChunk = 30;
+        decorator.flowersPerChunk = 5;
+        decorator.grassPerChunk = 25;
+        decorator.reedsPerChunk = 2;
+        decorator.clayPerChunk = 3;
+        decorator.waterlilyPerChunk = 12;
 
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityOcelot.class, 1, 1, 1));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 4, 4, 4));
@@ -50,8 +50,8 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
         return rand.nextInt(4) == 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN) : new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
     }
 
-
-    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         return rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : new WorldGenTrees(false, 2 + rand.nextInt(3), JUNGLE_LOG, JUNGLE_LEAVES, true);
     }
 

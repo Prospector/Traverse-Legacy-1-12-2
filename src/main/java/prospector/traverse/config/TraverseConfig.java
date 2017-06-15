@@ -10,15 +10,11 @@ import prospector.traverse.core.TraverseConstants;
 import java.io.*;
 
 public class TraverseConfig {
-    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     public static final String CATEGORY_BIOMES = "Biomes";
     public static File configDir;
-    public static File versionConfig;
     public static File mainConfig;
     public static Configuration config;
     public static TraverseConfig traverseConfiguration;
-
-    public static Version version;
 
     public static boolean useVanillaWood = false;
     public static boolean registerBiomesRegardless = false;
@@ -45,7 +41,7 @@ public class TraverseConfig {
         config.load();
 
         useVanillaWood = config.get(Configuration.CATEGORY_GENERAL, "useVanillaWood", useVanillaWood, "Use vanilla logs for Traverse trees (might not look as nice)").getBoolean();
-        registerBiomesRegardless = config.get(Configuration.CATEGORY_GENERAL, "registerBiomesRegardless", registerBiomesRegardless, "All biomes will always be registered, ignoring the instance version (WARNING: This will cause ugly world generation borders at the edge of what has previously been generated and what is new!!)").getBoolean();
+        registerBiomesRegardless = config.get(Configuration.CATEGORY_GENERAL, "registerBiomesRegardless", registerBiomesRegardless, "All biomes will always be registered, ignoring the instance traverse_world_data (WARNING: This will cause ugly world generation borders at the edge of what has previously been generated and what is new!!)").getBoolean();
         solidLeaves = config.get(Configuration.CATEGORY_GENERAL, "solidLeaves", solidLeaves, "Leaves will not render transparent. This will help on old/crappy computers.").getBoolean();
 
         disableAutumnalWoods = config.get(CATEGORY_BIOMES, "disableAutumnalWoods", disableAutumnalWoods, "Force disable the Autumnal Woods biome").getBoolean();
@@ -89,56 +85,5 @@ public class TraverseConfig {
 
         mainConfig = new File(configDir, "traverse.cfg");
         traverseConfiguration = initialize();
-
-        versionConfig = new File(configDir, "instance_version.json");
-
-        if (TraverseConstants.MOD_VERSION_MAJOR.equals("@major@")) {
-            version = TraverseConstants.DEV_VERSION;
-        } else {
-            version = new Version(Integer.parseInt(TraverseConstants.MOD_VERSION_MAJOR), Integer.parseInt(TraverseConstants.MOD_VERSION_MINOR), Integer.parseInt(TraverseConstants.MOD_VERSION_PATCH));
-        }
-
-        reloadVersionConfig();
-    }
-
-    public static void reloadVersionConfig() {
-        if (!versionConfig.exists()) {
-            writeVersionConfig(new VersionConfig());
-        }
-        if (versionConfig.exists()) {
-            VersionConfig config = null;
-            try (Reader reader = new FileReader(versionConfig)) {
-                config = GSON.fromJson(reader, VersionConfig.class);
-                version = config.version;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (config == null) {
-                config = new VersionConfig();
-                writeVersionConfig(config);
-            }
-        }
-    }
-
-    public static void writeVersionConfig(VersionConfig config) {
-        try (Writer writer = new FileWriter(versionConfig)) {
-            GSON.toJson(config, writer);
-        } catch (Exception e) {
-
-        }
-        reloadVersionConfig();
-    }
-
-    public static class VersionConfig {
-
-        public Version version = TraverseConfig.version;
-
-        public Version getVersion() {
-            return version;
-        }
-
-        public void setVersion(Version version) {
-            this.version = version;
-        }
     }
 }

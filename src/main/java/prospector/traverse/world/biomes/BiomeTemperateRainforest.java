@@ -22,16 +22,16 @@ public class BiomeTemperateRainforest extends Biome implements ITreeConstants {
 
     public BiomeTemperateRainforest() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 7;
-        theBiomeDecorator.flowersPerChunk = 0;
-        theBiomeDecorator.grassPerChunk = 16;
-        theBiomeDecorator.mushroomsPerChunk = 2;
+        decorator.treesPerChunk = 7;
+        decorator.flowersPerChunk = 0;
+        decorator.grassPerChunk = 16;
+        decorator.mushroomsPerChunk = 2;
 
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         return FIR_TREE_FEATURE;
     }
 

@@ -35,10 +35,10 @@ public class BiomeBadlands extends Biome implements ITreeConstants {
 
     public BiomeBadlands() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 1;
-        theBiomeDecorator.extraTreeChance = 4;
-        theBiomeDecorator.flowersPerChunk = 0;
-        theBiomeDecorator.grassPerChunk = 16;
+        decorator.treesPerChunk = 1;
+        decorator.extraTreeChance = 4;
+        decorator.flowersPerChunk = 0;
+        decorator.grassPerChunk = 16;
 
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 4, 2, 4));
@@ -64,7 +64,7 @@ public class BiomeBadlands extends Biome implements ITreeConstants {
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         int num = rand.nextInt(2);
         if (num == 0) {
             return new WorldGenShrub(OAK_LOG, OAK_LEAVES);

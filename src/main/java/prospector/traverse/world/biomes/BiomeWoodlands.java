@@ -27,9 +27,9 @@ public class BiomeWoodlands extends Biome implements ITreeConstants {
 
     public BiomeWoodlands() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 4;
-        theBiomeDecorator.flowersPerChunk = 6;
-        theBiomeDecorator.grassPerChunk = 16;
+        decorator.treesPerChunk = 4;
+        decorator.flowersPerChunk = 6;
+        decorator.grassPerChunk = 16;
 
         this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 4, 4));
 
@@ -82,7 +82,7 @@ public class BiomeWoodlands extends Biome implements ITreeConstants {
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         int num = rand.nextInt(3);
         if (num == 0) {
             return new WorldGenShrub(OAK_LOG, OAK_LEAVES);

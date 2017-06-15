@@ -29,10 +29,10 @@ public class BiomeRockyPlateau extends Biome implements ITreeConstants {
 
     public BiomeRockyPlateau() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 0;
-        theBiomeDecorator.extraTreeChance = 0;
-        theBiomeDecorator.flowersPerChunk = 0;
-        theBiomeDecorator.grassPerChunk = 8;
+        decorator.treesPerChunk = 0;
+        decorator.extraTreeChance = 0;
+        decorator.flowersPerChunk = 0;
+        decorator.grassPerChunk = 8;
 
         spawnableCreatureList.clear();
     }

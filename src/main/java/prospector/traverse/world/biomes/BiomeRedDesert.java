@@ -24,7 +24,7 @@ public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
         super(properties);
         this.topBlock = RED_SAND;
         this.fillerBlock = RED_SAND;
-        theBiomeDecorator.generateLakes = false;
+        decorator.generateFalls = false;
     }
 
     @Override

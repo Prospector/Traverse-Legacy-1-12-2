@@ -22,11 +22,11 @@ public class BiomeMeadow extends Biome implements ITreeConstants {
 
     public BiomeMeadow() {
         super(properties);
-        theBiomeDecorator.treesPerChunk = -999;
-        theBiomeDecorator.extraTreeChance = -999;
-        theBiomeDecorator.flowersPerChunk = 15;
-        theBiomeDecorator.grassPerChunk = 15;
-        theBiomeDecorator.reedsPerChunk = 2;
+        decorator.treesPerChunk = -999;
+        decorator.extraTreeChance = -999;
+        decorator.flowersPerChunk = 15;
+        decorator.grassPerChunk = 15;
+        decorator.reedsPerChunk = 2;
 
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 4));
         spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 2));
