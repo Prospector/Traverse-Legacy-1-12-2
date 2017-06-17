@@ -61,6 +61,11 @@ public class TraverseCommon {
     }
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
+        traverse_world_data = null;
+        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
+            BiomeProvider.allowedBiomes.remove(entry.getBiome());
+            BiomeManager.removeSpawnBiome(entry.getBiome());
+            BiomeManager.removeBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
         File serverDir = event.getServer().getDataDirectory();
         File savesDir = new File(serverDir, "saves");
         File worldDir = new File(savesDir, event.getServer().getFolderName());
@@ -82,11 +87,7 @@ public class TraverseCommon {
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
-        traverse_world_data = null;
-        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
-            BiomeProvider.allowedBiomes.remove(entry.getBiome());
-            BiomeManager.removeSpawnBiome(entry.getBiome());
-            BiomeManager.removeBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
+        
         }
     }
 }
