@@ -66,6 +66,7 @@ public class TraverseCommon {
             BiomeProvider.allowedBiomes.remove(entry.getBiome());
             BiomeManager.removeSpawnBiome(entry.getBiome());
             BiomeManager.removeBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
+        }
         File serverDir = event.getServer().getDataDirectory();
         File savesDir = new File(serverDir, "saves");
         File worldDir = new File(savesDir, event.getServer().getFolderName());
@@ -87,7 +88,6 @@ public class TraverseCommon {
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
-        
-        }
+       
     }
 }
