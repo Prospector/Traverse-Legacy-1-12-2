@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 

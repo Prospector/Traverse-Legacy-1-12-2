@@ -1,6 +1,7 @@
 package prospector.traverse.blocks.base;
 
 import net.minecraft.block.BlockSapling;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -27,6 +28,7 @@ public class BlockTraverseSapling extends BlockSapling {
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_sapling"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
+        setSoundType(SoundType.PLANT);
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "sapling", STAGE, TYPE));
     }
 

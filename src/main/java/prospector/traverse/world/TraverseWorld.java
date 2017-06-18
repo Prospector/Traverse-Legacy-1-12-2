@@ -18,7 +18,7 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class TraverseWorld {
 
-    public static List<BiomeEntry> biomeList = new ArrayList<>();
+    public static List<TraverseBiome> biomeList = new ArrayList<>();
     public static Biome autumnalWoodsBiome = new BiomeAutumnalWoods();
     public static Biome woodlandsBiome = new BiomeWoodlands();
     public static Biome miniJungleBiome = new BiomeMiniJungle();
@@ -56,25 +56,31 @@ public class TraverseWorld {
             for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
                 BiomeDictionary.addTypes(biome, biomeDictType);
             }
-            biomeList.add(new BiomeEntry(biome, type, weight, versionAdded));
+            biomeList.add(new TraverseBiome(biome, type, weight, versionAdded));
         }
     }
 
-    public static class BiomeEntry {
+    public static class TraverseBiome {
         private Biome biome;
         private BiomeManager.BiomeType type;
         private Version versionAdded;
         private int weight;
+        private BiomeManager.BiomeEntry entry;
 
-        public BiomeEntry(Biome biome, BiomeManager.BiomeType type, int weight, Version versionAdded) {
+        public TraverseBiome(Biome biome, BiomeManager.BiomeType type, int weight, Version versionAdded) {
             this.biome = biome;
             this.type = type;
             this.weight = weight;
             this.versionAdded = versionAdded;
+            this.entry = new BiomeManager.BiomeEntry(biome, weight);
         }
 
         public Biome getBiome() {
             return biome;
+        }
+
+        public BiomeManager.BiomeEntry getEntry() {
+            return entry;
         }
 
         public BiomeManager.BiomeType getType() {

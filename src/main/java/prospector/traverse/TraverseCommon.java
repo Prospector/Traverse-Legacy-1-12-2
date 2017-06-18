@@ -21,14 +21,6 @@ public class TraverseCommon {
 
     public static TraverseWorldVersion traverse_world_data = null;
 
-    static void registerShaped(String name, ItemStack output, Object... inputs) {
-//        GameRegistry.addRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), new ShapedOreRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), output, inputs));
-    }
-
-    static void registerShapeless(String name, ItemStack output, Object... inputs) {
-//        GameRegistry.addRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), new ShapelessOreRecipe(new ResourceLocation(TraverseConstants.MOD_ID, name), output, inputs));
-    }
-
     static void registerFurnace(ItemStack output, ItemStack input, float experience) {
         GameRegistry.addSmelting(input, output, experience);
     }
@@ -43,12 +35,6 @@ public class TraverseCommon {
         for (String name : TraverseBlocks.oreDictNames.keySet()) {
             OreDictionary.registerOre(name, TraverseBlocks.oreDictNames.get(name));
         }
-        registerShapeless("fir_planks1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks")), 4), new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_log"))));
-        registerShaped("fir_slab1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_slab")), 6), "ppp", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
-        registerShaped("fir_stairs1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_stairs")), 4), "p  ", "pp ", "ppp", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
-        registerShaped("fir_door1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_door")), 3), "pp", "pp", "pp", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
-        registerShaped("fir_fence1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_fence")), 3), "psp", "psp", 's', "stickWood", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
-        registerShaped("fir_fence_gate1", new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_fence_gate"))), "sps", "sps", 's', "stickWood", 'p', new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_planks"))));
         registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_log"))), 0.15F);
     }
 
@@ -62,32 +48,31 @@ public class TraverseCommon {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
         traverse_world_data = null;
-        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
-            BiomeProvider.allowedBiomes.remove(entry.getBiome());
-            BiomeManager.removeSpawnBiome(entry.getBiome());
-            BiomeManager.removeBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
-        }
         File serverDir = event.getServer().getDataDirectory();
         File savesDir = new File(serverDir, "saves");
         File worldDir = new File(savesDir, event.getServer().getFolderName());
         traverse_world_data = new TraverseWorldVersion(worldDir);
-        for (TraverseWorld.BiomeEntry entry : TraverseWorld.biomeList) {
+        for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
+            BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
+            BiomeManager.removeSpawnBiome(traverseBiome.getBiome());
+            BiomeManager.removeBiome(traverseBiome.getType(), traverseBiome.getEntry());
+
             boolean canRegister;
             if (!TraverseConfig.registerBiomesRegardless) {
                 traverse_world_data.reloadVersionFile();
-                canRegister = VersionUtils.isVersionLessOrEqual(entry.getVersionAdded(), traverse_world_data.version);
+                canRegister = VersionUtils.isVersionLessOrEqual(traverseBiome.getVersionAdded(), traverse_world_data.version);
             } else {
                 canRegister = true;
             }
             if (canRegister) {
-                BiomeManager.addBiome(entry.getType(), new BiomeManager.BiomeEntry(entry.getBiome(), entry.getWeight()));
-                BiomeManager.addSpawnBiome(entry.getBiome());
-                BiomeProvider.allowedBiomes.add(entry.getBiome());
+                BiomeManager.addBiome(traverseBiome.getType(), traverseBiome.getEntry());
+                BiomeManager.addSpawnBiome(traverseBiome.getBiome());
+                BiomeProvider.allowedBiomes.add(traverseBiome.getBiome());
             }
         }
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
-       
+
     }
 }
