@@ -1,5 +1,6 @@
 package prospector.traverse;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,7 +50,17 @@ public class TraverseCommon {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
         traverse_world_data = null;
-        File worldDir = new File(DimensionManager.getCurrentSaveRootDirectory(), event.getServer().getFolderName());
+        File rootDir = null;
+        try {
+            if (Minecraft.getMinecraft().isIntegratedServerRunning()) {
+                rootDir = new File(event.getServer().getDataDirectory(), "saves");
+            }
+        } catch (NoClassDefFoundError error) {
+        }
+        if (rootDir == null) {
+            rootDir = DimensionManager.getCurrentSaveRootDirectory();
+        }
+        File worldDir = new File(rootDir, event.getServer().getFolderName());
         traverse_world_data = new TraverseWorldVersion(worldDir);
         for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
             BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
