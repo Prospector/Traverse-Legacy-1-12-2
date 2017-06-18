@@ -1,12 +1,11 @@
 package prospector.traverse;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -50,16 +49,7 @@ public class TraverseCommon {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
         traverse_world_data = null;
-        File rootDir = null;
-        try {
-            if (Minecraft.getMinecraft().isIntegratedServerRunning()) {
-                rootDir = new File(event.getServer().getDataDirectory(), "saves");
-            }
-        } catch (NoClassDefFoundError error) {
-        }
-        if (rootDir == null) {
-            rootDir = DimensionManager.getCurrentSaveRootDirectory();
-        }
+        File rootDir = FMLCommonHandler.instance().getSavesDirectory();
         File worldDir = new File(rootDir, event.getServer().getFolderName());
         traverse_world_data = new TraverseWorldVersion(worldDir);
         for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
