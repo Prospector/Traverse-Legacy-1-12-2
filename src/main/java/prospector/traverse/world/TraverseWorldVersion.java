@@ -51,7 +51,7 @@ public class TraverseWorldVersion {
         try (Writer writer = new FileWriter(versionConfig)) {
             GSON.toJson(config, writer);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         reloadVersionFile();
     }

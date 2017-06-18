@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -48,9 +49,7 @@ public class TraverseCommon {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
         traverse_world_data = null;
-        File serverDir = event.getServer().getDataDirectory();
-        File savesDir = new File(serverDir, "saves");
-        File worldDir = new File(savesDir, event.getServer().getFolderName());
+        File worldDir = new File(DimensionManager.getCurrentSaveRootDirectory(), event.getServer().getFolderName());
         traverse_world_data = new TraverseWorldVersion(worldDir);
         for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
             BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
