@@ -50,7 +50,13 @@ public class TraverseCommon {
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
         traverse_world_data = null;
         File rootDir = FMLCommonHandler.instance().getSavesDirectory();
+        if (!rootDir.exists()) {
+            rootDir.mkdir();
+        }
         File worldDir = new File(rootDir, event.getServer().getFolderName());
+        if (!worldDir.exists()) {
+            worldDir.mkdir();
+        }
         traverse_world_data = new TraverseWorldVersion(worldDir);
         for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
             BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
