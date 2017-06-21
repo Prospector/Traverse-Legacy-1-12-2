@@ -4,6 +4,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import prospector.shootingstar.model.ModelCompound;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockTraverseWoodDoor extends BlockDoor {
@@ -28,6 +30,16 @@ public class BlockTraverseWoodDoor extends BlockDoor {
         setHardness(3.0F);
         setHarvestLevel("axe", 0);
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "door", POWERED));
+    }
+
+    @Override
+    public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
+        return SoundType.WOOD;
+    }
+
+    @Override
+    public SoundType getSoundType() {
+        return SoundType.WOOD;
     }
 
     @Override
