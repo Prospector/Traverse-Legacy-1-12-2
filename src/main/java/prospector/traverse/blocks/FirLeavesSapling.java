@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import prospector.traverse.blocks.base.BlockTraverseLeaves;
 import prospector.traverse.blocks.base.BlockTraverseSapling;
-import prospector.traverse.world.TraverseTreeGenerator;
+import prospector.traverse.world.features.TraverseTreeGenerator;
 import prospector.traverse.world.features.WorldGenFirTree;
 
 import java.util.Random;

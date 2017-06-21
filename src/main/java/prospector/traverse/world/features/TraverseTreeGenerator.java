@@ -1,7 +1,8 @@
-package prospector.traverse.world;
+package prospector.traverse.world.features;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.gen.feature.WorldGenTrees;
+import prospector.traverse.world.ITreeConstants;
 
 public class TraverseTreeGenerator extends WorldGenTrees implements ITreeConstants {
 

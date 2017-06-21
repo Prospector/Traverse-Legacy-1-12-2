@@ -14,7 +14,7 @@ import prospector.shootingstar.ShootingStar;
 import prospector.shootingstar.model.ModelCompound;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
-import prospector.traverse.world.TraverseTreeGenerator;
+import prospector.traverse.world.features.TraverseTreeGenerator;
 
 import java.util.Random;
 

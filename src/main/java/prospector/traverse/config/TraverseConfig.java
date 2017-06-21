@@ -1,13 +1,10 @@
 package prospector.traverse.config;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import prospector.shootingstar.version.Version;
 import prospector.traverse.core.TraverseConstants;
 
-import java.io.*;
+import java.io.File;
 
 public class TraverseConfig {
     public static final String CATEGORY_BIOMES = "Biomes";
@@ -33,6 +30,10 @@ public class TraverseConfig {
     public static boolean disableForestedHills = false;
     public static boolean disableBirchForestedHills = false;
     public static boolean disableAutumnalWoodedHills = false;
+    public static boolean disableCliffs = false;
+    public static boolean disableGlacier = false;
+    public static boolean disableGlacierSpikes = false;
+    public static boolean disableSnowyConiferousForest = false;
 
     private static TraverseConfig instance = null;
 
@@ -57,6 +58,10 @@ public class TraverseConfig {
         disableForestedHills = config.get(CATEGORY_BIOMES, "disableForestedHills", disableForestedHills, "Force disable the Forested Hills biome").getBoolean();
         disableBirchForestedHills = config.get(CATEGORY_BIOMES, "disableBirchForestedHills", disableBirchForestedHills, "Force disable the Birch Forested Hills biome").getBoolean();
         disableAutumnalWoodedHills = config.get(CATEGORY_BIOMES, "disableAutumnalWoodedHills", disableAutumnalWoodedHills, "Force disable the Autumnal Wooded Hills biome").getBoolean();
+        disableCliffs = config.get(CATEGORY_BIOMES, "disableCliffs", disableCliffs, "Force disable the Cliffs biome").getBoolean();
+        disableGlacier = config.get(CATEGORY_BIOMES, "disableGlacier", disableGlacier, "Force disable the Glacier biome").getBoolean();
+        disableGlacierSpikes = config.get(CATEGORY_BIOMES, "disableGlacierSpikes", disableGlacierSpikes, "Force disable the Glacier Spikes biome").getBoolean();
+        disableSnowyConiferousForest = config.get(CATEGORY_BIOMES, "disableSnowyConiferousForest", disableSnowyConiferousForest, "Force disable the Snowy Coniferous Forest biome").getBoolean();
 
         config.save();
     }

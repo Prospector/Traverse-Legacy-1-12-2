@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class CommandFindTest extends CommandBase {
 
     //Based off https://github.com/Glitchfiend/BiomesOPlenty/blob/4977b0100ca55f96de50337f46ed673512cf503a/src/main/java/biomesoplenty/common/util/biome/BiomeUtils.java
-    public static BlockPos spiralOutwardsLookingForBiome(World world, Biome biomeToFind, double startX, double startZ, int timeout) {
+    public static BlockPos spiralOutwardsLookingForBiome(ICommandSender sender, World world, Biome biomeToFind, double startX, double startZ, int timeout) {
         double a = 16 / Math.sqrt(Math.PI);
         double b = 2 * Math.sqrt(Math.PI);
         double x;
@@ -24,7 +24,7 @@ public class CommandFindTest extends CommandBase {
         int n;
         long start = System.currentTimeMillis();
         for (n = 0; dist < Integer.MAX_VALUE; ++n) {
-            if ((System.currentTimeMillis() - start) > 10000) {
+            if ((System.currentTimeMillis() - start) > timeout) {
                 return null;
             }
             double rootN = Math.sqrt(n);
@@ -62,8 +62,8 @@ public class CommandFindTest extends CommandBase {
             return;
         }
         long start = System.currentTimeMillis();
-        int timeout = 10000;
-        BlockPos pos = spiralOutwardsLookingForBiome(sender.getEntityWorld(), biome, sender.getPosition().getX(), sender.getPosition().getZ(), timeout);
+        int timeout = 20000;
+        BlockPos pos = spiralOutwardsLookingForBiome(sender, sender.getEntityWorld(), biome, sender.getPosition().getX(), sender.getPosition().getZ(), timeout);
         if (pos == null) {
             sender.sendMessage(new TextComponentString(TextFormatting.RED + "Error! Biome '" + args[0] + "' could not be found after " + TextFormatting.GRAY + timeout + "ms" + TextFormatting.RED + "."));
             return;

@@ -25,13 +25,17 @@ public class TraverseWorld {
     public static Biome meadowBiome = new BiomeMeadow();
     public static Biome lushSwampBiome = new BiomeGreenSwamp();
     public static Biome redDesertBiome = new BiomeRedDesert();
-    public static Biome temperateRainforestBiome = new BiomeTemperateRainforest();
+    public static Biome temperateRainforestBiome = new BiomeTemperateRainforest(false);
     public static Biome badlandsBiome = new BiomeBadlands();
     public static Biome mountainousDesertBiome = new BiomeMountainousDesert();
     public static Biome rockyPlateauBiome = new BiomeRockyPlateau();
-    public static Biome forestedHills = new BiomeForestedHills(BiomeForest.Type.NORMAL, "Forested Hills");
-    public static Biome birchForestedHills = new BiomeForestedHills(BiomeForest.Type.BIRCH, "Birch Forested Hills");
-    public static Biome autumnalWoodedHills = new BiomeAutumnalWoodedHills();
+    public static Biome forestedHillsBiome = new BiomeForestedHills(BiomeForest.Type.NORMAL, "Forested Hills");
+    public static Biome birchForestedHillsBiome = new BiomeForestedHills(BiomeForest.Type.BIRCH, "Birch Forested Hills");
+    public static Biome autumnalWoodedHillsBiome = new BiomeAutumnalWoodedHills();
+    public static Biome cliffsBiome = new BiomeCliffs();
+    public static Biome glacierBiome = new BiomeGlacier(false);
+    public static Biome glacierSpikesBiome = new BiomeGlacier(true);
+    public static Biome snowyConiferousForestBiome = new BiomeTemperateRainforest(true);
 
     public static void init() {
         register(new Version(1, 0, 0), autumnalWoodsBiome, BiomeManager.BiomeType.COOL, "autumnal_woods", 8, TraverseConfig.disableAutumnalWoods, FOREST);
@@ -44,9 +48,13 @@ public class TraverseWorld {
         register(new Version(1, 1, 0), badlandsBiome, BiomeManager.BiomeType.WARM, "badlands", 5, TraverseConfig.disableBadlands, PLAINS, DRY, HOT, SPARSE);
         register(new Version(1, 1, 0), mountainousDesertBiome, BiomeManager.BiomeType.DESERT, "mountainous_desert", 2, TraverseConfig.disableMountainousDesert, MOUNTAIN, DRY, HOT, SANDY);
         register(new Version(1, 1, 0), rockyPlateauBiome, BiomeManager.BiomeType.WARM, "rocky_plateau", 4, TraverseConfig.disableRockyPlateau);
-        register(new Version(1, 1, 0), forestedHills, BiomeManager.BiomeType.COOL, "forested_hills", 6, TraverseConfig.disableForestedHills, FOREST, HILLS);
-        register(new Version(1, 1, 0), birchForestedHills, BiomeManager.BiomeType.COOL, "birch_forested_hills", 2, TraverseConfig.disableBirchForestedHills, FOREST, HILLS);
-        register(new Version(1, 1, 0), autumnalWoodedHills, BiomeManager.BiomeType.COOL, "autumnal_wooded_hills", 1, TraverseConfig.disableAutumnalWoodedHills, FOREST, HILLS);
+        register(new Version(1, 1, 0), forestedHillsBiome, BiomeManager.BiomeType.COOL, "forested_hills", 6, TraverseConfig.disableForestedHills, FOREST, HILLS);
+        register(new Version(1, 1, 0), birchForestedHillsBiome, BiomeManager.BiomeType.COOL, "birch_forested_hills", 2, TraverseConfig.disableBirchForestedHills, FOREST, HILLS);
+        register(new Version(1, 1, 0), autumnalWoodedHillsBiome, BiomeManager.BiomeType.COOL, "autumnal_wooded_hills", 1, TraverseConfig.disableAutumnalWoodedHills, FOREST, HILLS);
+        register(new Version(1, 2, 0), cliffsBiome, BiomeManager.BiomeType.COOL, "cliffs", 2, TraverseConfig.disableCliffs, MOUNTAIN, COLD, HILLS);
+        register(new Version(1, 2, 0), glacierBiome, BiomeManager.BiomeType.ICY, "glacier", 6, TraverseConfig.disableGlacier, MOUNTAIN, COLD, SNOWY);
+        register(new Version(1, 2, 0), glacierSpikesBiome, BiomeManager.BiomeType.ICY, "glacier_spikes", 2, TraverseConfig.disableGlacierSpikes, MOUNTAIN, COLD, SNOWY);
+        register(new Version(1, 2, 0), snowyConiferousForestBiome, BiomeManager.BiomeType.ICY, "snowy_coniferous_forest", 5, TraverseConfig.disableGlacierSpikes, COLD, SNOWY, FOREST, CONIFEROUS);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, boolean disabled, BiomeDictionary.Type... biomeDictTypes) {

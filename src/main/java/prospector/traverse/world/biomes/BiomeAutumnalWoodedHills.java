@@ -5,7 +5,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import prospector.traverse.world.ITreeConstants;
-import prospector.traverse.world.TraverseTreeGenerator;
+import prospector.traverse.world.features.TraverseTreeGenerator;
 
 import java.util.Random;
 
