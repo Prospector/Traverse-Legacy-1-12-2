@@ -1,6 +1,7 @@
 package prospector.traverse.blocks.base;
 
 import net.minecraft.block.BlockSapling;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -10,8 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 import prospector.traverse.world.TraverseTreeGenerator;
@@ -28,6 +29,7 @@ public class BlockTraverseSapling extends BlockSapling {
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_sapling"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
+        setSoundType(SoundType.PLANT);
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "sapling", STAGE, TYPE));
     }
 

@@ -68,7 +68,7 @@ public class ItemTraverseWoodDoor extends ItemBlock {
             boolean isRightHinge = offsetX < 0 && hitZ < 0.5F || offsetX > 0 && hitZ > 0.5F || offsetZ < 0 && hitX > 0.5F || offsetZ > 0 && hitX < 0.5F;
 
             placeDoor(world, pos, enumfacing, block, isRightHinge);
-            SoundType soundtype = state.getBlock().getSoundType(state, world, pos, player);
+            SoundType soundtype = SoundType.WOOD;
             world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
             held.shrink(1);
             return EnumActionResult.SUCCESS;
