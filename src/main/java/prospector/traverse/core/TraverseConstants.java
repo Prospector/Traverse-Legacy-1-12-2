@@ -2,9 +2,6 @@ package prospector.traverse.core;
 
 import prospector.shootingstar.version.Version;
 
-/**
- * Created by Prospector
- */
 public class TraverseConstants {
     public static final String MOD_NAME = "TraverseMod";
     public static final String MOD_ID = "traverse";
