@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.*;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.ITreeConstants;
 
 import java.util.Random;
@@ -40,7 +41,10 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
 
     @Override
     public int getSkyColorByTemp(float currentTemperature) {
-        return 0xFFC2FFEB;
+        if (TraverseConfig.disableCustomSkies)
+            return super.getSkyColorByTemp(currentTemperature);
+        else
+            return 0xFFC2FFEB;
     }
 
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {

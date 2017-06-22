@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDesert;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.ITreeConstants;
 
 public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
@@ -29,6 +30,9 @@ public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
 
     @Override
     public int getSkyColorByTemp(float currentTemperature) {
-        return 0xFFFFE5DD;
+        if (TraverseConfig.disableCustomSkies)
+            return super.getSkyColorByTemp(currentTemperature);
+        else
+            return 0xFFFFE5DD;
     }
 }
