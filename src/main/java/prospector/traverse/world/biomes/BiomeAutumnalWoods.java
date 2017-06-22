@@ -40,7 +40,7 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
         if (TraverseConfig.disableCustomSkies)
             return super.getSkyColorByTemp(currentTemperature);
         else
-        return 0xFFEFECD9;
+            return 0xFFEFECD9;
     }
 
     @Override

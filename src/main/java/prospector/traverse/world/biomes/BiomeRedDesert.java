@@ -33,6 +33,6 @@ public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
         if (TraverseConfig.disableCustomSkies)
             return super.getSkyColorByTemp(currentTemperature);
         else
-        return 0xFFFFE5DD;
+            return 0xFFFFE5DD;
     }
 }

@@ -47,7 +47,7 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
         if (TraverseConfig.disableCustomSkies)
             return super.getSkyColorByTemp(currentTemperature);
         else
-        return 0xFFC2FFEB;
+            return 0xFFC2FFEB;
     }
 
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
