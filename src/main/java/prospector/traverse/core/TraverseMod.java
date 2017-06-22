@@ -10,7 +10,7 @@ import prospector.traverse.TraverseCommon;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = TraverseConstants.MOD_ID, name = TraverseConstants.MOD_NAME, version = TraverseConstants.MOD_VERSION, acceptedMinecraftVersions = TraverseConstants.MINECRAFT_VERSIONS)
+@Mod(modid = TraverseConstants.MOD_ID, name = TraverseConstants.MOD_NAME, version = TraverseConstants.MOD_VERSION_MAJOR + "." + TraverseConstants.MOD_VERSION_MINOR + "." + TraverseConstants.MOD_VERSION_PATCH, acceptedMinecraftVersions = TraverseConstants.MINECRAFT_VERSIONS)
 public class TraverseMod {
 
     @Mod.Instance(TraverseConstants.MOD_ID)

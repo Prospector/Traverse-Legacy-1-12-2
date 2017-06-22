@@ -8,7 +8,6 @@ import prospector.shootingstar.version.Version;
 public class TraverseConstants {
     public static final String MOD_NAME = "TraverseMod";
     public static final String MOD_ID = "traverse";
-    public static final String MOD_VERSION = "@traverse_world_data@";
     public static final String MOD_VERSION_MAJOR = "@major@";
     public static final String MOD_VERSION_MINOR = "@minor@";
     public static final String MOD_VERSION_PATCH = "@patch@";
