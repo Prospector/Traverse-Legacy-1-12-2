@@ -12,9 +12,9 @@ import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.ITreeConstants;
 import prospector.traverse.world.features.WorldGenFallenTree;
-import prospector.traverse.world.features.WorldGenPatch;
 
 import java.util.Random;
 
@@ -55,7 +55,10 @@ public class BiomeBadlands extends Biome implements ITreeConstants {
 
     @Override
     public int getSkyColorByTemp(float currentTemperature) {
-        return 0xFFFFCE96;
+        if (TraverseConfig.disableCustomSkies)
+            return super.getSkyColorByTemp(currentTemperature);
+        else
+            return 0xFFFFCE96;
     }
 
     @Override

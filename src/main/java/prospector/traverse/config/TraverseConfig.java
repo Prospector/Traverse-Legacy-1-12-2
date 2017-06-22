@@ -16,6 +16,7 @@ public class TraverseConfig {
     public static boolean useVanillaWood = false;
     public static boolean registerBiomesRegardless = false;
     public static boolean solidLeaves = false;
+    public static boolean disableCustomSkies = false;
 
     public static boolean disableAutumnalWoods = false;
     public static boolean disableWoodlands = false;
@@ -44,6 +45,7 @@ public class TraverseConfig {
         useVanillaWood = config.get(Configuration.CATEGORY_GENERAL, "useVanillaWood", useVanillaWood, "Use vanilla logs for Traverse trees (might not look as nice)").getBoolean();
         registerBiomesRegardless = config.get(Configuration.CATEGORY_GENERAL, "registerBiomesRegardless", registerBiomesRegardless, "All biomes will always be registered, ignoring the instance traverse_world_data (WARNING: This will cause ugly world generation borders at the edge of what has previously been generated and what is new!!)").getBoolean();
         solidLeaves = config.get(Configuration.CATEGORY_GENERAL, "solidLeaves", solidLeaves, "Leaves will not render transparent. This will help on old/crappy computers.").getBoolean();
+        disableCustomSkies = config.get(Configuration.CATEGORY_GENERAL, "disableCustomSkies", disableCustomSkies, "When true, Traverse will only use the default sky colour.").getBoolean();
 
         disableAutumnalWoods = config.get(CATEGORY_BIOMES, "disableAutumnalWoods", disableAutumnalWoods, "Force disable the Autumnal Woods biome").getBoolean();
         disableWoodlands = config.get(CATEGORY_BIOMES, "disableWoodlands", disableWoodlands, "Force disable the Woodlands biome").getBoolean();

@@ -58,7 +58,7 @@ public class TraverseCommon {
             worldDir.mkdir();
         }
         traverse_world_data = new TraverseWorldVersion(worldDir);
-        for (TraverseWorld.TraverseBiome traverseBiome : TraverseWorld.biomeList) {
+        for (TraverseWorld.TraverseBiomeEntry traverseBiome : TraverseWorld.biomeList) {
             BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
             BiomeManager.removeSpawnBiome(traverseBiome.getBiome());
             BiomeManager.removeBiome(traverseBiome.getType(), traverseBiome.getEntry());

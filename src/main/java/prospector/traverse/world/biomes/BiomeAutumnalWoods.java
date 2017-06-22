@@ -4,6 +4,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.ITreeConstants;
 import prospector.traverse.world.features.TraverseTreeGenerator;
 
@@ -36,6 +37,9 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
 
     @Override
     public int getSkyColorByTemp(float currentTemperature) {
+        if (TraverseConfig.disableCustomSkies)
+            return super.getSkyColorByTemp(currentTemperature);
+        else
         return 0xFFEFECD9;
     }
 

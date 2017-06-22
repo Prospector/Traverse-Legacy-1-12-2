@@ -70,11 +70,6 @@ public class BiomeMeadow extends Biome implements ITreeConstants {
     }
 
     @Override
-    public int getSkyColorByTemp(float currentTemperature) {
-        return 0xFFDAEBEF;
-    }
-
-    @Override
     public int getModdedBiomeFoliageColor(int original) {
         return 0xFF4DD838;
     }

@@ -28,11 +28,6 @@ public class BiomeCliffs extends Biome implements ITreeConstants {
         this.topBlock = Blocks.STONE.getDefaultState();
         this.fillerBlock = Blocks.STONE.getDefaultState();
         this.spawnableCreatureList.clear();
-
-        if(true){
-
-        }
-
     }
 
     @Override
