@@ -5,7 +5,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeForest;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 import prospector.shootingstar.version.Version;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
@@ -60,7 +60,7 @@ public class TraverseWorld {
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, boolean disabled, BiomeDictionary.Type... biomeDictTypes) {
         if (!disabled) {
             biome.setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name));
-            GameRegistry.register(biome);
+            GameData.register_impl(biome);
             for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
                 BiomeDictionary.addTypes(biome, biomeDictType);
             }

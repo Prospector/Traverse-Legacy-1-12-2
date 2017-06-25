@@ -3,7 +3,7 @@ package prospector.traverse.init;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 import net.minecraftforge.oredict.OreDictionary;
 import prospector.traverse.blocks.AutumnLeavesSapling;
 import prospector.traverse.blocks.FirLeavesSapling;
@@ -40,7 +40,7 @@ public class TraverseBlocks {
             BlockTraverseWoodSlab doubleSlab = slabs.get(halfSlab);
             registerBlockWithoutItem(halfSlab);
             registerBlockWithoutItem(doubleSlab);
-            GameRegistry.register(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab), halfSlab.getRegistryName());
+            GameData.register_impl(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
         }
         for (String name : oreDictNames.keySet()) {
             OreDictionary.registerOre(name, oreDictNames.get(name));
@@ -48,17 +48,17 @@ public class TraverseBlocks {
     }
 
     static void registerBlock(Block block) {
-        GameRegistry.register(block);
-        GameRegistry.register(new ItemBlock(block), block.getRegistryName());
+        GameData.register_impl(block);
+        GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
     static void registerBlockWithoutItem(Block block) {
-        GameRegistry.register(block);
+        GameData.register_impl(block);
     }
 
     static void registerBlock(Block block, ItemBlock itemBlock) {
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
+        GameData.register_impl(block);
+        GameData.register_impl(itemBlock);
     }
 
     static void addAutumnTreeStuff(String colour) {
