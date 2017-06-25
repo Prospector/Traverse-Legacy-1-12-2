@@ -40,7 +40,7 @@ public class TraverseBlocks {
             BlockTraverseWoodSlab doubleSlab = slabs.get(halfSlab);
             registerBlockWithoutItem(halfSlab);
             registerBlockWithoutItem(doubleSlab);
-            GameData.register_impl(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab), halfSlab.getRegistryName());
+            GameData.register_impl(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
         }
         for (String name : oreDictNames.keySet()) {
             OreDictionary.registerOre(name, oreDictNames.get(name));
@@ -49,7 +49,7 @@ public class TraverseBlocks {
 
     static void registerBlock(Block block) {
         GameData.register_impl(block);
-        GameData.register_impl(new ItemBlock(block), block.getRegistryName());
+        GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
     static void registerBlockWithoutItem(Block block) {
