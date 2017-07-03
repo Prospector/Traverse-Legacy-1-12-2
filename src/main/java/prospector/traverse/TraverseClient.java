@@ -12,7 +12,6 @@ public class TraverseClient extends TraverseCommon {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        ShootingStar.registerModels(TraverseConstants.MOD_ID);
     }
 
     @Override

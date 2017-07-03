@@ -3,7 +3,10 @@ package prospector.traverse.init;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
-import net.minecraftforge.registries.GameData;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import prospector.traverse.blocks.AutumnLeavesSapling;
 import prospector.traverse.blocks.FirLeavesSapling;
@@ -13,6 +16,7 @@ import prospector.traverse.item.ItemTraverseWoodDoor;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+@Mod.EventBusSubscriber
 public class TraverseBlocks {
 
     public static LinkedHashMap<String, Block> blocks = new LinkedHashMap<>();
@@ -27,38 +31,39 @@ public class TraverseBlocks {
         addFirTreeStuff();
     }
 
-    public static void initialize() {
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
         for (Block block : blocks.values()) {
             if (!(block instanceof BlockTraverseWoodSlab || block instanceof BlockTraverseWoodDoor)) {
-                registerBlock(block);
+                registerBlock(block, event);
             }
             if (block instanceof BlockTraverseWoodDoor) {
-                registerBlock(block, new ItemTraverseWoodDoor(block));
+                registerBlock(block, new ItemTraverseWoodDoor(block), event);
             }
         }
         for (BlockTraverseWoodSlab halfSlab : slabs.keySet()) {
             BlockTraverseWoodSlab doubleSlab = slabs.get(halfSlab);
-            registerBlockWithoutItem(halfSlab);
-            registerBlockWithoutItem(doubleSlab);
-            GameData.register_impl(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
+            registerBlockWithoutItem(halfSlab, event);
+            registerBlockWithoutItem(doubleSlab, event);
+            ForgeRegistries.ITEMS.register(new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
         }
         for (String name : oreDictNames.keySet()) {
             OreDictionary.registerOre(name, oreDictNames.get(name));
         }
     }
 
-    static void registerBlock(Block block) {
-        GameData.register_impl(block);
-        GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    static void registerBlock(Block block, RegistryEvent.Register<Block> event) {
+        event.getRegistry().register(block);
+        ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
-    static void registerBlockWithoutItem(Block block) {
-        GameData.register_impl(block);
+    static void registerBlockWithoutItem(Block block, RegistryEvent.Register<Block> event) {
+        event.getRegistry().register(block);
     }
 
-    static void registerBlock(Block block, ItemBlock itemBlock) {
-        GameData.register_impl(block);
-        GameData.register_impl(itemBlock);
+    static void registerBlock(Block block, ItemBlock itemBlock, RegistryEvent.Register<Block> event) {
+        event.getRegistry().register(block);
+        ForgeRegistries.ITEMS.register(itemBlock);
     }
 
     static void addAutumnTreeStuff(String colour) {

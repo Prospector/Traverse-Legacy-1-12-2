@@ -4,20 +4,26 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import prospector.shootingstar.ShootingStar;
 import prospector.shootingstar.version.VersionUtils;
 import prospector.traverse.commands.CommandFindTest;
 import prospector.traverse.config.TraverseConfig;
+import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.TraverseWorld;
 import prospector.traverse.world.TraverseWorldVersion;
 
 import java.io.File;
 
+@Mod.EventBusSubscriber
 public class TraverseCommon {
 
     public static TraverseWorldVersion traverse_world_data = null;
@@ -26,13 +32,16 @@ public class TraverseCommon {
         GameRegistry.addSmelting(input, output, experience);
     }
 
+    @SubscribeEvent
+    public static void registerModels(ModelRegistryEvent event) {
+        ShootingStar.registerModels(TraverseConstants.MOD_ID);
+    }
+
     public void preInit(FMLPreInitializationEvent event) {
         TraverseConfig.initialize(event);
-        TraverseBlocks.initialize();
     }
 
     public void init(FMLInitializationEvent event) {
-        TraverseWorld.init();
         for (String name : TraverseBlocks.oreDictNames.keySet()) {
             OreDictionary.registerOre(name, TraverseBlocks.oreDictNames.get(name));
         }
