@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import prospector.shootingstar.ShootingStar;
 import prospector.shootingstar.model.ModelCompound;
-import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 
@@ -61,7 +60,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
     }
 
     public boolean isOpaqueCube(IBlockState state) {
-        return TraverseConfig.solidLeaves;
+        return false;
     }
 
     @SideOnly(Side.CLIENT)
@@ -101,7 +100,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         if (!Minecraft.getMinecraft().gameSettings.fancyGraphics) {
-            if (!(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves))  {
+            if (!(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves)) {
                 return true;
             }
             return false;
