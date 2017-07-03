@@ -4,6 +4,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -42,6 +43,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "leaves", CHECK_DECAY, DECAYABLE));
     }
 
+
     public int quantityDropped(Random random) {
         return random.nextInt(saplingDropChance) == 0 ? 1 : 0;
     }
@@ -64,7 +66,7 @@ public class BlockTraverseLeaves extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return !TraverseConfig.solidLeaves ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
 
@@ -98,7 +100,13 @@ public class BlockTraverseLeaves extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return !TraverseConfig.solidLeaves;
+        if (!Minecraft.getMinecraft().gameSettings.fancyGraphics) {
+            if (!(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves))  {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override

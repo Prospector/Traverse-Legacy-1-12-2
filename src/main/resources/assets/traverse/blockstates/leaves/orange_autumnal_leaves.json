@@ -13,6 +13,13 @@
     ],
     "normal": [
       {}
+    ],
+    "opaque": [
+      {
+        "textures": {
+          "all": "traverse:block/leaves/orange_autumnal_leaves_opaque"
+        }
+      }
     ]
   }
 }
