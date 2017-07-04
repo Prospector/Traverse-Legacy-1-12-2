@@ -16,6 +16,7 @@ public class TraverseConfig {
     public static boolean useVanillaWood = false;
     public static boolean registerBiomesRegardless = false;
     public static boolean disableCustomSkies = false;
+    public static boolean vanillaCanyonBlocks = false;
 
     public static boolean disableAutumnalWoods = false;
     public static boolean disableWoodlands = false;
@@ -34,6 +35,8 @@ public class TraverseConfig {
     public static boolean disableGlacier = false;
     public static boolean disableGlacierSpikes = false;
     public static boolean disableSnowyConiferousForest = false;
+    public static boolean disableLushHills = false;
+    public static boolean disableCanyon = false;
 
     private static TraverseConfig instance = null;
 
@@ -44,6 +47,7 @@ public class TraverseConfig {
         useVanillaWood = config.get(Configuration.CATEGORY_GENERAL, "useVanillaWood", useVanillaWood, "Use vanilla logs for Traverse trees (might not look as nice)").getBoolean();
         registerBiomesRegardless = config.get(Configuration.CATEGORY_GENERAL, "registerBiomesRegardless", registerBiomesRegardless, "All biomes will always be registered, ignoring the instance traverse_world_data (WARNING: This will cause ugly world generation borders at the edge of what has previously been generated and what is new!!)").getBoolean();
         disableCustomSkies = config.get(Configuration.CATEGORY_GENERAL, "disableCustomSkies", disableCustomSkies, "When true, Traverse will only use the default sky colour.").getBoolean();
+        vanillaCanyonBlocks = config.get(Configuration.CATEGORY_GENERAL, "vanillaCanyonBlocks", vanillaCanyonBlocks, "Use vanilla Red Sandstone instead of Red Rock in the Canyon biome.").getBoolean();
 
         disableAutumnalWoods = config.get(CATEGORY_BIOMES, "disableAutumnalWoods", disableAutumnalWoods, "Force disable the Autumnal Woods biome").getBoolean();
         disableWoodlands = config.get(CATEGORY_BIOMES, "disableWoodlands", disableWoodlands, "Force disable the Woodlands biome").getBoolean();
@@ -62,6 +66,8 @@ public class TraverseConfig {
         disableGlacier = config.get(CATEGORY_BIOMES, "disableGlacier", disableGlacier, "Force disable the Glacier biome").getBoolean();
         disableGlacierSpikes = config.get(CATEGORY_BIOMES, "disableGlacierSpikes", disableGlacierSpikes, "Force disable the Glacier Spikes biome").getBoolean();
         disableSnowyConiferousForest = config.get(CATEGORY_BIOMES, "disableSnowyConiferousForest", disableSnowyConiferousForest, "Force disable the Snowy Coniferous Forest biome").getBoolean();
+        disableLushHills = config.get(CATEGORY_BIOMES, "disableLushHills", disableLushHills, "Force disable the Lush Hills biome").getBoolean();
+        disableCanyon = config.get(CATEGORY_BIOMES, "disableCanyon", disableCanyon, "Force disable the Canyon biome").getBoolean();
 
         config.save();
     }

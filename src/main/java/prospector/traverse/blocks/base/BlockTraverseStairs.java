@@ -8,9 +8,9 @@ import prospector.shootingstar.ShootingStar;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 
-public class BlockTraverseWoodStairs extends BlockStairs {
+public class BlockTraverseStairs extends BlockStairs {
 
-    public BlockTraverseWoodStairs(IBlockState modelState, String name) {
+    public BlockTraverseStairs(IBlockState modelState, String name) {
         super(modelState);
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_stairs"));
         setCreativeTab(TraverseTab.TAB);

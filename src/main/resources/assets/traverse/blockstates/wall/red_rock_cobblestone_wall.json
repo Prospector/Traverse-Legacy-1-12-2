@@ -1,0 +1,53 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"wall": "traverse:block/red_rock_cobblestone",
+			"particle": "traverse:block/red_rock_cobblestone"
+		},
+		"uvlock": true
+	},
+	"variants": {
+		"inventory": [
+			{
+				"model": "wall_inventory",
+				"textures": {
+					"wall": "traverse:block/red_rock_cobblestone"
+				}
+			}
+		],
+		"east": {
+			"true": {
+				"submodel": "wall_side",
+				"y": 90
+			},
+			"false": { }
+		},
+		"north": {
+			"true": {
+				"submodel": "wall_side"
+			},
+			"false": { }
+		},
+		"south": {
+			"true": {
+				"submodel": "wall_side",
+				"y": 180
+			},
+			"false": { }
+		},
+		"west": {
+			"true": {
+				"submodel": "wall_side",
+				"y": 270
+			},
+			"false": { }
+		},
+		"up": {
+			"true": {
+				"submodel": "wall_post"
+			},
+			"false": { }
+		}
+	}
+}

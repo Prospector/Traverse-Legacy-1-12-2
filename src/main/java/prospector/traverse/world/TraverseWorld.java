@@ -39,6 +39,8 @@ public class TraverseWorld {
     public static Biome glacierBiome = new BiomeGlacier(false);
     public static Biome glacierSpikesBiome = new BiomeGlacier(true);
     public static Biome snowyConiferousForestBiome = new BiomeTemperateRainforest(true);
+    public static Biome lushHillsBiome = new BiomeLushHills();
+    public static Biome canyonBiome = new BiomeCanyon();
 
     @SubscribeEvent
     public static void registerBiomes(RegistryEvent.Register<Biome> event) {
@@ -59,6 +61,8 @@ public class TraverseWorld {
         register(new Version(1, 2, 0), glacierBiome, BiomeManager.BiomeType.ICY, "glacier", 6, TraverseConfig.disableGlacier, event, MOUNTAIN, COLD, SNOWY);
         register(new Version(1, 2, 0), glacierSpikesBiome, BiomeManager.BiomeType.ICY, "glacier_spikes", 2, TraverseConfig.disableGlacierSpikes, event, MOUNTAIN, COLD, SNOWY);
         register(new Version(1, 2, 0), snowyConiferousForestBiome, BiomeManager.BiomeType.ICY, "snowy_coniferous_forest", 5, TraverseConfig.disableGlacierSpikes, event, COLD, SNOWY, FOREST, CONIFEROUS);
+        register(new Version(1, 3, 0), lushHillsBiome, BiomeManager.BiomeType.COOL, "lush_hills", 6, TraverseConfig.disableLushHills, event, LUSH, HILLS, SPARSE, WET);
+        register(new Version(1, 3, 0), canyonBiome, BiomeManager.BiomeType.WARM, "canyon", 5, TraverseConfig.disableCanyon, event, DRY);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeManager.BiomeType type, String name, int weight, boolean disabled, RegistryEvent.Register<Biome> event, BiomeDictionary.Type... biomeDictTypes) {

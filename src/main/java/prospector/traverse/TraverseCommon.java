@@ -1,7 +1,6 @@
 package prospector.traverse;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -45,7 +44,8 @@ public class TraverseCommon {
         for (String name : TraverseBlocks.oreDictNames.keySet()) {
             OreDictionary.registerOre(name, TraverseBlocks.oreDictNames.get(name));
         }
-        registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(Item.getItemFromBlock(TraverseBlocks.blocks.get("fir_log"))), 0.15F);
+        registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(TraverseBlocks.blocks.get("fir_log")), 0.15F);
+        registerFurnace(new ItemStack(TraverseBlocks.blocks.get("red_rock")), new ItemStack(TraverseBlocks.blocks.get("red_rock_cobblestone")), 0.1F);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
