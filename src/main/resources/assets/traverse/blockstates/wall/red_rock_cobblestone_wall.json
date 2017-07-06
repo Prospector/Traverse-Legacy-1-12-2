@@ -5,6 +5,7 @@
 			"wall": "traverse:block/red_rock_cobblestone",
 			"particle": "traverse:block/red_rock_cobblestone"
 		},
+		"model": "traverse:dummy",
 		"uvlock": true
 	},
 	"variants": {

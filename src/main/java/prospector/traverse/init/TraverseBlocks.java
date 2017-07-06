@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import prospector.traverse.blocks.AutumnLeavesSapling;
+import prospector.traverse.blocks.BlockTraverseDeadGrass;
 import prospector.traverse.blocks.FirLeavesSapling;
 import prospector.traverse.blocks.base.*;
 import prospector.traverse.item.ItemTraverseWoodDoor;
@@ -33,6 +34,7 @@ public class TraverseBlocks {
         addAutumnTreeStuff("yellow");
         addFirTreeStuff();
         addStone("red_rock", true);
+        blocks.put("dead_grass", new BlockTraverseDeadGrass());
     }
 
     @SubscribeEvent
