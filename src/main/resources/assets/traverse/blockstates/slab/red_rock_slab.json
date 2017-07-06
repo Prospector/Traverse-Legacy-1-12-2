@@ -1,0 +1,35 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"transform": "forge:default-block",
+		"model": "bottom_slab",
+		"textures": {
+			"top": "traverse:block/red_rock_slab",
+			"bottom": "traverse:block/red_rock_slab",
+			"side": "traverse:block/red_rock_slab_side"
+		}
+	},
+	"variants": {
+		"inventory": [
+			{
+				"transform": "forge:default-block",
+				"model": "traverse:bottom_slab",
+				"textures": {
+					"top": "traverse:block/red_rock_slab",
+					"bottom": "traverse:block/red_rock_slab",
+					"side": "traverse:block/red_rock_slab_side"
+				}
+			}
+		],
+		"half=bottom,variant=default": [
+			{
+				"model": "traverse:bottom_slab"
+			}
+		],
+		"half=top,variant=default": [
+			{
+				"model": "traverse:top_slab"
+			}
+		]
+	}
+}

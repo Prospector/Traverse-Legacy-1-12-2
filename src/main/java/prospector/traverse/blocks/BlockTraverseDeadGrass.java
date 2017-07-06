@@ -8,31 +8,30 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import prospector.shootingstar.ShootingStar;
 import prospector.shootingstar.model.ModelCompound;
+import prospector.traverse.TraverseCommon;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
-import prospector.traverse.init.TraverseBlocks;
+
+import static prospector.traverse.util.TUtils.getBlock;
 
 public class BlockTraverseDeadGrass extends BlockTallGrass {
-    
+
     public BlockTraverseDeadGrass() {
         super();
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, "dead_grass"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
         setSoundType(SoundType.PLANT);
-        useNeighborBrightness=true;
+        useNeighborBrightness = true;
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "plant", TYPE));
     }
 
     public boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == TraverseBlocks.blocks.get("red_rock") || state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.HARDENED_CLAY || state.getBlock() == Blocks.STAINED_HARDENED_CLAY;
+        return state.getBlock() == getBlock("red_rock") || state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.HARDENED_CLAY || state.getBlock() == Blocks.STAINED_HARDENED_CLAY;
     }
 
     @SideOnly(Side.CLIENT)

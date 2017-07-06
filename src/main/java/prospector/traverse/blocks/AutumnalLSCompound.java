@@ -13,13 +13,13 @@ import prospector.traverse.world.features.TraverseTreeGenerator;
 
 import java.util.Random;
 
-public class AutumnLeavesSapling {
+public class AutumnalLSCompound {
     public String name;
     public LSLeaves lsLeaves;
     public LSSapling lsSapling;
 
-    public AutumnLeavesSapling(String name) {
-        this.name = name;
+    public AutumnalLSCompound(String colour) {
+        this.name = colour + "_autumnal";
         lsLeaves = new LSLeaves();
         lsSapling = new LSSapling();
     }

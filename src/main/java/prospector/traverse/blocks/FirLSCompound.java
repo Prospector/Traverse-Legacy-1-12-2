@@ -12,11 +12,11 @@ import prospector.traverse.world.features.WorldGenFirTree;
 
 import java.util.Random;
 
-public class FirLeavesSapling {
+public class FirLSCompound {
     public LSLeaves lsLeaves;
     public LSSapling lsSapling;
 
-    public FirLeavesSapling() {
+    public FirLSCompound() {
         lsLeaves = new LSLeaves();
         lsSapling = new LSSapling();
     }

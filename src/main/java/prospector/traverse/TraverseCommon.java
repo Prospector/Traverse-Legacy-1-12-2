@@ -1,14 +1,19 @@
 package prospector.traverse;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import prospector.shootingstar.ShootingStar;
@@ -21,6 +26,8 @@ import prospector.traverse.world.TraverseWorld;
 import prospector.traverse.world.TraverseWorldVersion;
 
 import java.io.File;
+
+import static prospector.traverse.util.TUtils.getBlock;
 
 @Mod.EventBusSubscriber
 public class TraverseCommon {
@@ -36,6 +43,16 @@ public class TraverseCommon {
         ShootingStar.registerModels(TraverseConstants.MOD_ID);
     }
 
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        ShootingStar.registerBlocks(TraverseConstants.MOD_ID, event);
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        ShootingStar.registerItems(TraverseConstants.MOD_ID, event);
+    }
+
     public void preInit(FMLPreInitializationEvent event) {
         TraverseConfig.initialize(event);
     }
@@ -44,8 +61,8 @@ public class TraverseCommon {
         for (String name : TraverseBlocks.oreDictNames.keySet()) {
             OreDictionary.registerOre(name, TraverseBlocks.oreDictNames.get(name));
         }
-        registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(TraverseBlocks.blocks.get("fir_log")), 0.15F);
-        registerFurnace(new ItemStack(TraverseBlocks.blocks.get("red_rock")), new ItemStack(TraverseBlocks.blocks.get("red_rock_cobblestone")), 0.1F);
+        registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(getBlock("fir_log")), 0.15F);
+        registerFurnace(new ItemStack(getBlock("red_rock")), new ItemStack(getBlock("red_rock_cobblestone")), 0.1F);
     }
 
     public void postInit(FMLPostInitializationEvent event) {

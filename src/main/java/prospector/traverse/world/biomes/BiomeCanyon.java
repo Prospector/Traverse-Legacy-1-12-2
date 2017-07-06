@@ -9,18 +9,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.feature.WorldGenBlockBlob;
-import net.minecraft.world.gen.feature.WorldGenLakes;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.ITreeConstants;
 
 import java.util.Random;
 
+import static prospector.traverse.util.TUtils.getBlock;
+
 public class BiomeCanyon extends Biome implements ITreeConstants {
 
-    protected static final WorldGenLakes LAVA_LAKE_FEATURE = new WorldGenLakes(Blocks.LAVA);
+    public static IBlockState redRock = Blocks.RED_SANDSTONE.getDefaultState();
 
     public static BiomeProperties properties = new BiomeProperties("Canyon");
 
@@ -33,13 +31,11 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
 
     public BiomeCanyon() {
         super(properties);
-        if (TraverseConfig.vanillaCanyonBlocks) {
-            topBlock = Blocks.RED_SANDSTONE.getDefaultState();
-            fillerBlock = Blocks.RED_SANDSTONE.getDefaultState();
-        } else {
-            topBlock = TraverseBlocks.blocks.get("red_rock").getDefaultState();
-            fillerBlock = TraverseBlocks.blocks.get("red_rock").getDefaultState();
+        if (!TraverseConfig.vanillaCanyonBlocks) {
+            redRock = getBlock("red_rock").getDefaultState();
         }
+        topBlock = redRock;
+        fillerBlock = redRock;
         decorator.treesPerChunk = -999;
         decorator.extraTreeChance = -999;
         decorator.flowersPerChunk = -999;
@@ -121,14 +117,14 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
                             iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
                         }
 
-                        if (j == 0 && iblockstate.getBlock() == TraverseBlocks.blocks.get("red_rock") && k > 1) {
+                        if (j == 0 && iblockstate == redRock && k > 1) {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate = TraverseBlocks.blocks.get("red_rock").getDefaultState();
+                            iblockstate = redRock;
                         }
 
-                        if (j == 0 && iblockstate1.getBlock() == TraverseBlocks.blocks.get("red_rock") && k > 1) {
+                        if (j == 0 && iblockstate1 == redRock && k > 1) {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = TraverseBlocks.blocks.get("red_rock").getDefaultState();
+                            iblockstate1 = redRock;
                         }
                     }
                 }
@@ -139,20 +135,5 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
     @Override
     public int getModdedBiomeFoliageColor(int original) {
         return 0xFF9E814D;
-    }
-
-    @Override
-    public void decorate(World worldIn, Random rand, BlockPos pos) {
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA)) {
-            int boulderChance = rand.nextInt(16);
-            if (boulderChance == 0) {
-                int k6 = rand.nextInt(16) + 8;
-                int l = rand.nextInt(16) + 8;
-                BlockPos blockpos = worldIn.getHeight(pos.add(k6, 0, l));
-                LAVA_LAKE_FEATURE.generate(worldIn, rand, blockpos);
-            }
-        }
-
-        super.decorate(worldIn, rand, pos);
     }
 }
