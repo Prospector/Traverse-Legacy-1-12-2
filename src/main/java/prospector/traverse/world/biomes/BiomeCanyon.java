@@ -20,7 +20,6 @@ import java.util.Random;
 
 public class BiomeCanyon extends Biome implements ITreeConstants {
 
-    protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(TraverseBlocks.blocks.get("red_rock_cobblestone"), 1);
     protected static final WorldGenLakes LAVA_LAKE_FEATURE = new WorldGenLakes(Blocks.LAVA);
 
     public static BiomeProperties properties = new BiomeProperties("Canyon");
@@ -28,8 +27,8 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
     static {
         properties.setTemperature(1F);
         properties.setRainfall(0F);
-        properties.setBaseHeight(2.2F);
-        properties.setHeightVariation(0.4F);
+        properties.setBaseHeight(1.8F);
+        properties.setHeightVariation(1F);
     }
 
     public BiomeCanyon() {
@@ -144,16 +143,6 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
 
     @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
-            int boulderChance = rand.nextInt(5);
-            if (boulderChance == 0) {
-                int k6 = rand.nextInt(16) + 8;
-                int l = rand.nextInt(16) + 8;
-                BlockPos blockpos = worldIn.getHeight(pos.add(k6, 0, l));
-                COBBLESTONE_BOULDER_FEATURE.generate(worldIn, rand, blockpos);
-            }
-        }
-
         if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA)) {
             int boulderChance = rand.nextInt(16);
             if (boulderChance == 0) {

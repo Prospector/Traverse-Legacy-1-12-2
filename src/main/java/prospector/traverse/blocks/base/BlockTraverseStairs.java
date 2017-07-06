@@ -15,6 +15,7 @@ public class BlockTraverseStairs extends BlockStairs {
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, name + "_stairs"));
         setCreativeTab(TraverseTab.TAB);
         setUnlocalizedName(getRegistryName().toString());
+        useNeighborBrightness=true;
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "stairs"));
     }
 }

@@ -46,6 +46,7 @@ public abstract class BlockTraverseSlab extends BlockSlab {
         setResistance(10);
         setSoundType(soundType);
         this.setDefaultState(iblockstate.withProperty(VARIANT, BlockTraverseSlab.Variant.DEFAULT));
+        useNeighborBrightness=true;
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "slab"));
     }
 

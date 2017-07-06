@@ -20,24 +20,19 @@ import prospector.traverse.core.TraverseTab;
 import prospector.traverse.init.TraverseBlocks;
 
 public class BlockTraverseDeadGrass extends BlockTallGrass {
-
-    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-
+    
     public BlockTraverseDeadGrass() {
         super();
         setRegistryName(new ResourceLocation(TraverseConstants.MOD_ID, "dead_grass"));
         setUnlocalizedName(getRegistryName().toString());
         setCreativeTab(TraverseTab.TAB);
         setSoundType(SoundType.PLANT);
+        useNeighborBrightness=true;
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "plant", TYPE));
     }
 
     public boolean canSustainBush(IBlockState state) {
         return state.getBlock() == TraverseBlocks.blocks.get("red_rock") || state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.HARDENED_CLAY || state.getBlock() == Blocks.STAINED_HARDENED_CLAY;
-    }
-
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
     }
 
     @SideOnly(Side.CLIENT)
