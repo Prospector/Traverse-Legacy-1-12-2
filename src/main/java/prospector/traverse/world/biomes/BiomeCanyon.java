@@ -9,8 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import prospector.traverse.config.TraverseConfig;
+import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.features.WorldGenPlant;
 
 import java.util.Random;
 
@@ -18,8 +21,8 @@ import static prospector.traverse.util.TUtils.getBlock;
 
 public class BiomeCanyon extends Biome implements ITreeConstants {
 
+    public static final WorldGenerator DEAD_GRASS_FEATURE = new WorldGenPlant(TraverseBlocks.blocks.get("dead_grass").getDefaultState());
     public static IBlockState redRock = Blocks.RED_SANDSTONE.getDefaultState();
-
     public static BiomeProperties properties = new BiomeProperties("Canyon");
 
     static {
@@ -39,8 +42,7 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
         decorator.treesPerChunk = -999;
         decorator.extraTreeChance = -999;
         decorator.flowersPerChunk = -999;
-        decorator.grassPerChunk = -999;
-        decorator.deadBushPerChunk = 5;
+        decorator.grassPerChunk = 1;
         decorator.generateFalls = false;
 
         spawnableCreatureList.clear();
@@ -50,6 +52,11 @@ public class BiomeCanyon extends Biome implements ITreeConstants {
     @Override
     public int getModdedBiomeGrassColor(int original) {
         return 0xFF90814D;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+        return DEAD_GRASS_FEATURE;
     }
 
     @Override
