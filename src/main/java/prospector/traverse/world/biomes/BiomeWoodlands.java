@@ -1,5 +1,6 @@
 package prospector.traverse.world.biomes;
 
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.math.BlockPos;
@@ -105,6 +106,7 @@ public class BiomeWoodlands extends Biome implements ITreeConstants {
                 FALLEN_TREE_FEATURE.generate(worldIn, rand, blockpos);
             }
         }
+
         super.decorate(worldIn, rand, pos);
     }
 }
