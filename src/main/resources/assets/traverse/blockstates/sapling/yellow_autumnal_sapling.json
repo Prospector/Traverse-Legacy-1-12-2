@@ -1,23 +1,14 @@
 {
   "forge_marker": 1,
   "defaults": {
+    "model": "cross",
     "textures": {
-      "cross": "traverse:block/sapling/yellow_autumnal_sapling"
-    },
-    "model": "cross"
+      "cross": "traverse:block/sapling/yellow_autumnal_sapling",
+      "item": "#cross"
+    }
   },
   "variants": {
-    "inventory": [
-      {
-        "transform": "forge:default-item",
-        "model": "traverse:standard_item",
-        "textures": {
-          "texture": "#cross"
-        }
-      }
-    ],
-    "normal": [
-      {}
-    ]
+    "inventory": { "model": "traverse:itemblock" },
+    "normal": [{}]
   }
 }

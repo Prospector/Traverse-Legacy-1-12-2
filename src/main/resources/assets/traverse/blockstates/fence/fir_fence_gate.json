@@ -1,40 +1,23 @@
 {
 	"forge_marker": 1,
 	"defaults": {
+		"model": "fence_gate_closed",
+		"uvlock": true,
 		"textures": {
 			"texture": "traverse:block/planks/fir_planks"
-		},
-		"model": "fence_gate_closed",
-		"uvlock": true
+		}
 	},
 	"variants": {
-		"inventory": [
-			{
-				"model": "fence_gate_closed",
-				"textures": {
-					"texture": "traverse:block/planks/fir_planks"
-				}
-			}
-		],
+		"inventory": [{}],
 		"facing": {
-			"south": { },
-			"west": {
-				"y": 90
-			},
-			"north": {
-				"y": 180
-			},
-			"east": {
-				"y": 270
-			}
+			"south": { "y": 0 },
+			"west": { "y": 90 },
+			"north": { "y": 180 },
+			"east": { "y": 270 }
 		},
 		"open": {
-			"true": {
-				"model": "fence_gate_open"
-			},
-			"false": {
-				"model": "fence_gate_closed"
-			}
+			"true": { "model": "fence_gate_open" },
+			"false": { "model": "fence_gate_closed" }
 		}
 	}
 }

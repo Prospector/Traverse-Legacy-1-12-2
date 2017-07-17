@@ -1,36 +1,16 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"transform": "forge:default-block",
-		"model": "cube",
+		"model": "cube_column",
 		"textures": {
-			"particle": "traverse:block/red_rock_slab",
-			"down": "traverse:block/red_rock_slab",
-			"up": "traverse:block/red_rock_slab",
-			"north": "traverse:block/red_rock_slab_side",
-			"west": "traverse:block/red_rock_slab_side",
-			"east": "traverse:block/red_rock_slab_side",
-			"south": "traverse:block/red_rock_slab_side"
+			"end": "traverse:block/red_rock/slab",
+			"side": "traverse:block/red_rock/slab_side"
 		}
 	},
 	"variants": {
-		"inventory": [
-			{
-				"transform": "forge:default-block",
-				"model": "cube",
-				"textures": {
-					"down": "traverse:block/red_rock_slab",
-					"up": "traverse:block/red_rock_slab",
-					"north": "traverse:block/red_rock_slab_side",
-					"west": "traverse:block/red_rock_slab_side",
-					"east": "traverse:block/red_rock_slab_side",
-					"south": "traverse:block/red_rock_slab_side"
-				}
-			}
-		],
-		"variant=default": [
-			{
-			}
-		]
+		"inventory": { "transform": "forge:default-block" },
+		"variant": {
+			"default": {}
+		}
 	}
 }

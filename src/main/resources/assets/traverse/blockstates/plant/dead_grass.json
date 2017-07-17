@@ -1,18 +1,14 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"transform": "forge:default-item",
+		"model": "cross",
 		"textures": {
-			"texture": "traverse:block/plant/dead_grass",
-			"cross": "#texture"
+			"cross": "traverse:block/plant/dead_grass",
+			"item": "#cross"
 		}
 	},
 	"variants": {
-		"inventory": {
-			"model": "traverse:standard_item"
-		},
-		"normal": {
-			"model": "cross"
-		}
+		"inventory": { "model": "traverse:itemblock" },
+		"normal": [{}]
 	}
 }

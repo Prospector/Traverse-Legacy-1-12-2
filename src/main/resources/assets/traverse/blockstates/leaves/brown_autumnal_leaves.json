@@ -1,18 +1,11 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"textures": {
-			"all": "traverse:block/leaves/brown_autumnal_leaves"
-		},
 		"model": "cube_all",
-		"uvlock": true
+		"textures": { "all": "traverse:block/leaves/brown_autumnal_leaves" }
 	},
 	"variants": {
-		"inventory": [
-			{ }
-		],
-		"normal": [
-			{ }
-		]
+		"inventory": { "transform": "forge:default-block" },
+		"normal": [{}]
 	}
 }

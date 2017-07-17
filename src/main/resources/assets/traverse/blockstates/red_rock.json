@@ -2,7 +2,7 @@
 	"forge_marker": 1,
 	"defaults": {
 		"model": "cube_all",
-		"textures": { "all": "traverse:block/red_rock" }
+		"textures": { "all": "traverse:block/red_rock/smooth" }
 	},
 	"variants": {
 		"inventory": { "transform": "forge:default-block" },

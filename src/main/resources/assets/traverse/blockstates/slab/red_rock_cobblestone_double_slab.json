@@ -1,25 +1,16 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"transform": "forge:default-block",
 		"model": "cube_all",
 		"textures": {
-			"all": "traverse:block/red_rock_cobblestone"
+			"all": "traverse:block/red_rock/cobblestone"
 		}
 	},
 	"variants": {
-		"inventory": [
-			{
-				"transform": "forge:default-block",
-				"model": "cube_all",
-				"textures": {
-					"all": "traverse:block/red_rock_cobblestone"
-				}
-			}
-		],
-		"variant=default": [
-			{
-			}
-		]
+		"inventory": { "transform": "forge:default-block" },
+		"variant": {
+			"default": {}
+		}
+
 	}
 }

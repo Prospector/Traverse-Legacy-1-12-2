@@ -1,31 +1,22 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"transform": "forge:default-block",
-		"model": "traverse:bottom_slab",
+		"model": "half_slab",
 		"textures": {
-			"all": "traverse:block/planks/fir_planks"
+			"top": "traverse:block/planks/fir_planks",
+			"bottom": "traverse:block/planks/fir_planks",
+			"side": "traverse:block/planks/fir_planks"
 		}
+
 	},
 	"variants": {
-		"inventory": [
-			{
-				"transform": "forge:default-block",
-				"model": "traverse:bottom_slab",
-				"textures": {
-					"all": "traverse:block/planks/fir_planks"
-				}
-			}
-		],
-		"half=bottom,variant=default": [
-			{
-				"model": "traverse:bottom_slab"
-			}
-		],
-		"half=top,variant=default": [
-			{
-				"model": "traverse:top_slab"
-			}
-		]
+		"inventory": { "transform": "forge:default-block" },
+		"half": {
+			"top": { "model": "upper_slab" },
+			"bottom": { "model": "half_slab" }
+		},
+		"variant": {
+			"default": {}
+		}
 	}
 }
