@@ -1,28 +1,16 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"textures": {
-			"all": "traverse:block/red_rock"
-		},
-		"model": "cube_all"
+		"model": "cube_all",
+		"textures": { "all": "traverse:block/red_rock" }
 	},
 	"variants": {
-		"inventory": [
-			{ }
-		],
+		"inventory": { "transform": "forge:default-block" },
 		"normal": [
-			{
-				"y": 0
-			},
-			{
-				"y": 90
-			},
-			{
-				"y": 180
-			},
-			{
-				"y": 270
-			}
+			{ "y": 0, "x": 0 },
+			{ "y": 90, "x": 90 },
+			{ "y": 180, "x": 180 },
+			{ "y": 270, "x": 270 }
 		]
 	}
 }
