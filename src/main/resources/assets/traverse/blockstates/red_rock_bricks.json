@@ -2,7 +2,7 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"all": "traverse:block/red_rock_bricks"
+			"all": "traverse:block/red_rock_brick"
 		},
 		"model": "cube_all"
 	},
