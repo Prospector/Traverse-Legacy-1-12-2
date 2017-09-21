@@ -37,6 +37,9 @@ public class TraverseConfig {
     public static boolean disableSnowyConiferousForest = false;
     public static boolean disableLushHills = false;
     public static boolean disableCanyon = false;
+    public static boolean disableCragFlats = false;
+    public static boolean disableCragCliffs = false;
+    public static boolean disableRedwoodForest = false;
 
     private static TraverseConfig instance = null;
 
@@ -68,6 +71,9 @@ public class TraverseConfig {
         disableSnowyConiferousForest = config.get(CATEGORY_BIOMES, "disableSnowyConiferousForest", disableSnowyConiferousForest, "Force disable the Snowy Coniferous Forest biome").getBoolean();
         disableLushHills = config.get(CATEGORY_BIOMES, "disableLushHills", disableLushHills, "Force disable the Lush Hills biome").getBoolean();
         disableCanyon = config.get(CATEGORY_BIOMES, "disableCanyon", disableCanyon, "Force disable the Canyon biome").getBoolean();
+        //disableCragFlats = config.get(CATEGORY_BIOMES, "disableCragFlats", disableCragFlats, "Force disable the Crag Flats biome").getBoolean();
+        disableCragCliffs = config.get(CATEGORY_BIOMES, "disableCragCliffs", disableCragCliffs, "Force disable the Crag Cliffs biome").getBoolean();
+        disableRedwoodForest = config.get(CATEGORY_BIOMES, "disableRedwoodForest", disableRedwoodForest, "Force disable the Redwood Forest biome").getBoolean();
 
         config.save();
     }

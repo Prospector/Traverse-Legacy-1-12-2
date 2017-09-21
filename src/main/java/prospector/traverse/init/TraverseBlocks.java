@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import prospector.shootingstar.BlockCompound;
 import prospector.shootingstar.ShootingStar;
 import prospector.traverse.blocks.AutumnalLSCompound;
+import prospector.traverse.blocks.BlockTraverseColdGrass;
 import prospector.traverse.blocks.BlockTraverseDeadGrass;
 import prospector.traverse.blocks.FirLSCompound;
 import prospector.traverse.blocks.base.*;
@@ -17,11 +18,12 @@ import prospector.traverse.item.ItemTraverseWoodDoor;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class TraverseBlocks {
 
     public static LinkedHashMap<String, Block> blocks = new LinkedHashMap<>();
-    public static HashMap<String, Block> oreDictNames = new HashMap<>();
+    public static Map<Block, String> oreDictNames = new HashMap<>();
 
     static {
         addAutumnTreeStuff("red");
@@ -30,7 +32,13 @@ public class TraverseBlocks {
         addAutumnTreeStuff("yellow");
         addFirTreeStuff();
         addStone("red_rock", true, true, true);
+        addStone("blue_rock", true, true, true);
         register(new BlockTraverseDeadGrass());
+        register(new BlockTraverseColdGrass());
+    }
+
+    public static void test() {
+
     }
 
     static void addAutumnTreeStuff(String colour) {
@@ -61,25 +69,25 @@ public class TraverseBlocks {
         String fir = "fir";
         FirLSCompound lsCompound = new FirLSCompound();
         register(lsCompound.lsLeaves);
-        oreDictNames.put("treeLeaves", lsCompound.lsLeaves);
+        oreDictNames.put(lsCompound.lsLeaves, "treeLeaves");
         register(lsCompound.lsSapling);
-        oreDictNames.put("treeSapling", lsCompound.lsSapling);
+        oreDictNames.put(lsCompound.lsSapling, "treeSapling");
 
         BlockTraverseWoodLog log = new BlockTraverseWoodLog(fir);
         register(log);
-        oreDictNames.put("logWood", log);
+        oreDictNames.put(log, "logWood");
 
         BlockTraverseWoodPlanks planks = new BlockTraverseWoodPlanks(fir);
         register(planks);
-        oreDictNames.put("plankWood", planks);
+        oreDictNames.put(planks, "plankWood");
 
         BlockTraverseStairs stairs = new BlockTraverseStairs(planks.getDefaultState(), fir);
         register(stairs);
-        oreDictNames.put("stairWood", stairs);
+        oreDictNames.put(stairs, "stairWood");
 
         BlockTraverseWoodSlab.Half halfSlab = new BlockTraverseWoodSlab.Half(fir);
         register(halfSlab, true);
-        oreDictNames.put("slabWood", halfSlab);
+        oreDictNames.put(halfSlab, "slabWood");
         BlockTraverseWoodSlab.Double doubleSlab = new BlockTraverseWoodSlab.Double(fir, halfSlab);
         register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
 
@@ -97,8 +105,9 @@ public class TraverseBlocks {
             stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE, new ResourceLocation("traverse", cobbleName));
         else
             stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE);
+
         register(stone);
-        oreDictNames.put("stone", stone);
+        oreDictNames.put(stone, "stone");
 
         if (hasBricks) {
             BlockTraverse bricks = new BlockTraverse(name + "_bricks", Material.ROCK, SoundType.STONE);
@@ -123,7 +132,7 @@ public class TraverseBlocks {
         if (hasCobblestone) {
             BlockTraverse cobblestone = new BlockTraverse(cobbleName, Material.ROCK, SoundType.STONE);
             register(cobblestone);
-            oreDictNames.put("cobblestone", cobblestone);
+            oreDictNames.put(cobblestone, "cobblestone");
 
             register(new BlockTraverseStairs(cobblestone.getDefaultState(), cobbleName));
 

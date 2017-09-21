@@ -35,9 +35,8 @@ public class BlockTraverseSapling extends BlockSapling {
     @Override
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        worldIn.setBlockToAir(pos);
-        if (!generator.generate(worldIn, rand, pos)) {
-            worldIn.setBlockState(pos, state);
+        if (generator.generate(worldIn, rand, pos)) {
+            worldIn.setBlockToAir(pos);
         }
     }
 

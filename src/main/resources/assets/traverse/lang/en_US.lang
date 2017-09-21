@@ -33,4 +33,16 @@ tile.traverse:red_rock_cobblestone_stairs.name=Red Rock Cobblestone Stairs
 tile.traverse:red_rock_cobblestone_slab.name=Red Rock Cobblestone Slab
 tile.traverse:red_rock_cobblestone_wall.name=Red Rock Cobblestone Wall
 
+tile.traverse:blue_rock.name=Crag Rock
+tile.traverse:blue_rock_bricks.name=Crag Rock Bricks
+tile.traverse:blue_rock_bricks_stairs.name=Crag Rock Brick Stairs
+tile.traverse:blue_rock_bricks_slab.name=Crag Rock Bricks Slab
+tile.traverse:blue_rock_bricks_chiseled.name=Chiseled Crag Rock Bricks
+tile.traverse:blue_rock_slab.name=Crag Rock Slab
+tile.traverse:blue_rock_cobblestone.name=Crag Rock Cobblestone
+tile.traverse:blue_rock_cobblestone_stairs.name=Crag Rock Cobblestone Stairs
+tile.traverse:blue_rock_cobblestone_slab.name=Crag Rock Cobblestone Slab
+tile.traverse:blue_rock_cobblestone_wall.name=Crag Rock Cobblestone Wall
+
 tile.traverse:dead_grass.name=Dead Grass
+tile.traverse:cold_grass.name=Cold Grass
