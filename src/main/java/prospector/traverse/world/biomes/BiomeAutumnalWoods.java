@@ -15,7 +15,7 @@ public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
     public static Biome.BiomeProperties properties = new Biome.BiomeProperties("Autumnal Woods");
 
     static {
-        properties.setTemperature(Biomes.FOREST.getTemperature());
+        properties.setTemperature(Biomes.FOREST.getDefaultTemperature());
         properties.setRainfall(Biomes.FOREST.getRainfall());
         properties.setBaseHeight(Biomes.FOREST.getBaseHeight());
         properties.setHeightVariation(Biomes.FOREST.getHeightVariation());

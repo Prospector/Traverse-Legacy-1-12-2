@@ -114,6 +114,9 @@ public class TraverseBlocks {
             register(bricks);
             register(new BlockTraverseStairs(bricks.getDefaultState(), name + "_bricks"));
 
+            BlockTraverse cracked_bricks = new BlockTraverse(name + "_cracked_bricks", Material.ROCK, SoundType.STONE);
+            register(cracked_bricks);
+
             BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name + "_bricks", Material.ROCK, SoundType.STONE);
             register(halfSlab, true);
             BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(name + "_bricks", Material.ROCK, SoundType.STONE, halfSlab);

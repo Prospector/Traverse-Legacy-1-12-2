@@ -15,7 +15,7 @@ public class BiomeAutumnalWoodedHills extends Biome implements ITreeConstants {
     public static BiomeProperties properties = new BiomeProperties("Autumnal Wooded Hills");
 
     static {
-        properties.setTemperature(Biomes.FOREST.getTemperature());
+        properties.setTemperature(Biomes.FOREST.getDefaultTemperature());
         properties.setRainfall(Biomes.FOREST.getRainfall());
         properties.setBaseHeight(Biomes.EXTREME_HILLS.getBaseHeight());
         properties.setHeightVariation(Biomes.EXTREME_HILLS.getHeightVariation());

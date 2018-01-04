@@ -38,6 +38,7 @@ public class TraverseConfig {
     public static boolean disableLushHills = false;
     public static boolean disableCanyon = false;
     public static boolean disableCragFlats = false;
+    public static boolean enableNewTextures = false;
     public static boolean disableCragCliffs = false;
     public static boolean disableRedwoodForest = false;
 
@@ -73,7 +74,8 @@ public class TraverseConfig {
         disableCanyon = config.get(CATEGORY_BIOMES, "disableCanyon", disableCanyon, "Force disable the Canyon biome").getBoolean();
         //disableCragFlats = config.get(CATEGORY_BIOMES, "disableCragFlats", disableCragFlats, "Force disable the Crag Flats biome").getBoolean();
         disableCragCliffs = config.get(CATEGORY_BIOMES, "disableCragCliffs", disableCragCliffs, "Force disable the Crag Cliffs biome").getBoolean();
-        disableRedwoodForest = config.get(CATEGORY_BIOMES, "disableRedwoodForest", disableRedwoodForest, "Force disable the Redwood Forest biome").getBoolean();
+        //disableRedwoodForest = config.get(CATEGORY_BIOMES, "disableRedwoodForest", disableRedwoodForest, "Force disable the Redwood Forest biome").getBoolean();
+        enableNewTextures = config.get(Configuration.CATEGORY_CLIENT, "enableNewTextures", enableNewTextures, "Enable the new Traverse textures in the newer minecraft style").getBoolean();
 
         config.save();
     }

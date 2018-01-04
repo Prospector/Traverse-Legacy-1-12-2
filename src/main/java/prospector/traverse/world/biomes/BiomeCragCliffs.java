@@ -3,13 +3,15 @@ package prospector.traverse.world.biomes;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.init.TraverseBlocks;
 import prospector.traverse.world.ITreeConstants;
@@ -19,20 +21,35 @@ import java.util.Random;
 
 import static prospector.traverse.util.TUtils.getBlock;
 
-public class BiomeCragFlats extends Biome implements ITreeConstants {
+public class BiomeCragCliffs extends Biome implements ITreeConstants {
 
+    protected static final WorldGenBlockBlob BOULDER_FEATURE = new WorldGenBlockBlob(TraverseBlocks.blocks.get("blue_rock_cobblestone"), 2);
     public static final WorldGenerator COLD_GRASS_FEATURE = new WorldGenPlant(TraverseBlocks.blocks.get("cold_grass").getDefaultState());
     public static IBlockState blueRock;
-    public static BiomeProperties properties = new BiomeProperties("Crag Flats");
+    public static BiomeProperties properties = new BiomeProperties("Crag Cliffs");
 
-    static {
-        properties.setTemperature(1F);
-        properties.setRainfall(0F);
-        properties.setBaseHeight(1.7F);
-        properties.setHeightVariation(0.2F);
+    @Override
+    public void decorate(World worldIn, Random rand, BlockPos pos) {
+        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
+            int genChance = rand.nextInt(9);
+            if (genChance == 0) {
+                int k6 = rand.nextInt(16) + 8;
+                int l = rand.nextInt(16) + 8;
+                BlockPos blockpos = worldIn.getHeight(pos.add(k6, 0, l));
+                BOULDER_FEATURE.generate(worldIn, rand, blockpos);
+            }
+        }
+        super.decorate(worldIn, rand, pos);
     }
 
-    public BiomeCragFlats() {
+    static {
+        properties.setTemperature(0.4F);
+        properties.setRainfall(0F);
+        properties.setBaseHeight(3.7F);
+        properties.setHeightVariation(0.5F);
+    }
+
+    public BiomeCragCliffs() {
         super(properties);
         blueRock = getBlock("blue_rock").getDefaultState();
         topBlock = blueRock;
@@ -44,7 +61,7 @@ public class BiomeCragFlats extends Biome implements ITreeConstants {
         decorator.generateFalls = false;
 
         spawnableCreatureList.clear();
-        spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 3, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 2, 1, 2));
     }
 
     @Override
@@ -95,7 +112,7 @@ public class BiomeCragFlats extends Biome implements ITreeConstants {
                         }
 
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
-                            if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
+                            if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
                                 iblockstate = ICE;
                             } else {
                                 iblockstate = WATER;

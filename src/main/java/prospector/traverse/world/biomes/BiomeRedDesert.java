@@ -14,7 +14,7 @@ public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
     public static BiomeProperties properties = new BiomeProperties("Red Desert");
 
     static {
-        properties.setTemperature(Biomes.DESERT.getTemperature());
+        properties.setTemperature(Biomes.DESERT.getDefaultTemperature());
         properties.setRainfall(Biomes.DESERT.getRainfall());
         properties.setRainDisabled();
         properties.setBaseHeight(Biomes.DESERT.getBaseHeight());

@@ -90,6 +90,7 @@ public class TraverseCommon {
             BiomeManager.removeBiome(traverseBiome.getType(), traverseBiome.getEntry());
 
             boolean canRegister;
+
             if (!TraverseConfig.registerBiomesRegardless) {
                 traverse_world_data.reloadVersionFile();
                 canRegister = VersionUtils.isVersionLessOrEqual(traverseBiome.getVersionAdded(), traverse_world_data.version);

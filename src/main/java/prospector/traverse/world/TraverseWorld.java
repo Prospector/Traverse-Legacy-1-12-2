@@ -50,6 +50,7 @@ public class TraverseWorld {
     public static final Version V11 = new Version(1,1,0);
     public static final Version V12 = new Version(1,2,0);
     public static final Version V13 = new Version(1,3,0);
+    public static final Version V131= new Version(1,3,1);
     public static final Version V14 = new Version(1,4,0);
 
     @SubscribeEvent
@@ -63,18 +64,17 @@ public class TraverseWorld {
         register(V1, temperateRainforestBiome, BiomeType.COOL, "temperate_rainforest", 8, TraverseConfig.disableTemperateRainforest, event, FOREST, CONIFEROUS);
         register(V11, badlandsBiome, BiomeType.WARM, "badlands", 5, TraverseConfig.disableBadlands, event, PLAINS, DRY, HOT, SPARSE);
         register(V11, mountainousDesertBiome, BiomeType.DESERT, "mountainous_desert", 2, TraverseConfig.disableMountainousDesert, event, MOUNTAIN, DRY, HOT, SANDY);
-        register(V11, rockyPlateauBiome, BiomeType.WARM, "rocky_plateau", 4, TraverseConfig.disableRockyPlateau, event);
+        register(V11, rockyPlateauBiome, BiomeType.WARM, "rocky_plateau", 4, TraverseConfig.disableRockyPlateau, event, HOT, MOUNTAIN);
         register(V11, forestedHillsBiome, BiomeType.COOL, "forested_hills", 6, TraverseConfig.disableForestedHills, event, FOREST, HILLS);
         register(V11, birchForestedHillsBiome, BiomeType.COOL, "birch_forested_hills", 2, TraverseConfig.disableBirchForestedHills, event, FOREST, HILLS);
         register(V11, autumnalWoodedHillsBiome, BiomeType.COOL, "autumnal_wooded_hills", 1, TraverseConfig.disableAutumnalWoodedHills, event, FOREST, HILLS);
         register(V12, cliffsBiome, BiomeType.COOL, "cliffs", 2, TraverseConfig.disableCliffs, event, MOUNTAIN, COLD, HILLS);
         register(V12, glacierBiome, BiomeType.ICY, "glacier", 6, TraverseConfig.disableGlacier, event, MOUNTAIN, COLD, SNOWY);
         register(V12, glacierSpikesBiome, BiomeType.ICY, "glacier_spikes", 2, TraverseConfig.disableGlacierSpikes, event, MOUNTAIN, COLD, SNOWY);
-        register(V12, snowyConiferousForestBiome, BiomeType.ICY, "snowy_coniferous_forest", 5, TraverseConfig.disableGlacierSpikes, event, COLD, SNOWY, FOREST, CONIFEROUS);
+        register(V12, snowyConiferousForestBiome, BiomeType.ICY, "snowy_coniferous_forest", 5, TraverseConfig.disableSnowyConiferousForest, event, COLD, SNOWY, FOREST, CONIFEROUS);
         register(V13, lushHillsBiome, BiomeType.COOL, "lush_hills", 6, TraverseConfig.disableLushHills, event, LUSH, HILLS, SPARSE, WET);
-        register(V13, canyonBiome, BiomeType.DESERT, "canyon", 5, TraverseConfig.disableCanyon, event, DRY);
-        register(V13, cragCliffsBiome, BiomeType.COOL, "crag_cliffs", 4, TraverseConfig.disableCragCliffs, event, COLD);
-        register(V14, redwoodForest, BiomeType.COOL, "redwood_forest", 4, TraverseConfig.disableRedwoodForest, event, FOREST);
+        register(V13, canyonBiome, BiomeType.DESERT, "canyon", 5, TraverseConfig.disableCanyon, event, DRY, DEAD);
+        register(V13, cragCliffsBiome, BiomeType.COOL, "crag_cliffs", 4, TraverseConfig.disableCragCliffs, event, COLD, DEAD);
     }
 
     public static void register(Version versionAdded, Biome biome, BiomeType type, String name, int weight, boolean disabled, RegistryEvent.Register<Biome> event, BiomeDictionary.Type... biomeDictTypes) {
