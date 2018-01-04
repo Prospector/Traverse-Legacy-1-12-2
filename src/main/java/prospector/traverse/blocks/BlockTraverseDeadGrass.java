@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import prospector.shootingstar.ShootingStar;
 import prospector.shootingstar.model.ModelCompound;
-import prospector.traverse.TraverseCommon;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 

@@ -42,9 +42,7 @@ public class TraverseWorld {
     public static Biome snowyConiferousForestBiome = new BiomeTemperateRainforest(true);
     public static Biome lushHillsBiome = new BiomeLushHills();
     public static Biome canyonBiome = new BiomeCanyon();
-    //public static Biome cragFlatsBiome = new BiomeCragFlats();
     public static Biome cragCliffsBiome = new BiomeCragCliffs();
-    public static Biome redwoodForest = new BiomeRedwoodForest();
 
     public static final Version V1 = new Version(1,0,0);
     public static final Version V11 = new Version(1,1,0);

@@ -5,8 +5,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
-import prospector.shootingstar.model.ModelCompound;
 import prospector.shootingstar.ShootingStar;
+import prospector.shootingstar.model.ModelCompound;
 import prospector.traverse.core.TraverseConstants;
 import prospector.traverse.core.TraverseTab;
 

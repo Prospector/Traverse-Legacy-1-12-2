@@ -22,133 +22,133 @@ import java.util.Map;
 
 public class TraverseBlocks {
 
-    public static LinkedHashMap<String, Block> blocks = new LinkedHashMap<>();
-    public static Map<Block, String> oreDictNames = new HashMap<>();
+	public static LinkedHashMap<String, Block> blocks = new LinkedHashMap<>();
+	public static Map<Block, String> oreDictNames = new HashMap<>();
 
-    static {
-        addAutumnTreeStuff("red");
-        addAutumnTreeStuff("brown");
-        addAutumnTreeStuff("orange");
-        addAutumnTreeStuff("yellow");
-        addFirTreeStuff();
-        addStone("red_rock", true, true, true);
-        addStone("blue_rock", true, true, true);
-        register(new BlockTraverseDeadGrass());
-        register(new BlockTraverseColdGrass());
-    }
+	static {
+		addAutumnTreeStuff("red");
+		addAutumnTreeStuff("brown");
+		addAutumnTreeStuff("orange");
+		addAutumnTreeStuff("yellow");
+		addFirTreeStuff();
+		addStone("red_rock", true, true, true);
+		addStone("blue_rock", true, true, true);
+		register(new BlockTraverseDeadGrass());
+		register(new BlockTraverseColdGrass());
+	}
 
-    public static void test() {
+	public static void test() {
 
-    }
+	}
 
-    static void addAutumnTreeStuff(String colour) {
-        if (colour.isEmpty()) {
-            return;
-        }
-        AutumnalLSCompound lsCompound = new AutumnalLSCompound(colour);
-        register(lsCompound.lsLeaves);
-        register(lsCompound.lsSapling);
-    }
+	static void addAutumnTreeStuff(String colour) {
+		if (colour.isEmpty()) {
+			return;
+		}
+		AutumnalLSCompound lsCompound = new AutumnalLSCompound(colour);
+		register(lsCompound.lsLeaves);
+		register(lsCompound.lsSapling);
+	}
 
-    public static void register(Block block) {
-        blocks.put(block.getRegistryName().getResourcePath(), block);
-        ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block));
-    }
+	public static void register(Block block) {
+		blocks.put(block.getRegistryName().getResourcePath(), block);
+		ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block));
+	}
 
-    public static void register(Block block, boolean noItemBlock) {
-        blocks.put(block.getRegistryName().getResourcePath(), block);
-        ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block, noItemBlock));
-    }
+	public static void register(Block block, boolean noItemBlock) {
+		blocks.put(block.getRegistryName().getResourcePath(), block);
+		ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block, noItemBlock));
+	}
 
-    public static void register(Block block, ItemBlock itemBlock) {
-        blocks.put(block.getRegistryName().getResourcePath(), block);
-        ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block, itemBlock));
-    }
+	public static void register(Block block, ItemBlock itemBlock) {
+		blocks.put(block.getRegistryName().getResourcePath(), block);
+		ShootingStar.registerBlock(new BlockCompound(TraverseConstants.MOD_ID, block, itemBlock));
+	}
 
-    static void addFirTreeStuff() {
-        String fir = "fir";
-        FirLSCompound lsCompound = new FirLSCompound();
-        register(lsCompound.lsLeaves);
-        oreDictNames.put(lsCompound.lsLeaves, "treeLeaves");
-        register(lsCompound.lsSapling);
-        oreDictNames.put(lsCompound.lsSapling, "treeSapling");
+	static void addFirTreeStuff() {
+		String fir = "fir";
+		FirLSCompound lsCompound = new FirLSCompound();
+		register(lsCompound.lsLeaves);
+		oreDictNames.put(lsCompound.lsLeaves, "treeLeaves");
+		register(lsCompound.lsSapling);
+		oreDictNames.put(lsCompound.lsSapling, "treeSapling");
 
-        BlockTraverseWoodLog log = new BlockTraverseWoodLog(fir);
-        register(log);
-        oreDictNames.put(log, "logWood");
+		BlockTraverseWoodLog log = new BlockTraverseWoodLog(fir);
+		register(log);
+		oreDictNames.put(log, "logWood");
 
-        BlockTraverseWoodPlanks planks = new BlockTraverseWoodPlanks(fir);
-        register(planks);
-        oreDictNames.put(planks, "plankWood");
+		BlockTraverseWoodPlanks planks = new BlockTraverseWoodPlanks(fir);
+		register(planks);
+		oreDictNames.put(planks, "plankWood");
 
-        BlockTraverseStairs stairs = new BlockTraverseStairs(planks.getDefaultState(), fir);
-        register(stairs);
-        oreDictNames.put(stairs, "stairWood");
+		BlockTraverseStairs stairs = new BlockTraverseStairs(planks.getDefaultState(), fir);
+		register(stairs);
+		oreDictNames.put(stairs, "stairWood");
 
-        BlockTraverseWoodSlab.Half halfSlab = new BlockTraverseWoodSlab.Half(fir);
-        register(halfSlab, true);
-        oreDictNames.put(halfSlab, "slabWood");
-        BlockTraverseWoodSlab.Double doubleSlab = new BlockTraverseWoodSlab.Double(fir, halfSlab);
-        register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
+		BlockTraverseWoodSlab.Half halfSlab = new BlockTraverseWoodSlab.Half(fir);
+		register(halfSlab, true);
+		oreDictNames.put(halfSlab, "slabWood");
+		BlockTraverseWoodSlab.Double doubleSlab = new BlockTraverseWoodSlab.Double(fir, halfSlab);
+		register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
 
-        register(new BlockTraverseWoodFence(fir));
-        register(new BlockTraverseWoodFenceGate(fir));
-        BlockTraverseWoodDoor door = new BlockTraverseWoodDoor(fir);
-        register(door, new ItemTraverseWoodDoor(door));
+		register(new BlockTraverseWoodFence(fir));
+		register(new BlockTraverseWoodFenceGate(fir));
+		BlockTraverseWoodDoor door = new BlockTraverseWoodDoor(fir);
+		register(door, new ItemTraverseWoodDoor(door));
 
-    }
+	}
 
-    static void addStone(String name, boolean hasBricks, boolean hasSlab, boolean hasCobblestone) {
-        String cobbleName = name + "_cobblestone";
-        BlockTraverse stone;
-        if (hasCobblestone)
-            stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE, new ResourceLocation("traverse", cobbleName));
-        else
-            stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE);
+	static void addStone(String name, boolean hasBricks, boolean hasSlab, boolean hasCobblestone) {
+		String cobbleName = name + "_cobblestone";
+		BlockTraverse stone;
+		if (hasCobblestone)
+			stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE, new ResourceLocation("traverse", cobbleName));
+		else
+			stone = new BlockTraverse(name, Material.ROCK, SoundType.STONE);
 
-        register(stone);
-        oreDictNames.put(stone, "stone");
+		register(stone);
+		oreDictNames.put(stone, "stone");
 
-        if (hasBricks) {
-            BlockTraverse bricks = new BlockTraverse(name + "_bricks", Material.ROCK, SoundType.STONE);
-            register(bricks);
-            register(new BlockTraverseStairs(bricks.getDefaultState(), name + "_bricks"));
+		if (hasBricks) {
+			BlockTraverse bricks = new BlockTraverse(name + "_bricks", Material.ROCK, SoundType.STONE);
+			register(bricks);
+			register(new BlockTraverseStairs(bricks.getDefaultState(), name + "_bricks"));
 
-            BlockTraverse cracked_bricks = new BlockTraverse(name + "_cracked_bricks", Material.ROCK, SoundType.STONE);
-            register(cracked_bricks);
+//			BlockTraverse cracked_bricks = new BlockTraverse(name + "_bricks_cracked", Material.ROCK, SoundType.STONE);
+			//			register(cracked_bricks);
 
-            BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name + "_bricks", Material.ROCK, SoundType.STONE);
-            register(halfSlab, true);
-            BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(name + "_bricks", Material.ROCK, SoundType.STONE, halfSlab);
-            register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
-        }
-        if (hasSlab) {
-            if (hasBricks) {
-                register(new BlockTraverse(name + "_bricks_chiseled", Material.ROCK, SoundType.STONE));
-            }
-            BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name, Material.ROCK, SoundType.STONE);
-            register(halfSlab, true);
-            BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(name, Material.ROCK, SoundType.STONE, halfSlab);
-            register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
-        }
+			BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name + "_bricks", Material.ROCK, SoundType.STONE);
+			register(halfSlab, true);
+			BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(name + "_bricks", Material.ROCK, SoundType.STONE, halfSlab);
+			register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
+		}
+		if (hasSlab) {
+			if (hasBricks) {
+				register(new BlockTraverse(name + "_bricks_chiseled", Material.ROCK, SoundType.STONE));
+			}
+			BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name, Material.ROCK, SoundType.STONE);
+			register(halfSlab, true);
+			BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(name, Material.ROCK, SoundType.STONE, halfSlab);
+			register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
+		}
 
-        if (hasCobblestone) {
-            BlockTraverse cobblestone = new BlockTraverse(cobbleName, Material.ROCK, SoundType.STONE);
-            register(cobblestone);
-            oreDictNames.put(cobblestone, "cobblestone");
+		if (hasCobblestone) {
+			BlockTraverse cobblestone = new BlockTraverse(cobbleName, Material.ROCK, SoundType.STONE);
+			register(cobblestone);
+			oreDictNames.put(cobblestone, "cobblestone");
 
-            register(new BlockTraverseStairs(cobblestone.getDefaultState(), cobbleName));
+			register(new BlockTraverseStairs(cobblestone.getDefaultState(), cobbleName));
 
-            BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(cobbleName, Material.ROCK, SoundType.STONE);
-            register(halfSlab, true);
-            BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(cobbleName, Material.ROCK, SoundType.STONE, halfSlab);
-            register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
+			BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(cobbleName, Material.ROCK, SoundType.STONE);
+			register(halfSlab, true);
+			BlockTraverseSlab.Double doubleSlab = new BlockTraverseSlab.Double(cobbleName, Material.ROCK, SoundType.STONE, halfSlab);
+			register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
 
-            register(new BlockTraverseWall(cobblestone, cobbleName));
+			register(new BlockTraverseWall(cobblestone, cobbleName));
 
-        } else {
-            register(new BlockTraverse(name, Material.ROCK, SoundType.STONE));
+		} else {
+			register(new BlockTraverse(name, Material.ROCK, SoundType.STONE));
 
-        }
-    }
+		}
+	}
 }

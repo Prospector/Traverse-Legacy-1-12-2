@@ -2,12 +2,12 @@
 	"forge_marker": 1,
 	"defaults": {
 		"model": "cube_all",
-		"textures": { "all": "traverse:block/red_rock/brick" }
+		"textures": { "all": "traverse:block/blue_rock/cracked" }
 	},
 	"variants": {
 		"inventory": { "transform": "forge:default-block" },
 		"normal": [
-			{ "textures": { "all": "traverse:block/red_rock/cracked" } }
+			{ "textures": { "all": "traverse:block/blue_rock/cracked" } }
 		]
 	}
 }
