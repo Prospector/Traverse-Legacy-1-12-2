@@ -25,7 +25,6 @@ public class BiomeGlacier extends Biome implements ITreeConstants {
 
     public final boolean isSpikes;
 
-
     public BiomeGlacier(boolean isSpikes) {
         super(getProperties(isSpikes));
         this.isSpikes = isSpikes;
@@ -36,15 +35,8 @@ public class BiomeGlacier extends Biome implements ITreeConstants {
         this.spawnableCreatureList.clear();
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 10, 2, 3));
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPolarBear.class, 1, 1, 2));
-        Iterator<SpawnListEntry> iterator = this.spawnableMonsterList.iterator();
 
-        while (iterator.hasNext()) {
-            Biome.SpawnListEntry biome$spawnlistentry = iterator.next();
-
-            if (biome$spawnlistentry.entityClass == EntitySkeleton.class) {
-                iterator.remove();
-            }
-        }
+        this.spawnableMonsterList.removeIf(spawnentry -> spawnentry.entityClass == EntitySkeleton.class);
 
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 20, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityStray.class, 80, 4, 4));

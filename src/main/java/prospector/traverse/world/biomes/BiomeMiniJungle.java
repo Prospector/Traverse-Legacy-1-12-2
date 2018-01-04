@@ -20,7 +20,7 @@ public class BiomeMiniJungle extends Biome implements ITreeConstants {
     public static BiomeProperties properties = new BiomeProperties("Mini Jungle");
 
     static {
-        properties.setTemperature(Biomes.JUNGLE.getTemperature());
+        properties.setTemperature(Biomes.JUNGLE.getDefaultTemperature());
         properties.setRainfall(Biomes.JUNGLE.getRainfall());
         properties.setBaseHeight(-0.1F);
         properties.setHeightVariation(0.5F);

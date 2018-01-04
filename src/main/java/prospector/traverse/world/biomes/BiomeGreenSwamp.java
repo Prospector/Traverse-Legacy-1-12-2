@@ -24,7 +24,7 @@ public class BiomeGreenSwamp extends Biome implements ITreeConstants {
     public static BiomeProperties properties = new BiomeProperties("Lush Swamp");
 
     static {
-        properties.setTemperature(Biomes.SWAMPLAND.getTemperature());
+        properties.setTemperature(Biomes.SWAMPLAND.getDefaultTemperature());
         properties.setBaseHeight(Biomes.SWAMPLAND.getBaseHeight());
         properties.setHeightVariation(Biomes.SWAMPLAND.getHeightVariation());
     }

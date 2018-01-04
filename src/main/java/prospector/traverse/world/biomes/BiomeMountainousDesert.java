@@ -19,7 +19,7 @@ public class BiomeMountainousDesert extends BiomeDesert implements ITreeConstant
     public static BiomeProperties properties = new BiomeProperties("Mountainous Desert");
 
     static {
-        properties.setTemperature(Biomes.DESERT.getTemperature());
+        properties.setTemperature(Biomes.DESERT.getDefaultTemperature());
         properties.setRainfall(Biomes.DESERT.getRainfall());
         properties.setRainDisabled();
         properties.setBaseHeight(0.4F);
