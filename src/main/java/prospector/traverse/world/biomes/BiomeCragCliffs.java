@@ -1,0 +1,144 @@
+package prospector.traverse.world.biomes;
+
+import net.minecraft.block.BlockSand;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import prospector.traverse.config.TraverseConfig;
+import prospector.traverse.init.TraverseBlocks;
+import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.features.WorldGenPlant;
+
+import java.util.Random;
+
+import static prospector.traverse.util.TUtils.getBlock;
+
+public class BiomeCragFlats extends Biome implements ITreeConstants {
+
+    public static final WorldGenerator COLD_GRASS_FEATURE = new WorldGenPlant(TraverseBlocks.blocks.get("cold_grass").getDefaultState());
+    public static IBlockState blueRock;
+    public static BiomeProperties properties = new BiomeProperties("Crag Flats");
+
+    static {
+        properties.setTemperature(1F);
+        properties.setRainfall(0F);
+        properties.setBaseHeight(1.7F);
+        properties.setHeightVariation(0.2F);
+    }
+
+    public BiomeCragFlats() {
+        super(properties);
+        blueRock = getBlock("blue_rock").getDefaultState();
+        topBlock = blueRock;
+        fillerBlock = Blocks.STONE.getDefaultState();
+        decorator.treesPerChunk = -999;
+        decorator.extraTreeChance = -999;
+        decorator.flowersPerChunk = -999;
+        decorator.grassPerChunk = 2;
+        decorator.generateFalls = false;
+
+        spawnableCreatureList.clear();
+        spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 3, 3, 5));
+    }
+
+    @Override
+    public int getModdedBiomeGrassColor(int original) {
+        return 0xFF90814D;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+        return COLD_GRASS_FEATURE;
+    }
+
+    @Override
+    public int getSkyColorByTemp(float currentTemperature) {
+        if (TraverseConfig.disableCustomSkies)
+            return super.getSkyColorByTemp(currentTemperature);
+        else
+            return 0xFF88DDFF;
+    }
+
+    @Override
+    public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+        int i = worldIn.getSeaLevel();
+        IBlockState iblockstate = this.topBlock;
+        IBlockState iblockstate1 = this.fillerBlock;
+        int j = -1;
+        int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int l = x & 15;
+        int i1 = z & 15;
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (int j1 = 255; j1 >= 0; --j1) {
+            if (j1 <= rand.nextInt(5)) {
+                chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+            } else {
+                IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
+
+                if (iblockstate2.getMaterial() == Material.AIR) {
+                    j = -1;
+                } else if (iblockstate2.getBlock() == Blocks.STONE) {
+                    if (j == -1) {
+                        if (k <= 0) {
+                            iblockstate = AIR;
+                            iblockstate1 = STONE;
+                        } else if (j1 >= i - 4 && j1 <= i + 1) {
+                            iblockstate = this.topBlock;
+                            iblockstate1 = this.fillerBlock;
+                        }
+
+                        if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
+                            if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
+                                iblockstate = ICE;
+                            } else {
+                                iblockstate = WATER;
+                            }
+                        }
+
+                        j = k;
+
+                        if (j1 >= i - 1) {
+                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
+                        } else if (j1 < i - 7 - k) {
+                            iblockstate = AIR;
+                            iblockstate1 = STONE;
+                            chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+                        } else {
+                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+                        }
+                    } else if (j > 0) {
+                        --j;
+                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+
+                        if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
+                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
+                            iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
+                        }
+
+                        if (j == 0 && iblockstate == blueRock && k > 1) {
+                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
+                            iblockstate = blueRock;
+                        }
+
+                        if (j == 0 && iblockstate1 == blueRock && k > 1) {
+                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
+                            iblockstate1 = blueRock;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public int getModdedBiomeFoliageColor(int original) {
+        return 0xFF9E814D;
+    }
+}

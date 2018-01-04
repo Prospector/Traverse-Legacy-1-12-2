@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    compile "prospector.shootingstar:ShootingStar:" + mcver + "-" + starver
+    compile "prospector.shootingstar:ShootingStar:" + "1.12" + "-" + starver
 }
 
 shadowJar {

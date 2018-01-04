@@ -12,7 +12,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class CommandFindTest extends CommandBase {
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CommandFindBiome extends CommandBase {
 
     //Based off https://github.com/Glitchfiend/BiomesOPlenty/blob/4977b0100ca55f96de50337f46ed673512cf503a/src/main/java/biomesoplenty/common/util/biome/BiomeUtils.java
     public static BlockPos spiralOutwardsLookingForBiome(ICommandSender sender, World world, Biome biomeToFind, double startX, double startZ, int timeout) {
@@ -40,19 +44,34 @@ public class CommandFindTest extends CommandBase {
 
     @Override
     public String getName() {
-        return "findtest";
+        return "findbiome";
     }
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "findtest";
+        return "/findbiome <biome>";
+    }
+
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+        List<String> strings = new ArrayList<>();
+        for (Biome b : ForgeRegistries.BIOMES.getValues()) {
+            String s = b.getRegistryName().toString();
+            if (s.toLowerCase().contains(args[0].toLowerCase()))
+                strings.add(s);
+        }
+        return strings;
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         Biome biome = null;
+        if(args.length==0) {
+            sender.sendMessage(new TextComponentString("No biome specified"));
+            return;
+        }
         for (Biome b : ForgeRegistries.BIOMES.getValues()) {
-            String name = b.getBiomeName().replaceAll(" ", "_").toLowerCase();
+            String name = b.getRegistryName().toString().replaceAll(" ", "_").toLowerCase();
             if (args[0].equalsIgnoreCase(name)) {
                 biome = b;
             }
@@ -74,6 +93,7 @@ public class CommandFindTest extends CommandBase {
             EntityPlayerMP playerMP = (EntityPlayerMP) sender;
             playerMP.connection.setPlayerLocation(pos.getX(), 150, pos.getZ(), 0, 0);
         }
-        sender.sendMessage(new TextComponentString(TextFormatting.WHITE + "Found '" + biome.getBiomeName() + "' Biome! " + TextFormatting.GRAY + "(" + (System.currentTimeMillis() - start) + "ms)"));
+
+        sender.sendMessage(new TextComponentString(TextFormatting.WHITE + "Found '" + biome.getRegistryName().toString() + "' Biome! " + TextFormatting.GRAY + "(" + (System.currentTimeMillis() - start) + "ms)"));
     }
 }
