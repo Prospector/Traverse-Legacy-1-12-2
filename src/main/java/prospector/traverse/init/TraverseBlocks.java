@@ -91,8 +91,14 @@ public class TraverseBlocks {
 		BlockTraverseWoodSlab.Double doubleSlab = new BlockTraverseWoodSlab.Double(fir, halfSlab);
 		register(doubleSlab, (ItemBlock) new ItemSlab(blocks.get(halfSlab.name + "_slab"), halfSlab, doubleSlab).setRegistryName(halfSlab.getRegistryName()));
 
-		register(new BlockTraverseWoodFence(fir));
-		register(new BlockTraverseWoodFenceGate(fir));
+		BlockTraverseWoodFence fence = new BlockTraverseWoodFence(fir);
+		oreDictNames.put(fence, "fenceWood");
+		register(fence);
+
+		BlockTraverseWoodFenceGate fenceGate = new BlockTraverseWoodFenceGate(fir);
+		oreDictNames.put(fence, "fenceGateWood");
+		register(fenceGate);
+
 		BlockTraverseWoodDoor door = new BlockTraverseWoodDoor(fir);
 		register(door, new ItemTraverseWoodDoor(door));
 
@@ -114,7 +120,7 @@ public class TraverseBlocks {
 			register(bricks);
 			register(new BlockTraverseStairs(bricks.getDefaultState(), name + "_bricks"));
 
-//			BlockTraverse cracked_bricks = new BlockTraverse(name + "_bricks_cracked", Material.ROCK, SoundType.STONE);
+			//			BlockTraverse cracked_bricks = new BlockTraverse(name + "_bricks_cracked", Material.ROCK, SoundType.STONE);
 			//			register(cracked_bricks);
 
 			BlockTraverseSlab.Half halfSlab = new BlockTraverseSlab.Half(name + "_bricks", Material.ROCK, SoundType.STONE);
