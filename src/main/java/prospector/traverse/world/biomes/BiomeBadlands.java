@@ -13,12 +13,12 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenFallenTree;
 
 import java.util.Random;
 
-public class BiomeBadlands extends Biome implements ITreeConstants {
+public class BiomeBadlands extends Biome implements WorldGenConstants {
 
     protected static final WorldGenFallenTree FALLEN_TREE_FEATURE = new WorldGenFallenTree(true);
     protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 1);

@@ -13,12 +13,11 @@ import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenIceSpike;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
-import java.util.Iterator;
 import java.util.Random;
 
-public class BiomeGlacier extends Biome implements ITreeConstants {
+public class BiomeGlacier extends Biome implements WorldGenConstants {
 
     public static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 1);
     public static final WorldGenIceSpike ICE_SPIKE_FEATURE = new WorldGenIceSpike();

@@ -6,11 +6,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
 import java.util.Random;
 
-public class BiomeCliffs extends Biome implements ITreeConstants {
+public class BiomeCliffs extends Biome implements WorldGenConstants {
 
     protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 2);
     public static BiomeProperties properties = new BiomeProperties("Cliffs");

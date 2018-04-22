@@ -12,12 +12,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenFossils;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenCustomSwampTree;
 
 import java.util.Random;
 
-public class BiomeGreenSwamp extends Biome implements ITreeConstants {
+public class BiomeLushSwamp extends Biome implements WorldGenConstants {
 
     protected static final WorldGenCustomSwampTree CUSTOM_SWAMP_TREE_FEATURE = new WorldGenCustomSwampTree(true, 7);
     protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
@@ -29,7 +29,7 @@ public class BiomeGreenSwamp extends Biome implements ITreeConstants {
         properties.setHeightVariation(Biomes.SWAMPLAND.getHeightVariation());
     }
 
-    public BiomeGreenSwamp() {
+    public BiomeLushSwamp() {
         super(properties);
         decorator.treesPerChunk = 2;
         decorator.flowersPerChunk = 5;

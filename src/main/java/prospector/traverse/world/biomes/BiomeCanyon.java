@@ -12,14 +12,14 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.init.TraverseBlocks;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPlant;
 
 import java.util.Random;
 
 import static prospector.traverse.util.TUtils.getBlock;
 
-public class BiomeCanyon extends Biome implements ITreeConstants {
+public class BiomeCanyon extends Biome implements WorldGenConstants {
 
     public static final WorldGenerator DEAD_GRASS_FEATURE = new WorldGenPlant(TraverseBlocks.blocks.get("dead_grass").getDefaultState());
     public static IBlockState redRock = Blocks.RED_SANDSTONE.getDefaultState();

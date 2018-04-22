@@ -7,12 +7,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPatch;
 
 import java.util.Random;
 
-public class BiomeRockyPlateau extends Biome implements ITreeConstants {
+public class BiomeRockyPlateau extends Biome implements WorldGenConstants {
 
     protected static final WorldGenPatch COARSE_DIRT_PATCH_FEATURE = new WorldGenPatch(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT), 4);
     protected static final WorldGenPatch STONE_PATCH_FEATURE = new WorldGenPatch(Blocks.STONE.getDefaultState(), 5);

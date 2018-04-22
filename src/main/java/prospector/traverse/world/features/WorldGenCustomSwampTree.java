@@ -9,11 +9,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
 import java.util.Random;
 
-public class WorldGenCustomSwampTree extends WorldGenAbstractTree implements ITreeConstants {
+public class WorldGenCustomSwampTree extends WorldGenAbstractTree implements WorldGenConstants {
 
     public final boolean isWorldGen;
     private final int minTreeHeight;

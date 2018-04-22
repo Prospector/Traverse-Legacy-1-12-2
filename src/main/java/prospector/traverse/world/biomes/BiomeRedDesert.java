@@ -6,9 +6,9 @@ import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDesert;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
-public class BiomeRedDesert extends BiomeDesert implements ITreeConstants {
+public class BiomeRedDesert extends BiomeDesert implements WorldGenConstants {
 
     protected static final IBlockState RED_SAND = Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
     public static BiomeProperties properties = new BiomeProperties("Red Desert");

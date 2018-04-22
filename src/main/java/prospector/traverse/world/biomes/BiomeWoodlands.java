@@ -8,12 +8,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenFallenTree;
 
 import java.util.Random;
 
-public class BiomeWoodlands extends Biome implements ITreeConstants {
+public class BiomeWoodlands extends Biome implements WorldGenConstants {
 
     protected static final WorldGenFallenTree FALLEN_TREE_FEATURE = new WorldGenFallenTree(true);
 

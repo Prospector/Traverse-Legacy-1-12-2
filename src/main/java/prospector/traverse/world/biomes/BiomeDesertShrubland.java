@@ -8,11 +8,11 @@ import net.minecraft.world.biome.BiomeDesert;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
 import java.util.Random;
 
-public class BiomeDesertShrubland extends BiomeDesert implements ITreeConstants {
+public class BiomeDesertShrubland extends BiomeDesert implements WorldGenConstants {
 
     protected static final IBlockState SAND = Blocks.SAND.getDefaultState();
     protected static final IBlockState GRASS = Blocks.GRASS.getDefaultState();

@@ -14,14 +14,14 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.init.TraverseBlocks;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPlant;
 
 import java.util.Random;
 
 import static prospector.traverse.util.TUtils.getBlock;
 
-public class BiomeCragCliffs extends Biome implements ITreeConstants {
+public class BiomeCragCliffs extends Biome implements WorldGenConstants {
 
     protected static final WorldGenBlockBlob BOULDER_FEATURE = new WorldGenBlockBlob(TraverseBlocks.blocks.get("blue_rock_cobblestone"), 2);
     public static final WorldGenerator COLD_GRASS_FEATURE = new WorldGenPlant(TraverseBlocks.blocks.get("cold_grass").getDefaultState());

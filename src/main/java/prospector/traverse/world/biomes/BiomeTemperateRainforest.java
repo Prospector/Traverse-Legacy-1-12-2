@@ -2,12 +2,12 @@ package prospector.traverse.world.biomes;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenFirTree;
 
 import java.util.Random;
 
-public class BiomeTemperateRainforest extends Biome implements ITreeConstants {
+public class BiomeTemperateRainforest extends Biome implements WorldGenConstants {
 
     protected static final WorldGenFirTree FIR_TREE_FEATURE = new WorldGenFirTree(true);
 

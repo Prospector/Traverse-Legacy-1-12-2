@@ -7,12 +7,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDesert;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPatch;
 
 import java.util.Random;
 
-public class BiomeMountainousDesert extends BiomeDesert implements ITreeConstants {
+public class BiomeMountainousDesert extends BiomeDesert implements WorldGenConstants {
 
     protected static final WorldGenPatch STONE_PATCH_FEATURE = new WorldGenPatch(Blocks.STONE.getDefaultState(), 6, Blocks.SAND, Blocks.SANDSTONE);
     protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 1);

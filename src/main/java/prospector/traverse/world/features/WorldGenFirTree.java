@@ -6,11 +6,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
 import java.util.Random;
 
-public class WorldGenFirTree extends WorldGenAbstractTree implements ITreeConstants {
+public class WorldGenFirTree extends WorldGenAbstractTree implements WorldGenConstants {
 
     public final boolean isWorldGen;
     private final int minTreeHeight;

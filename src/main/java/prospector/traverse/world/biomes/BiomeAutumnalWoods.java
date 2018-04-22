@@ -5,12 +5,12 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import prospector.traverse.config.TraverseConfig;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.TraverseTreeGenerator;
 
 import java.util.Random;
 
-public class BiomeAutumnalWoods extends Biome implements ITreeConstants {
+public class BiomeAutumnalWoods extends Biome implements WorldGenConstants {
 
     public static Biome.BiomeProperties properties = new Biome.BiomeProperties("Autumnal Woods");
 

@@ -2,9 +2,9 @@ package prospector.traverse.world.features;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.gen.feature.WorldGenTrees;
-import prospector.traverse.world.ITreeConstants;
+import prospector.traverse.world.WorldGenConstants;
 
-public class TraverseTreeGenerator extends WorldGenTrees implements ITreeConstants {
+public class TraverseTreeGenerator extends WorldGenTrees implements WorldGenConstants {
 
     public boolean isWorldGen = true;
 
