@@ -7,13 +7,13 @@ import prospector.traverse.world.features.WorldGenFirTree;
 
 import java.util.Random;
 
-public class BiomeTemperateRainforest extends Biome implements WorldGenConstants {
+public class BiomeConiferousForest extends Biome implements WorldGenConstants {
 
     protected static final WorldGenFirTree FIR_TREE_FEATURE = new WorldGenFirTree(true);
 
     public final boolean isSnowy;
 
-    public BiomeTemperateRainforest(boolean isSnowy) {
+    public BiomeConiferousForest(boolean isSnowy) {
         super(getProperties(isSnowy));
         this.isSnowy = isSnowy;
         decorator.treesPerChunk = 7;

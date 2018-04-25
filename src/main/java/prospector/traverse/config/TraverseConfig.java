@@ -18,6 +18,7 @@ public class TraverseConfig {
 	public static boolean disableCustomSkies = false;
 	public static boolean vanillaCanyonBlocks = false;
 	public static int findBiomeCommandTimeout = 20_000;
+	public static boolean disallowVillages = false;
 
 	public static boolean disableAutumnalWoods = false;
 	public static boolean disableWoodlands = false;
@@ -57,6 +58,7 @@ public class TraverseConfig {
 		disableCustomSkies = config.get(Configuration.CATEGORY_GENERAL, "disableCustomSkies", disableCustomSkies, "When true, Traverse will only use the default sky colour.").getBoolean();
 		vanillaCanyonBlocks = config.get(Configuration.CATEGORY_GENERAL, "vanillaCanyonBlocks", vanillaCanyonBlocks, "Use vanilla Red Sandstone instead of Red Rock in the Canyon biome.").getBoolean();
 		findBiomeCommandTimeout = config.get(Configuration.CATEGORY_GENERAL, "findBiomeCommandTimeout", findBiomeCommandTimeout, "How long, in ms, the /findbiome command will search for biomes before timing out, normally 20000ms").getInt();
+		disallowVillages = config.get(Configuration.CATEGORY_GENERAL, "disallowVillages", disallowVillages, "With this enabled, villages will not spawn in Traverse biomes").getBoolean();
 
 		disableAutumnalWoods = config.get(CATEGORY_BIOMES, "disableAutumnalWoods", disableAutumnalWoods, "Force disable the Autumnal Woods biome").getBoolean();
 		disableWoodlands = config.get(CATEGORY_BIOMES, "disableWoodlands", disableWoodlands, "Force disable the Woodlands biome").getBoolean();

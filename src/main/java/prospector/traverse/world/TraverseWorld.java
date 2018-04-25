@@ -95,7 +95,7 @@ public class TraverseWorld {
 	public static Biome meadowBiome = new BiomeMeadow();
 	public static Biome lushSwampBiome = new BiomeLushSwamp();
 	public static Biome redDesertBiome = new BiomeRedDesert();
-	public static Biome temperateRainforestBiome = new BiomeTemperateRainforest(false);
+	public static Biome temperateRainforestBiome = new BiomeConiferousForest(false);
 	public static Biome badlandsBiome = new BiomeBadlands();
 	public static Biome mountainousDesertBiome = new BiomeMountainousDesert();
 	public static Biome rockyPlateauBiome = new BiomeRockyPlateau();
@@ -105,7 +105,7 @@ public class TraverseWorld {
 	public static Biome cliffsBiome = new BiomeCliffs();
 	public static Biome glacierBiome = new BiomeGlacier(false);
 	public static Biome glacierSpikesBiome = new BiomeGlacier(true);
-	public static Biome snowyConiferousForestBiome = new BiomeTemperateRainforest(true);
+	public static Biome snowyConiferousForestBiome = new BiomeConiferousForest(true);
 	public static Biome lushHillsBiome = new BiomeLushHills();
 	public static Biome canyonBiome = new BiomeCanyon();
 	public static Biome cragCliffsBiome = new BiomeCragCliffs();
@@ -158,8 +158,8 @@ public class TraverseWorld {
 			for (BiomeDictionary.Type biomeDictType : biomeDictTypes) {
 				BiomeDictionary.addTypes(biome, biomeDictType);
 			}
-			biomeList.add(new TraverseBiomeEntry(biome, type, weight, canSpawn, villageReplacements != NO_VILLAGES, versionAdded));
-			if (villageReplacements != NO_VILLAGES && villageReplacements != NO_REPLACEMENTS) {
+			biomeList.add(new TraverseBiomeEntry(biome, type, weight, canSpawn, !TraverseConfig.disallowVillages && villageReplacements != NO_VILLAGES, versionAdded));
+			if (!TraverseConfig.disallowVillages && villageReplacements != NO_VILLAGES && villageReplacements != NO_REPLACEMENTS) {
 				villageReplacementBiomes.put(biome, villageReplacements);
 			}
 		}
