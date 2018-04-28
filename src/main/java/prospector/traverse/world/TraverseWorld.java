@@ -1,5 +1,6 @@
 package prospector.traverse.world;
 
+import net.minecraft.block.BlockRedSandstone;
 import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
@@ -44,10 +45,10 @@ public class TraverseWorld {
 			return Blocks.RED_SANDSTONE.getDefaultState();
 		}
 		if (originalState.getBlock() == Blocks.COBBLESTONE) {
-			return Blocks.RED_SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.DEFAULT);
+			return Blocks.RED_SANDSTONE.getDefaultState().withProperty(BlockRedSandstone.TYPE, BlockRedSandstone.EnumType.DEFAULT);
 		}
 		if (originalState.getBlock() == Blocks.PLANKS) {
-			return Blocks.RED_SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.SMOOTH);
+			return Blocks.RED_SANDSTONE.getDefaultState().withProperty(BlockRedSandstone.TYPE, BlockRedSandstone.EnumType.SMOOTH);
 		}
 		if (originalState.getBlock() == Blocks.OAK_STAIRS) {
 			return Blocks.RED_SANDSTONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, originalState.getValue(BlockStairs.FACING));
