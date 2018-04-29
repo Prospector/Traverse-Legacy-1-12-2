@@ -30,7 +30,7 @@ public class BiomeCragCliffs extends Biome implements WorldGenConstants {
 
     @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
+        if (!TraverseConfig.disallowBoulders && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
             int genChance = rand.nextInt(9);
             if (genChance == 0) {
                 int k6 = rand.nextInt(16) + 8;

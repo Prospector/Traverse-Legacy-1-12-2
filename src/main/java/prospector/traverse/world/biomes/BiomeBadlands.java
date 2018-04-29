@@ -101,7 +101,7 @@ public class BiomeBadlands extends Biome implements WorldGenConstants {
             }
         }
 
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
+        if (!TraverseConfig.disallowBoulders && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
             int boulderChance = rand.nextInt(5);
             if (boulderChance == 0) {
                 int k6 = rand.nextInt(16) + 8;

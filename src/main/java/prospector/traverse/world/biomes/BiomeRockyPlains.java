@@ -12,6 +12,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPatch;
 
@@ -47,7 +48,7 @@ public class BiomeRockyPlains extends BiomePlains implements WorldGenConstants {
 			STONE_PATCH_FEATURE.generate(worldIn, rand, blockpos);
 		}
 
-		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
+		if (!TraverseConfig.disallowBoulders && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
 			int genChance = rand.nextInt(4);
 			if (genChance == 0) {
 				int k6 = rand.nextInt(16) + 8;

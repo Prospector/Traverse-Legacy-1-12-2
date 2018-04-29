@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import prospector.traverse.config.TraverseConfig;
 import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPatch;
 
@@ -55,7 +56,7 @@ public class BiomeRockyPlateau extends Biome implements WorldGenConstants {
             STONE_PATCH_FEATURE.generate(worldIn, rand, blockpos);
         }
 
-        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
+        if (!TraverseConfig.disallowBoulders && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, pos, DecorateBiomeEvent.Decorate.EventType.ROCK)) {
             int genChance = rand.nextInt(3);
             if (genChance == 0) {
                 int k6 = rand.nextInt(16) + 8;
