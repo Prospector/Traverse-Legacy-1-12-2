@@ -16,6 +16,7 @@ import prospector.traverse.config.TraverseConfig;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CommandFindBiome extends CommandBase {
@@ -74,13 +75,17 @@ public class CommandFindBiome extends CommandBase {
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
-		List<String> strings = new ArrayList<>();
-		for (Biome b : ForgeRegistries.BIOMES.getValues()) {
-			String s = b.getRegistryName().toString();
-			if (s.toLowerCase().contains(args[0].toLowerCase()))
-				strings.add(s);
+		if(args.length==1) {
+			List<String> strings = new ArrayList<>();
+			for (Biome b : ForgeRegistries.BIOMES.getValues()) {
+				String s = b.getRegistryName().toString();
+				if (s.toLowerCase().contains(args[0].toLowerCase()))
+					strings.add(s);
+			}
+
+			return strings;
 		}
-		return strings;
+		return Collections.emptyList();
 	}
 
 	@Override
