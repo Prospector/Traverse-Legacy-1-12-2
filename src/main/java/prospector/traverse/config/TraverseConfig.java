@@ -17,7 +17,7 @@ public class TraverseConfig {
 	public static boolean registerBiomesRegardless = false;
 	public static boolean disableCustomSkies = false;
 	public static boolean vanillaCanyonBlocks = false;
-	public static int findBiomeCommandTimeout = 20_000;
+	public static int findBiomeCommandTimeout = 30_000;
 	public static boolean disallowVillages = false;
 	public static boolean disallowBoulders = false;
 
