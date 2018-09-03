@@ -59,12 +59,12 @@ public class BiomeAridHighland extends BiomeDesert implements WorldGenConstants 
 
 	@Override
 	public int getModdedBiomeGrassColor(int original) {
-		return 0xFFBACD78;
+		return super.getModdedBiomeGrassColor(0xFFBACD78);
 	}
 
 	@Override
 	public int getModdedBiomeFoliageColor(int original) {
-		return 0xFF80A02E;
+		return super.getModdedBiomeFoliageColor(0xFF80A02E);
 	}
 
 	@Override

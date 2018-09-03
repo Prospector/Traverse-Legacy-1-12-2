@@ -32,7 +32,7 @@ public class BiomeAutumnalWoodedHills extends Biome implements WorldGenConstants
 
     @Override
     public int getModdedBiomeGrassColor(int original) {
-        return 0xFFD6C23D;
+        return super.getModdedBiomeGrassColor(0xFFD6C23D);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BiomeAutumnalWoodedHills extends Biome implements WorldGenConstants
 
     @Override
     public int getModdedBiomeFoliageColor(int original) {
-        return 0xFFD2D31F;
+        return super.getModdedBiomeFoliageColor(0xFFD2D31F);
     }
 
     @Override

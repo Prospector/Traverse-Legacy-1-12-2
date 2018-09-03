@@ -68,11 +68,11 @@ public class BiomeMeadow extends Biome implements WorldGenConstants {
 
 	@Override
 	public int getModdedBiomeGrassColor(int original) {
-		return 0xFF65CC53;
+		return super.getModdedBiomeGrassColor(0xFF65CC53);
 	}
 
 	@Override
 	public int getModdedBiomeFoliageColor(int original) {
-		return 0xFF5DD64A;
+		return super.getModdedBiomeFoliageColor(0xFF5DD64A);
 	}
 }

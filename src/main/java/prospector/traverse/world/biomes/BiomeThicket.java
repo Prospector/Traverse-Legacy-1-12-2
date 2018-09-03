@@ -10,9 +10,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.event.terraingen.OreGenEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import prospector.traverse.world.TraverseWorld;
 import prospector.traverse.world.WorldGenConstants;
 import prospector.traverse.world.features.WorldGenPatch;
 import prospector.traverse.world.features.WorldGenSurfacePatch;
@@ -50,17 +47,12 @@ public class BiomeThicket extends Biome implements WorldGenConstants {
 
 	@Override
 	public int getModdedBiomeGrassColor(int original) {
-		return 0xFF74CD61;
-	}
-
-	@Override
-	public int getSkyColorByTemp(float currentTemperature) {
-		return super.getSkyColorByTemp(currentTemperature);
+		return super.getModdedBiomeGrassColor(0xFF74CD61);
 	}
 
 	@Override
 	public int getModdedBiomeFoliageColor(int original) {
-		return 0xFF6DAF61;
+		return super.getModdedBiomeFoliageColor(0xFF6DAF61);
 	}
 
 	@Override

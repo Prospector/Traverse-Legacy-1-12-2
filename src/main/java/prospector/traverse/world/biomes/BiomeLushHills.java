@@ -62,12 +62,12 @@ public class BiomeLushHills extends Biome implements WorldGenConstants {
 
 	@Override
 	public int getModdedBiomeGrassColor(int original) {
-		return 0xFF7FE03E;
+		return super.getModdedBiomeGrassColor(0xFF7FE03E);
 	}
 
 	@Override
 	public int getModdedBiomeFoliageColor(int original) {
-		return 0xFF58EA33;
+		return super.getModdedBiomeFoliageColor(0xFF58EA33);
 	}
 
 	@Override

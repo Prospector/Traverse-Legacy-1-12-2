@@ -33,7 +33,7 @@ public class TraverseCommon {
 
 	public static TraverseWorldVersion traverse_world_data = null;
 
-	static void registerFurnace(ItemStack output, ItemStack input, float experience) {
+	static void registerSmeltingRecipe(ItemStack output, ItemStack input, float experience) {
 		GameRegistry.addSmelting(input, output, experience);
 	}
 
@@ -51,7 +51,7 @@ public class TraverseCommon {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		ShootingStar.registerItems(TraverseConstants.MOD_ID, event);
 	}
-
+	
 	public void preInit(FMLPreInitializationEvent event) {
 		TraverseBlocks.test();
 		TraverseConfig.initialize(event);
@@ -62,9 +62,20 @@ public class TraverseCommon {
 		for (Block block : TraverseBlocks.oreDictNames.keySet()) {
 			OreDictionary.registerOre(TraverseBlocks.oreDictNames.get(block), block);
 		}
-		registerFurnace(new ItemStack(Items.COAL, 1, 1), new ItemStack(getBlock("fir_log")), 0.15F);
-		registerFurnace(new ItemStack(getBlock("red_rock")), new ItemStack(getBlock("red_rock_cobblestone")), 0.1F);
-		registerFurnace(new ItemStack(getBlock("blue_rock")), new ItemStack(getBlock("blue_rock_cobblestone")), 0.1F);
+		for (TraverseWorld.TraverseBiomeEntry traverseBiome : TraverseWorld.biomeList) {
+			BiomeManager.addBiome(traverseBiome.getType(), traverseBiome.getEntry());
+			if (traverseBiome.hasVillages()) {
+				BiomeManager.addVillageBiome(traverseBiome.getBiome(), traverseBiome.canSpawn());
+			}
+			if (traverseBiome.canSpawn()) {
+				BiomeManager.addSpawnBiome(traverseBiome.getBiome());
+			}
+			BiomeProvider.allowedBiomes.add(traverseBiome.getBiome());
+		}
+
+		registerSmeltingRecipe(new ItemStack(Items.COAL, 1, 1), new ItemStack(getBlock("fir_log")), 0.15F);
+		registerSmeltingRecipe(new ItemStack(getBlock("red_rock")), new ItemStack(getBlock("red_rock_cobblestone")), 0.1F);
+		registerSmeltingRecipe(new ItemStack(getBlock("blue_rock")), new ItemStack(getBlock("blue_rock_cobblestone")), 0.1F);
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
@@ -86,6 +97,7 @@ public class TraverseCommon {
 			worldDir.mkdir();
 		}
 		traverse_world_data = new TraverseWorldVersion(worldDir);
+
 		for (TraverseWorld.TraverseBiomeEntry traverseBiome : TraverseWorld.biomeList) {
 			BiomeProvider.allowedBiomes.remove(traverseBiome.getBiome());
 			BiomeManager.removeSpawnBiome(traverseBiome.getBiome());

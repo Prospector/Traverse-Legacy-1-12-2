@@ -47,7 +47,10 @@ public class TraverseBlocks {
 		}
 		AutumnalLSCompound lsCompound = new AutumnalLSCompound(colour);
 		register(lsCompound.lsLeaves);
+		oreDictNames.put(lsCompound.lsLeaves, "treeLeaves");
 		register(lsCompound.lsSapling);
+		oreDictNames.put(lsCompound.lsSapling, "treeSapling");
+
 	}
 
 	public static void register(Block block) {
