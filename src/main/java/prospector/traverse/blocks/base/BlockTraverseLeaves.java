@@ -42,7 +42,6 @@ public class BlockTraverseLeaves extends BlockLeaves {
         ShootingStar.registerModel(new ModelCompound(TraverseConstants.MOD_ID, this, "leaves", CHECK_DECAY, DECAYABLE));
     }
 
-
     public int quantityDropped(Random random) {
         return random.nextInt(saplingDropChance) == 0 ? 1 : 0;
     }
@@ -60,17 +59,15 @@ public class BlockTraverseLeaves extends BlockLeaves {
     }
 
     @Override
-public boolean isOpaqueCube(IBlockState state) {
-    return Blocks.LEAVES.getDefaultState().isOpaqueCube();
-}
+    public boolean isOpaqueCube(IBlockState state) {
+        return Blocks.LEAVES.getDefaultState().isOpaqueCube();
+    }
 
-@Override
-@SideOnly(Side.CLIENT)
-public BlockRenderLayer getBlockLayer() {
-    return Blocks.LEAVES.getBlockLayer();
-}
- 
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return Blocks.LEAVES.getBlockLayer();
+    }
 
     @Override
     protected BlockStateContainer createBlockState() {
