@@ -59,14 +59,17 @@ public class BlockTraverseLeaves extends BlockLeaves {
         return list;
     }
 
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+    @Override
+public boolean isOpaqueCube(IBlockState state) {
+    return Blocks.LEAVES.getDefaultState().isOpaqueCube();
+}
 
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-    }
+@Override
+@SideOnly(Side.CLIENT)
+public BlockRenderLayer getBlockLayer() {
+    return Blocks.LEAVES.getBlockLayer();
+}
+ 
 
 
     @Override
